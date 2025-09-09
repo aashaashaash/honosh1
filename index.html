@@ -367,13 +367,22 @@ html,body{
 /* =======================
    Icon with pattern
 ======================= */
-.icon-with-pattern{
-  position:relative; display:inline-flex; align-items:center; justify-content:center;
-  width:44px; height:44px; border-radius:12px; overflow:hidden;
-  background-image:url("https://i.ibb.co/HpYRZtZV/logo-pattern.png");
-  background-repeat:repeat; background-size:24px 24px; opacity:.15;
+.icon-with-pattern {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-size: cover;      /* الصورة تملأ المساحة */
+  background-position: center; /* توسيط الصورة */
 }
-.icon-with-pattern>i{ position:relative; font-size:1.3em; color:var(--brand); z-index:1; }
+.icon-with-pattern i {
+  display: none; /* نخفي الأيقونة القديمة */
+}
+
 
 /* =======================
    Carousel (Banners)
