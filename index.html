@@ -503,6 +503,25 @@ html,body{
   padding: 12px 0 8px;
   text-align: center;
 }
+#appsBtn.apps-btn {
+  position: absolute;
+  top: 50%;                  /* بمحاذاة منتصف اللوغو */
+  left: 12px;                /* أقصى اليسار */
+  transform: translateY(-50%);
+  background: #fff;
+  border: 1.5px solid var(--brand);
+  color: var(--brand);
+  font-size: 1.2rem;
+  padding: 6px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+#appsBtn.apps-btn:hover {
+  background: var(--brand);
+  color: #fff;
+}
 
 
 </style>
@@ -513,8 +532,18 @@ html,body{
   <img src="assest/banner/logo_transparent.png?v=1"
        style="width: 100px; height: 60px; object-fit: contain; display: block; margin: 0 auto;" />
 
-  <!-- زر الرجوع أعلى يمين اللوغو -->
+  <!-- زر الرجوع أعلى يمين -->
   <button id="backBtn"><i class="fa-solid fa-arrow-right"></i></button>
+
+  <!-- زر التطبيقات أعلى يسار -->
+  <button id="appsBtn" class="apps-btn">
+    <svg fill="none" height="22" viewBox="0 0 24 24" width="22">
+      <rect fill="currentColor" height="7" rx="2" width="7" x="3" y="3"></rect>
+      <rect fill="currentColor" height="7" rx="2" width="7" x="14" y="3"></rect>
+      <rect fill="currentColor" height="7" rx="2" width="7" x="3" y="14"></rect>
+      <rect fill="currentColor" height="7" rx="2" width="7" x="14" y="14"></rect>
+    </svg>
+  </button>
 </div>
 
 <div class="main-header">  
@@ -621,12 +650,7 @@ html,body{
 <span class="nav-icon">🏠</span>
 <span class="nav-label">الرئيسية</span>
 </button>
-<button class="nav-btn" id="appsBtn">
-<span class="nav-icon">
-<svg fill="none" height="24" viewbox="0 0 24 24" width="24"><rect fill="currentColor" height="7" rx="2" width="7" x="3" y="3"></rect><rect fill="currentColor" height="7" rx="2" width="7" x="14" y="3"></rect><rect fill="currentColor" height="7" rx="2" width="7" x="3" y="14"></rect><rect fill="currentColor" height="7" rx="2" width="7" x="14" y="14"></rect></svg>
-</span>
-<span class="nav-label">التطبيقات</span>
-</button>
+
 <button class="nav-btn" id="cartBtn" onclick="activateNav(this); showCart();">
 <span class="nav-icon">🛒</span>
 <span class="nav-label">السلة</span>
