@@ -121,22 +121,23 @@ html,body{
   top: 12px;
   right: 12px;
   z-index: 11000;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background-color: #ffffff;
+  background: #f9f9f9;
   color: #c2185b;
   font-size: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease;
+  box-shadow: 4px 4px 10px #ccc, -4px -4px 10px #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 #backBtn:hover {
-  background-color: #ffeaf3;
+  box-shadow: inset 2px 2px 6px #ccc, inset -2px -2px 6px #fff;
 }
 
 
