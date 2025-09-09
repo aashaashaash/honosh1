@@ -1613,6 +1613,14 @@ function renderCategories() {
   });
 }
 
+<script>
+function showBackButton() {
+  const backBtn = document.getElementById("backBtn");
+  if (backBtn) {
+    backBtn.style.display = "block"; // يخلي الزر يظهر
+  }
+}
+</script>
 
   // 4. دالة التعامل مع النقر على أيقونة رئيسية
   function toggleCategory(idx) {
