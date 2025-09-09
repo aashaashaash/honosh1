@@ -116,15 +116,32 @@ html,body{
 .hide{ display:none!important; }
 
 /* زر رجوع أعلى */
-#backBtn{
-  display:none; position:fixed; top:12px; right:12px; z-index:11000;
-  width:36px; height:36px; border-radius:50%;
-  border:1px solid var(--brand); background:#fff0f6; color:var(--brand);
-  font-size:1.2rem; display:flex; align-items:center; justify-content:center;
-  box-shadow:0 2px 6px rgba(216,27,96,.2); cursor:pointer;
-  transition:background .2s, transform .2s;
+#backBtn {
+  display: none;
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 11000;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4); /* شفافية */
+  color: #c2185b; /* وردي باهت */
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  box-shadow: none;
+  opacity: 0.25;
+  transition: all 0.3s ease-in-out;
 }
-#backBtn:hover{ background:#f8bbd0; transform:scale(1.05); }
+
+#backBtn:hover {
+  opacity: 0.6;
+  transform: scale(1.08);
+}
+
 
 /* =======================
    Search Bar
