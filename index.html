@@ -476,26 +476,7 @@ html,body{
   z-index: 3000; /* فوق كل شي */
 }
 
-#backBtn {
-  position: absolute;
-  top: 50%;                   /* يجي بمحاذاة منتصف اللوغو */
-  right: 12px;                /* يمين الصفحة */
-  transform: translateY(-50%);/* ضبط عمودي */
-  background: #fff;
-  border: 1.5px solid var(--brand);
-  color: var(--brand);
-  font-size: 1.2rem;
-  padding: 6px 10px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: none;              /* يظهر فقط عند الحاجة */
-  z-index: 2000;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-#backBtn:hover {
-  background: var(--brand);
-  color: #fff;
-}
+
 
 	.main-header {
   position: relative; /* عشان الزر يثبت داخلها */
@@ -522,9 +503,7 @@ html,body{
   background: var(--brand);
   color: #fff;
 }
-#appsBtn {
-  left: 12px;
-}
+
 .top-btn {
   position: absolute;
   top: 50%;                  
@@ -1494,7 +1473,7 @@ document.addEventListener("mousedown", function(e) {
           // إخفاء قائمة الفرعيات
           document.getElementById('dropdown').classList.add('hide');
           // إخفاء الزر نفسه
-          backBtn.style.display = 'none';
+      
 
           // إعادة التهيئة للحالة "الرئيسية"
           selectedCategory = null;
