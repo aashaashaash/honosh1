@@ -466,6 +466,31 @@ html,body{
    نضيف المتغيرات لتغيير طريقة الملء لكل شريحة حسب الحاجة. */
 .carousel-img.cover{ object-fit: cover; }
 .carousel-img.contain{ object-fit: contain !important; background:#fff; }
+.top-bar {
+  position: relative;
+  width: 100%;
+  height: 0; /* ما ياخذ مساحة */
+}
+
+#backBtn {
+  position: absolute;
+  top: 8px;         /* المسافة من الأعلى */
+  right: 12px;      /* المسافة من اليمين */
+  background: #fff;
+  border: 1.5px solid var(--brand);
+  color: var(--brand);
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: none;    /* افتراضيًا مخفي */
+  z-index: 1000;    /* فوق كل العناصر */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+#backBtn:hover {
+  background: var(--brand);
+  color: #fff;
+}
 
 </style>
 
@@ -475,6 +500,9 @@ html,body{
 <img src="assest/banner/logo_transparent.png?v=1"
      style="width: 100px; height: 60px; object-fit: contain; display: block; margin: 0 auto;" />
 
+<div class="top-bar">
+  <button id="backBtn">⬅️</button>
+</div>
 
 </div>
 	<div class="main-header">
