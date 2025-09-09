@@ -478,9 +478,9 @@ html,body{
 
 #backBtn {
   position: absolute;
-  top: 50%;                 /* يخليه بمنتصف الهيدر */
-  right: 12px;              /* محاذاة لليمين */
-  transform: translateY(-50%);  /* ضبط عمودي */
+  top: 50%;                   /* يجي بمحاذاة منتصف اللوغو */
+  right: 12px;                /* يمين الصفحة */
+  transform: translateY(-50%);/* ضبط عمودي */
   background: #fff;
   border: 1.5px solid var(--brand);
   color: var(--brand);
@@ -488,7 +488,7 @@ html,body{
   padding: 6px 10px;
   border-radius: 50%;
   cursor: pointer;
-  display: none;            /* يبان فقط لما الجافاسكربت يطلّعه */
+  display: none;              /* يظهر فقط عند الحاجة */
   z-index: 2000;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
@@ -509,15 +509,15 @@ html,body{
 
 </head>
 <body>
-<div class="logo">
+<div class="logo" style="position:relative;">
   <img src="assest/banner/logo_transparent.png?v=1"
        style="width: 100px; height: 60px; object-fit: contain; display: block; margin: 0 auto;" />
+
+  <!-- زر الرجوع أعلى يمين اللوغو -->
+  <button id="backBtn"><i class="fa-solid fa-arrow-right"></i></button>
 </div>
 
-
-<div class="main-header">
-  <button id="backBtn"><i class="fa-solid fa-arrow-right"></i></button>
-  
+<div class="main-header">  
   <form class="search-bar" onsubmit="event.preventDefault(); searchProducts();">
     <input id="searchInput" oninput="searchProducts()" placeholder="ابحث عن منتج أو قسم..." type="text"/>
     <button class="icon" type="submit">
@@ -1621,20 +1621,21 @@ function showBackButton() {
 }
 
   // 4. دالة التعامل مع النقر على أيقونة رئيسية
-  function toggleCategory(idx) {
-    const cat = CATEGORIES[idx];
-    if (cat.type === "badge") {
-  selectedCategory    = cat.name;
-  selectedSubcategory = null;
-  document.getElementById("categories").classList.add("hide");
-  document.getElementById("dropdown").classList.add("hide");
-  showBackButton();  // ← هنا
-  renderProducts();
-} else {
-  toggleDropdown(idx);
-  showBackButton();  // ← هنا
-}
+function toggleCategory(idx) {
+  const cat = CATEGORIES[idx];
+  if (cat.type === "badge") {
+    selectedCategory    = cat.name;
+    selectedSubcategory = null;
+    document.getElementById("categories").classList.add("hide");
+    document.getElementById("dropdown").classList.add("hide");
+    showBackButton();  // ← يظهر الزر
+    renderProducts();
+  } else {
+    toggleDropdown(idx);
+    showBackButton();  // ← يظهر الزر
   }
+}
+
   
 
   // 5. تهيئة زر الرجوع
