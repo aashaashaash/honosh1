@@ -117,30 +117,31 @@ html,body{
 
 /* زر رجوع أعلى */
 #backBtn {
-  display: none;
   position: fixed;
   top: 12px;
   right: 12px;
   z-index: 11000;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.4); /* شفافية */
-  color: #c2185b; /* وردي باهت */
-  font-size: 1.2rem;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  color: #c2185b;
+  font-size: 1.3rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
-  box-shadow: none;
-  opacity: 0.25;
-  transition: all 0.3s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 #backBtn:hover {
-  opacity: 0.6;
-  transform: scale(1.08);
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.4);
 }
+
 
 
 /* =======================
