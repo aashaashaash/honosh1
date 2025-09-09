@@ -478,9 +478,9 @@ html,body{
 
 #backBtn {
   position: absolute;
-  top: 50%;               /* وسط الهيدر */
-  right: 12px;            /* يمين */
-  transform: translateY(-50%); /* يوسّطه عموديًا */
+  top: 50%;                 /* يخليه بمنتصف الهيدر */
+  right: 12px;              /* محاذاة لليمين */
+  transform: translateY(-50%);  /* ضبط عمودي */
   background: #fff;
   border: 1.5px solid var(--brand);
   color: var(--brand);
@@ -488,14 +488,15 @@ html,body{
   padding: 6px 10px;
   border-radius: 50%;
   cursor: pointer;
-  display: none;          /* افتراضيًا مخفي */
-  z-index: 100;
+  display: none;            /* يبان فقط لما الجافاسكربت يطلّعه */
+  z-index: 2000;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 #backBtn:hover {
   background: var(--brand);
   color: #fff;
 }
+
 	.main-header {
   position: relative; /* عشان الزر يثبت داخلها */
   background: #fff;
