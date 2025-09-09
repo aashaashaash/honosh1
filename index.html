@@ -376,12 +376,14 @@ html,body{
   height: 44px;
   border-radius: 12px;
   overflow: hidden;
-  background-size: cover;      /* الصورة تملأ المساحة */
-  background-position: center; /* توسيط الصورة */
+  background: #fff;         /* مجرد خلفية بيضاء أو أي لون */
+  background-size: cover;   /* تجهيز لو حطيت صورة لكل قسم */
+  background-position: center;
 }
-.icon-with-pattern i {
-  display: none; /* نخفي الأيقونة القديمة */
+.icon-with-pattern > i {
+  display: none; /* نخفي أيقونة الخط القديمة */
 }
+
 
 
 /* =======================
