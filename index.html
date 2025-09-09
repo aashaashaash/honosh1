@@ -1723,7 +1723,7 @@ slider.addEventListener('mousemove', e => {
   if (!isDown) return;
   e.preventDefault();
   const x = e.pageX - slider.offsetLeft;
-  slider.scrollLeft = scrollLeft - (x - startX) * 1.5;
+  sslider.scrollLeft = scrollLeft - (x - startX);
 });
 
 // ولنفس الأمر على اللمس
@@ -1746,13 +1746,12 @@ window.addEventListener('load', () => {
   const style = getComputedStyle(btn);
   const margin = parseInt(style.marginLeft) + parseInt(style.marginRight);
   const step   = btn.offsetWidth + margin;
-
-  setInterval(() => {
-    slider.scrollBy({ left: step, behavior: 'smooth' });
-    if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth) {
-      slider.scrollTo({ left: 0, behavior: 'smooth' });
-    }
-    }, 500);
+	setInterval(() => {
+  slider.scrollBy({ left: step, behavior: 'smooth' });
+  if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth) {
+    slider.scrollTo({ left: 0, behavior: 'smooth' });
+  }
+}, 3000);
 });
 </script>
 <script>
