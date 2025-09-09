@@ -1624,18 +1624,18 @@ function showBackButton() {
   function toggleCategory(idx) {
     const cat = CATEGORIES[idx];
     if (cat.type === "badge") {
-      // إذا كانت شارة: عرض المنتجات مباشرة
-      selectedCategory    = cat.name;
-      selectedSubcategory = null;
-      document.getElementById("categories").classList.add("hide");
-      document.getElementById("dropdown").classList.add("hide");
-      document.getElementById("backBtn").style.display = "block";
-      renderProducts();
-    } else {
-      // إذا كانت قسم: استدعاء القائمة الفرعية كما في الكود الأصلي
-      toggleDropdown(idx);
-    }
+  selectedCategory    = cat.name;
+  selectedSubcategory = null;
+  document.getElementById("categories").classList.add("hide");
+  document.getElementById("dropdown").classList.add("hide");
+  showBackButton();  // ← هنا
+  renderProducts();
+} else {
+  toggleDropdown(idx);
+  showBackButton();  // ← هنا
+}
   }
+  
 
   // 5. تهيئة زر الرجوع
   const backBtn = document.getElementById("backBtn");
@@ -1716,7 +1716,7 @@ function filterByMainCategory(badge) {
   document.getElementById("categories").classList.add("hide");
   document.getElementById("dropdown").classList.add("hide");
 
-  showBackButton("main");
+  showBackButton();
   renderProducts();
 }
 </script>
