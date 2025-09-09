@@ -1450,14 +1450,40 @@ document.addEventListener("mousedown", function(e) {
 });
 </script>
 <script>
-    window.addEventListener('DOMContentLoaded', function() {
-      const showCartBtn = document.getElementById('showCartBtn');
-      if (showCartBtn) {
-        showCartBtn.addEventListener('click', showCart);
+window.addEventListener('DOMContentLoaded', function() {
+  // ربط زر السلة
+  const showCartBtn = document.getElementById('showCartBtn');
+  if (showCartBtn) {
+    showCartBtn.addEventListener('click', showCart);
+  }
+  updateCartCount();
+
+  // ربط زر الرجوع
+  const backBtn = document.getElementById('backBtn');
+  if (backBtn) {
+    backBtn.style.display = "block"; // دائماً ظاهر
+
+    backBtn.addEventListener('click', function() {
+      // لو الأقسام مخفية → أرجع للقائمة الرئيسية
+      const categories = document.getElementById('categories');
+      const dropdown   = document.getElementById('dropdown');
+
+      if (categories.classList.contains('hide') || !dropdown.classList.contains('hide')) {
+        categories.classList.remove('hide');
+        dropdown.classList.add('hide');
+        selectedCategory = null;
+        selectedSubcategory = null;
+        renderProducts();
+      } 
+      // غير ذلك → رجوع عادي إذا فيه تاريخ
+      else if (window.history.length > 1) {
+        window.history.back();
       }
-      updateCartCount();
     });
-  </script>
+  }
+});
+</script>
+
 <script>
 window.addEventListener('DOMContentLoaded', function() {
   // ربط زر السلة
