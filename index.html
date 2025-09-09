@@ -94,7 +94,7 @@ html,body{
   box-shadow:0 0 0 2px #fce4ec66;
 }
 
-.category-text{ font-size:1em; font-weight:bold; }
+.category-text{ font-size:1em; font-weight:bold;   display: none !important; }
 .category-label{ display:none!important; }
 
 /* شريط أقسام منزلق */
@@ -372,16 +372,17 @@ html,body{
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
   min-width: 44px;   /* 🔒 ثبات الحجم */
   min-height: 44px;
   max-width: 44px;
   max-height: 44px;
-  border-radius: 12px;
+ border-radius: 50%; /* دائري */
+  width: 60px;
+  height: 60px;
   overflow: hidden;
   background-size: cover;
   background-position: center;
+	  flex-shrink: 0;
 }
 .icon-with-pattern > i {
   display: none; /* نخفي الأيقونة القديمة */
@@ -1567,10 +1568,10 @@ function renderCategories() {
            onclick="toggleCategory(${idx})"
            title="${cat.name}">
         <span class="icon-with-pattern" style="background-image:url('${cat.icon || ''}')"></span>
-        <span class="category-text">${cat.name}</span>
       </div>`;
   });
 }
+
 
   // 4. دالة التعامل مع النقر على أيقونة رئيسية
   function toggleCategory(idx) {
