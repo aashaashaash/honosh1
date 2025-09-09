@@ -877,30 +877,6 @@ function selectSubcategory(cat, sub) {
   showBackButton('sub');
 }
 
-// زر الرجوع
-function showBackButton(type) {
-  let backBtn = document.getElementById('backBtn');
-  if (!backBtn) {
-    backBtn = document.createElement('button');
-    backBtn.id = 'backBtn';
-    backBtn.innerHTML = '⬅ رجوع';
-    backBtn.style = "margin:12px 0 0 0;padding:8px 16px;background:#fff0f6;color:#d81b60;border:1.2px solid #d81b60;border-radius:10px;font-size:1em;cursor:pointer;display:block;";
-    backBtn.onclick = function() {
-      if (type === 'main') {
-        document.getElementById('categories').classList.remove('hide');
-        document.getElementById('dropdown').innerHTML = '';
-        this.remove();
-        renderProducts(); // كل المنتجات
-      } else if (type === 'sub') {
-        renderDropdown(CATEGORIES.findIndex(c => c.name === selectedCategory), true);
-        document.getElementById('dropdown').classList.remove('hide');
-        this.remove();
-        renderProducts(); // منتجات القسم فقط
-      }
-    };
-    document.querySelector('.main-header').prepend(backBtn);
-  }
-}
 
 // البحث
 function searchProducts() {
