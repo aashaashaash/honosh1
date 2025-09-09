@@ -329,15 +329,40 @@ html,body{
 /* =======================
    Health Banner
 ======================= */
-.banner-flex{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:8px 12px; margin:6px 0; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.1); border-radius:8px;
+.banner-flex {
+  display: flex;
+  align-items: center;     /* يجعل النص والزر على خط واحد */
+  justify-content: space-between;
+  padding: 4px 12px;       /* قلل الفراغ العمودي */
+  margin: 4px 0;           /* قلل المسافة حول البانر */
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  border-radius: 8px;
 }
-.banner-text{ font-size:.9rem; font-weight:bold; color:#43a047; line-height:1; }
-.banner-btn{
-  background:#43a047; color:#fff; border:none; padding:8px 12px; font-size:.9rem; border-radius:12px; cursor:pointer; transition:background .2s;
+
+.banner-text {
+  font-size: 1rem;         /* أكبر قليلاً ليتوازن مع الزر */
+  font-weight: bold;
+  color: #43a047;
+  margin: 0;               /* أزل أي فراغ داخلي للنص */
 }
-.banner-btn:hover{ background:#388e3c; }
+
+.banner-btn {
+  background: #43a047;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;      /* زر أكبر وأوضح */
+  font-size: .95rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.banner-btn:hover {
+  background: #388e3c;     /* لون أغمق عند المرور */
+}
+
 
 /* =======================
    Icon with pattern
