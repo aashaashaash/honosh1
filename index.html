@@ -116,29 +116,6 @@ html,body{
 .hide{ display:none!important; }
 
 /* زر رجوع أعلى */
-#backBtn {
-  position: fixed;
-  top: 12px;
-  right: 12px;
-  z-index: 11000;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: #f9f9f9;
-  color: #c2185b;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  box-shadow: 4px 4px 10px #ccc, -4px -4px 10px #fff;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-#backBtn:hover {
-  box-shadow: inset 2px 2px 6px #ccc, inset -2px -2px 6px #fff;
-}
 
 
 
@@ -440,9 +417,7 @@ html,body{
 <i class="fa-solid fa-search"></i>
 </button>
 </form>
-<button id="backBtn">
-<i class="fa fa-arrow-left"></i>
-</button>
+
 <div class="dropdown" id="dropdown"></div>
 </div>
 <!-- بداية السلايدر -->
@@ -863,7 +838,6 @@ const CATEGORY_ICONS = {
 function toggleDropdown(idx) {
   document.getElementById('categories').classList.add('hide');
   renderDropdown(idx, true);
-  document.getElementById('backBtn').style.display = 'block';
   selectedCategory = CATEGORIES[idx].name;
   selectedSubcategory = null;
   renderProducts();
