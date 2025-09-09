@@ -476,26 +476,30 @@ html,body{
   z-index: 3000; /* فوق كل شي */
 }
 
-
 #backBtn {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 14px;      /* نزله قليلًا */
+  right: 14px;    /* يمين */
   background: #fff;
   border: 1.5px solid var(--brand);
   color: var(--brand);
   font-size: 1.2rem;
-  font-weight: bold;
-  padding: 4px 10px;
-  border-radius: 8px;
+  padding: 6px 10px;
+  border-radius: 50%;   /* دائرة */
   cursor: pointer;
-  display: none; /* افتراضيًا مخفي */
-  z-index: 2000;
+  display: none;        /* مخفي افتراضيًا */
+  z-index: 100;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 #backBtn:hover {
   background: var(--brand);
   color: #fff;
+}
+	.main-header {
+  position: relative; /* عشان الزر يثبت داخلها */
+  background: #fff;
+  padding: 12px 0 8px;
+  text-align: center;
 }
 
 
@@ -508,17 +512,17 @@ html,body{
        style="width: 100px; height: 60px; object-fit: contain; display: block; margin: 0 auto;" />
 </div>
 
-<div class="top-bar">
-  <button id="backBtn">⬅️</button>
-</div>
 
-	<div class="main-header">
-<form class="search-bar" onsubmit="event.preventDefault(); searchProducts();">
-<input id="searchInput" oninput="searchProducts()" placeholder="ابحث عن منتج أو قسم..." type="text"/>
-<button class="icon" type="submit">
-<i class="fa-solid fa-search"></i>
-</button>
-</form>
+<div class="main-header">
+  <button id="backBtn"><i class="fa-solid fa-arrow-right"></i></button>
+  
+  <form class="search-bar" onsubmit="event.preventDefault(); searchProducts();">
+    <input id="searchInput" oninput="searchProducts()" placeholder="ابحث عن منتج أو قسم..." type="text"/>
+    <button class="icon" type="submit">
+      <i class="fa-solid fa-search"></i>
+    </button>
+  </form>
+</div>
 
 <div class="dropdown" id="dropdown"></div>
 </div>
