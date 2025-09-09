@@ -509,8 +509,8 @@ html,body{
   top: 50%;
   transform: translateY(-50%);
   background: #fff;
-  border: 1.5px solid #ccc;   /* حدود رمادية */
-  color: #666;                /* لون رمادي */
+  border: 1.5px solid #ccc;
+  color: #666;
   font-size: 1.1rem;
   padding: 6px 10px;
   border-radius: 50%;
@@ -518,13 +518,13 @@ html,body{
   z-index: 2000;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
+#backBtn { right: 12px; }
+#appsBtn { left: 12px; }
+
 .top-btn:hover {
   background: #eee;
   color: #333;
 }
-#backBtn { right: 12px; }
-#appsBtn { left: 12px; }
-
 
 
 </style>
@@ -1459,33 +1459,25 @@ document.addEventListener("mousedown", function(e) {
     });
   </script>
 <script>
-    window.addEventListener('DOMContentLoaded', function() {
-      // ربط زر السلة
-      const showCartBtn = document.getElementById('showCartBtn');
-      if (showCartBtn) {
-        showCartBtn.addEventListener('click', showCart);
-      }
-      updateCartCount();
+window.addEventListener('DOMContentLoaded', function() {
+  // ربط زر السلة
+  const showCartBtn = document.getElementById('showCartBtn');
+  if (showCartBtn) {
+    showCartBtn.addEventListener('click', showCart);
+  }
+  updateCartCount();
 
-      // ربط زر الرجوع
-      const backBtn = document.getElementById('backBtn');
-      if (backBtn) {
-        backBtn.addEventListener('click', function() {
-          // إظهار أقسام الكاتيجوري
-          document.getElementById('categories').classList.remove('hide');
-          // إخفاء قائمة الفرعيات
-          document.getElementById('dropdown').classList.add('hide');
-          // إخفاء الزر نفسه
-      
-
-          // إعادة التهيئة للحالة "الرئيسية"
-          selectedCategory = null;
-          selectedSubcategory = null;
-          renderProducts();
-        });
-      }
+  // ربط زر الرجوع
+  const backBtn = document.getElementById('backBtn');
+  if (backBtn) {
+    backBtn.style.display = "block"; // ✅ يظهر دائماً
+    backBtn.addEventListener('click', function() {
+      window.history.back(); // ✅ يرجع خطوة للخلف دائماً
     });
-  </script>
+  }
+});
+</script>
+
 </div>
 <script>document.getElementById('healthTestBtn').onclick = function() { window.open('https://forms.gle/H7VShuJz1aGbaGS37', '_blank'); };</script>
 <script>
@@ -1660,11 +1652,11 @@ function toggleCategory(idx) {
     selectedSubcategory = null;
     document.getElementById("categories").classList.add("hide");
     document.getElementById("dropdown").classList.add("hide");
-    showBackButton();  // ← يظهر الزر
+// ← يظهر الزر
     renderProducts();
   } else {
     toggleDropdown(idx);
-    showBackButton();  // ← يظهر الزر
+   // ← يظهر الزر
   }
 }
 
@@ -1749,7 +1741,7 @@ function filterByMainCategory(badge) {
   document.getElementById("categories").classList.add("hide");
   document.getElementById("dropdown").classList.add("hide");
 
-  showBackButton();
+
   renderProducts();
 }
 </script>
