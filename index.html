@@ -374,15 +374,19 @@ html,body{
   justify-content: center;
   width: 44px;
   height: 44px;
+  min-width: 44px;   /* 🔒 ثبات الحجم */
+  min-height: 44px;
+  max-width: 44px;
+  max-height: 44px;
   border-radius: 12px;
   overflow: hidden;
-  background: #fff;         /* مجرد خلفية بيضاء أو أي لون */
-  background-size: cover;   /* تجهيز لو حطيت صورة لكل قسم */
+  background-size: cover;
   background-position: center;
 }
 .icon-with-pattern > i {
-  display: none; /* نخفي أيقونة الخط القديمة */
+  display: none; /* نخفي الأيقونة القديمة */
 }
+
 
 
 
@@ -553,120 +557,7 @@ html,body{
 </section>
 <!-- نهاية السلايدر -->
 
-
-
 <div class="categories cat-slider" id="categories">
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">الاكثر مبيعا</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">عرض خاص</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">مقاوم للماء</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">جديد</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">اصدار محدود</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">منتجات طبية</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">روتين</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">عناية بالوجه</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">عناية بالشعر</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">عطر</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">عناية بالجسم واليدين</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">عطور</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">مزيل شعر</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">معطرات جو</span>
-</div><div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">مكياج وتجميل</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">مسكات</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">مناطق حساسه</span>
-</div><div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">اضافات تجميلية</span>
-</div><div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">عناية شخصية</span>
-</div>
 </div><div class="promo-media" id="promoMedia">
 </div>
 <div class="container banner-flex" id="health-banner">
@@ -1667,18 +1558,19 @@ document.getElementById("homeBtn")?.addEventListener("click", function () {
     .catch(err => console.error("خطأ في جلب البيانات:", err));
 
   // 3. دالة عرض الأيقونات الرئيسية
-  function renderCategories() {
-    const container = document.getElementById("categories");
-    container.innerHTML = "";
+function renderCategories() {
+  const container = document.getElementById("categories");
+  container.innerHTML = "";
   CATEGORIES.forEach((cat, idx) => {
-  container.innerHTML += `
-    <div class="category-btn${cat.name===selectedCategory?" selected":""}"
-         onclick="toggleCategory(${idx})"
-         title="${cat.name}">
-      <span class="category-text">${cat.name}</span>
-    </div>`;
-});
-  }
+    container.innerHTML += `
+      <div class="category-btn${cat.name===selectedCategory?" selected":""}"
+           onclick="toggleCategory(${idx})"
+           title="${cat.name}">
+        <span class="icon-with-pattern" style="background-image:url('${cat.icon || ''}')"></span>
+        <span class="category-text">${cat.name}</span>
+      </div>`;
+  });
+}
 
   // 4. دالة التعامل مع النقر على أيقونة رئيسية
   function toggleCategory(idx) {
