@@ -1708,10 +1708,11 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 <script>
 // الحصول على العنصر
+// الحصول على العنصر
 const slider = document.querySelector('.cat-slider');
 let isDown = false, startX, scrollLeft;
 
-// تفعيل السحب بالماوس
+// سحب بالماوس
 slider.addEventListener('mousedown', e => {
   isDown = true;
   startX = e.pageX - slider.offsetLeft;
@@ -1723,10 +1724,10 @@ slider.addEventListener('mousemove', e => {
   if (!isDown) return;
   e.preventDefault();
   const x = e.pageX - slider.offsetLeft;
-  sslider.scrollLeft = scrollLeft - (x - startX);
+  slider.scrollLeft = scrollLeft - (x - startX);
 });
 
-// ولنفس الأمر على اللمس
+// سحب باللمس
 slider.addEventListener('touchstart', e => {
   isDown = true;
   startX = e.touches[0].pageX - slider.offsetLeft;
@@ -1736,23 +1737,25 @@ slider.addEventListener('touchend',   () => isDown = false);
 slider.addEventListener('touchmove',  e => {
   if (!isDown) return;
   const x = e.touches[0].pageX - slider.offsetLeft;
-  slider.scrollLeft = scrollLeft - (x - startX) * 1.5;
+  slider.scrollLeft = scrollLeft - (x - startX);
 });
 
-// التمرير الآلي كل ثانية
+// التمرير الآلي كل 3 ثوانٍ
 window.addEventListener('load', () => {
   const btn = slider.querySelector('.category-btn');
   if (!btn) return;
   const style = getComputedStyle(btn);
   const margin = parseInt(style.marginLeft) + parseInt(style.marginRight);
   const step   = btn.offsetWidth + margin;
-	setInterval(() => {
-  slider.scrollBy({ left: step, behavior: 'smooth' });
-  if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth) {
-    slider.scrollTo({ left: 0, behavior: 'smooth' });
-  }
-}, 3000);
+
+  setInterval(() => {
+    slider.scrollBy({ left: step, behavior: 'smooth' });
+    if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth) {
+      slider.scrollTo({ left: 0, behavior: 'smooth' });
+    }
+  }, 3000);
 });
+
 </script>
 <script>
 function filterByMainCategory(badge) {
