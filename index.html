@@ -478,16 +478,17 @@ html,body{
 
 #backBtn {
   position: absolute;
-  top: 14px;      /* نزله قليلًا */
-  right: 14px;    /* يمين */
+  top: 50%;               /* وسط الهيدر */
+  right: 12px;            /* يمين */
+  transform: translateY(-50%); /* يوسّطه عموديًا */
   background: #fff;
   border: 1.5px solid var(--brand);
   color: var(--brand);
   font-size: 1.2rem;
   padding: 6px 10px;
-  border-radius: 50%;   /* دائرة */
+  border-radius: 50%;
   cursor: pointer;
-  display: none;        /* مخفي افتراضيًا */
+  display: none;          /* افتراضيًا مخفي */
   z-index: 100;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
