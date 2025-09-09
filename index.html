@@ -522,6 +522,27 @@ html,body{
   background: var(--brand);
   color: #fff;
 }
+#appsBtn {
+  left: 12px;
+}
+.top-btn {
+  position: absolute;
+  top: 50%;                  
+  transform: translateY(-50%);
+  background: #fff;
+  border: 1.5px solid #ccc;   /* حدود رمادية */
+  color: #666;                /* لون رمادي */
+  font-size: 1.1rem;
+  padding: 6px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.top-btn:hover {
+  background: #eee;
+  color: #333;
+}
 
 
 </style>
@@ -533,11 +554,13 @@ html,body{
        style="width: 100px; height: 60px; object-fit: contain; display: block; margin: 0 auto;" />
 
   <!-- زر الرجوع أعلى يمين -->
-  <button id="backBtn"><i class="fa-solid fa-arrow-right"></i></button>
+  <button id="backBtn" class="top-btn">
+    <i class="fa-solid fa-arrow-right"></i>
+  </button>
 
   <!-- زر التطبيقات أعلى يسار -->
-  <button id="appsBtn" class="apps-btn">
-    <svg fill="none" height="22" viewBox="0 0 24 24" width="22">
+  <button id="appsBtn" class="top-btn">
+    <svg fill="none" height="20" viewBox="0 0 24 24" width="20">
       <rect fill="currentColor" height="7" rx="2" width="7" x="3" y="3"></rect>
       <rect fill="currentColor" height="7" rx="2" width="7" x="14" y="3"></rect>
       <rect fill="currentColor" height="7" rx="2" width="7" x="3" y="14"></rect>
@@ -545,6 +568,7 @@ html,body{
     </svg>
   </button>
 </div>
+
 
 <div class="main-header">  
   <form class="search-bar" onsubmit="event.preventDefault(); searchProducts();">
@@ -747,6 +771,9 @@ html,body{
 <script>
 let sidebarOpen = false;
 let sidebarSelectedCat = null;
+document.getElementById('backBtn').onclick = function() {
+  window.history.back();
+};
 
 // فتح أو غلق القائمة الجانبية عند الضغط على زر التطبيقات
 document.getElementById('appsBtn').onclick = function() {
@@ -755,7 +782,6 @@ document.getElementById('appsBtn').onclick = function() {
   } else {
     openSidebar();
   }
-  activateNav(this);
 };
 
 function openSidebar() {
