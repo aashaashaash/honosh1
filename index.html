@@ -1453,13 +1453,13 @@ document.addEventListener("mousedown", function(e) {
 window.addEventListener('DOMContentLoaded', function() {
   const backBtn = document.getElementById('backBtn');
   if (backBtn) {
-    backBtn.style.display = "block"; // دائماً ظاهر
+    backBtn.style.display = "block"; // ✅ دائماً ظاهر
 
     backBtn.addEventListener('click', function() {
       const categories = document.getElementById('categories');
       const dropdown   = document.getElementById('dropdown');
 
-      // 🔹 إذا الأقسام مخفية أو الفرعيات ظاهرة → أرجع للصفحة الرئيسية
+      // إذا الأقسام مخفية أو الفرعيات ظاهرة → أظهر الرئيسية
       if (categories.classList.contains('hide') || !dropdown.classList.contains('hide')) {
         categories.classList.remove('hide');
         dropdown.classList.add('hide');
@@ -1467,13 +1467,14 @@ window.addEventListener('DOMContentLoaded', function() {
         selectedSubcategory = null;
         renderProducts();
       } 
-      // 🔹 إذا عندك تاريخ تنقلات بالموقع → ارجع خطوة
-      else if (window.history.length > 1) {
-        window.history.back();
-      }
-      // 🔹 إذا انت بالصفحة الرئيسية وماكو تاريخ سابق → تجاهل الضغط (يبقى بالموقع)
+      // إذا المستخدم بالرئيسية
       else {
-        console.log("أنت في الرئيسية، لا يوجد تاريخ سابق للخروج 👍");
+        if (window.history.length > 1) {
+          window.history.back(); // يرجع إذا في تاريخ سابق
+        } else {
+          // ما في صفحة قبلها → يبقى بمكانه
+          console.log("أنت في الرئيسية، لا يوجد رجوع إضافي");
+        }
       }
     });
   }
