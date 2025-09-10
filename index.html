@@ -518,7 +518,7 @@ html,body{
   z-index: 2000;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
-#backBtn { right: 12px; }
+#backBtn { right: 12px;  display: block !important; }
 #appsBtn { left: 12px; }
 
 .top-btn:hover {
@@ -753,9 +753,6 @@ html,body{
 <script>
 let sidebarOpen = false;
 let sidebarSelectedCat = null;
-document.getElementById('backBtn').onclick = function() {
-  window.history.back();
-};
 
 // فتح أو غلق القائمة الجانبية عند الضغط على زر التطبيقات
 document.getElementById('appsBtn').onclick = function() {
@@ -1449,58 +1446,6 @@ document.addEventListener("mousedown", function(e) {
   });
 });
 </script>
-<script>
-window.addEventListener('DOMContentLoaded', function() {
-  const backBtn = document.getElementById('backBtn');
-  if (backBtn) {
-    backBtn.style.display = "block"; // ✅ دائماً ظاهر
-
-    backBtn.addEventListener('click', function() {
-      const categories = document.getElementById('categories');
-      const dropdown   = document.getElementById('dropdown');
-
-      // إذا الأقسام مخفية أو الفرعيات ظاهرة → أظهر الرئيسية
-      if (categories.classList.contains('hide') || !dropdown.classList.contains('hide')) {
-        categories.classList.remove('hide');
-        dropdown.classList.add('hide');
-        selectedCategory = null;
-        selectedSubcategory = null;
-        renderProducts();
-      } 
-      // إذا المستخدم بالرئيسية
-      else {
-        if (window.history.length > 1) {
-          window.history.back(); // يرجع إذا في تاريخ سابق
-        } else {
-          // ما في صفحة قبلها → يبقى بمكانه
-          console.log("أنت في الرئيسية، لا يوجد رجوع إضافي");
-        }
-      }
-    });
-  }
-});
-</script>
-
-
-<script>
-window.addEventListener('DOMContentLoaded', function() {
-  // ربط زر السلة
-  const showCartBtn = document.getElementById('showCartBtn');
-  if (showCartBtn) {
-    showCartBtn.addEventListener('click', showCart);
-  }
-  updateCartCount();
-
-  // ربط زر الرجوع
-  const backBtn = document.getElementById('backBtn');
-  if (backBtn) {
-    backBtn.style.display = "block"; // ✅ يظهر دائماً
-    backBtn.addEventListener('click', function() {
-      window.history.back(); // ✅ يرجع خطوة للخلف دائماً
-    });
-  }
-});
-</script>
 
 </div>
 <script>document.getElementById('healthTestBtn').onclick = function() { window.open('https://forms.gle/H7VShuJz1aGbaGS37', '_blank'); };</script>
@@ -1597,30 +1542,34 @@ document.getElementById("homeBtn")?.addEventListener("click", function () {
 });
 </script>
 <script>
+  // ========================
   // المتغيرات الرئيسة
+  // ========================
   let ALL_PRODUCTS = [];
   let CATEGORIES   = [];
   let selectedCategory    = null;
   let selectedSubcategory = null;
 
-  // 2.1 جلب البيانات وبناء القوائم
+  // ========================
+  // 1. جلب البيانات وبناء القوائم
+  // ========================
   fetch("https://opensheet.vercel.app/1GBEvznLdxcXqAHimMliEIBE2faqDJO4OFt8buWGD3y8/Sheet1")
     .then(res => res.json())
     .then(data => {
       ALL_PRODUCTS = data;
 
-      // 2.1.1 بناء قائمة الشارات (badge)
+      // 1.1 بناء قائمة الشارات (badge)
       const badges = Array.from(new Set(
         data.map(p => (p["شارة"]||"").trim())
             .filter(b => b !== "")
       )).map(name => ({
         name,
-        icon: CATEGORY_ICONS[name] || "",  // أيقونة افتراضية
-        subs: [],        // لا فروع للشارات
+        icon: CATEGORY_ICONS[name] || "",
+        subs: [],
         type: "badge"
       }));
 
-      // 2.1.2 بناء قائمة الأقسام (section)
+      // 1.2 بناء قائمة الأقسام (section)
       const sectionsMap = {};
       data.forEach(p => {
         const cat = (p["القسم"]||"").trim();
@@ -1629,6 +1578,7 @@ document.getElementById("homeBtn")?.addEventListener("click", function () {
         if (!sectionsMap[cat]) sectionsMap[cat] = new Set();
         if (sub) sectionsMap[cat].add(sub);
       });
+
       const sections = Object.entries(sectionsMap).map(([name, subsSet]) => ({
         name,
         icon: CATEGORY_ICONS[name] || "",
@@ -1636,67 +1586,72 @@ document.getElementById("homeBtn")?.addEventListener("click", function () {
         type: "section"
       }));
 
-      // 2.1.3 دمج القائمتين
+      // 1.3 دمج القائمتين
       CATEGORIES = [...badges, ...sections];
 
-      // 2.1.4 عرض الواجهة
+      // 1.4 عرض الواجهة
       renderCategories();
-      renderSidebarCategories();  // إذا كنت تستخدم الشريط الجانبي
+      renderSidebarCategories();
       renderDropdown(null);
       renderProducts();
     })
     .catch(err => console.error("خطأ في جلب البيانات:", err));
 
-  // 3. دالة عرض الأيقونات الرئيسية
-function renderCategories() {
-  const container = document.getElementById("categories");
-  container.innerHTML = "";
-  CATEGORIES.forEach((cat, idx) => {
-    container.innerHTML += `
-      <div class="category-btn${cat.name===selectedCategory?" selected":""}"
-           onclick="toggleCategory(${idx})"
-           title="${cat.name}">
-        <span class="icon-with-pattern" style="background-image:url('${cat.icon || ''}')"></span>
-      </div>`;
-  });
-}
+  // ========================
+  // 2. عرض الأيقونات الرئيسية
+  // ========================
+  function renderCategories() {
+    const container = document.getElementById("categories");
+    container.innerHTML = "";
+    CATEGORIES.forEach((cat, idx) => {
+      container.innerHTML += `
+        <div class="category-btn${cat.name===selectedCategory?" selected":""}"
+             onclick="toggleCategory(${idx})"
+             title="${cat.name}">
+          <span class="icon-with-pattern" style="background-image:url('${cat.icon || ''}')"></span>
+        </div>`;
+    });
+  }
 
-function showBackButton() {
+  // ========================
+  // 3. التعامل مع النقر على أيقونة رئيسية
+  // ========================
+  function toggleCategory(idx) {
+    const cat = CATEGORIES[idx];
+    if (cat.type === "badge") {
+      selectedCategory    = cat.name;
+      selectedSubcategory = null;
+      document.getElementById("categories").classList.add("hide");
+      document.getElementById("dropdown").classList.add("hide");
+      renderProducts();
+      showBackButton();
+    } else {
+      toggleDropdown(idx);
+      showBackButton();
+    }
+  }
+
+  // ========================
+  // 4. زر الرجوع
+  // ========================
+  function showBackButton() {
+    const backBtn = document.getElementById("backBtn");
+    if (backBtn) backBtn.style.display = "block";
+  }
+
   const backBtn = document.getElementById("backBtn");
   if (backBtn) {
-    backBtn.style.display = "block"; // يخلي الزر يظهر
+    backBtn.style.display = "block"; // ✅ يظهر دائمًا
+    backBtn.onclick = function() {
+      document.getElementById("categories").classList.remove("hide");
+      document.getElementById("dropdown").classList.add("hide");
+      selectedCategory = null;
+      selectedSubcategory = null;
+      renderProducts();
+    };
   }
-}
-
-  // 4. دالة التعامل مع النقر على أيقونة رئيسية
-function toggleCategory(idx) {
-  const cat = CATEGORIES[idx];
-  if (cat.type === "badge") {
-    selectedCategory    = cat.name;
-    selectedSubcategory = null;
-    document.getElementById("categories").classList.add("hide");
-    document.getElementById("dropdown").classList.add("hide");
-// ← يظهر الزر
-    renderProducts();
-  } else {
-    toggleDropdown(idx);
-   // ← يظهر الزر
-  }
-}
-
-  
-
-  // 5. تهيئة زر الرجوع
-  const backBtn = document.getElementById("backBtn");
-  backBtn.onclick = function() {
-    backBtn.style.display = "none";
-    document.getElementById("categories").classList.remove("hide");
-    document.getElementById("dropdown").classList.add("hide");
-    selectedCategory = null;
-    selectedSubcategory = null;
-    renderProducts();
-  };
 </script>
+
 <script>
 window.addEventListener('DOMContentLoaded', () => {
   const dropdown   = document.getElementById('dropdown');
