@@ -562,23 +562,26 @@ html,body{
 </div>
 
 <div class="dropdown" id="dropdown"></div>
-</div>
+
 <!-- بداية السلايدر -->
 <section id="image-carousel">
   <button class="prev-btn" type="button" onclick="prevImage()">‹</button>
 
-<div class="carousel-slide">
-  <button class="slide-hit" type="button"
-          onclick="filterByMainCategory('منتجات طبية')"
-          aria-label="منتجات طبية">
-    <img class="carousel-img cover"
-         src="assest/banner/aaaa.jpg?v=1"
-         alt="عناية طبية ... جمالك يستحق الأفضل!"
-         width="1000" height="300"
-         loading="eager" fetchpriority="high" decoding="async">
-    <div class="slide-label no-bg-label">🛡️ "عناية طبية ... جمالك يستحق الأفضل!"</div>
-  </button>
-</div>
+  <!-- الحاوية الأساسية للشرائح -->
+  <div id="carousel-inner">
+    <!-- 1) منتجات طبية -->
+    <div class="carousel-slide">
+      <button class="slide-hit" type="button"
+              onclick="filterByMainCategory('منتجات طبية')"
+              aria-label="منتجات طبية">
+        <img class="carousel-img cover"
+             src="assest/banner/aaaa.jpg?v=1"
+             alt="عناية طبية ... جمالك يستحق الأفضل!"
+             width="1000" height="300"
+             loading="eager" fetchpriority="high" decoding="async">
+        <div class="slide-label no-bg-label">🛡️ "عناية طبية ... جمالك يستحق الأفضل!"</div>
+      </button>
+    </div>
 
     <!-- 2) مقاوم للماء -->
     <div class="carousel-slide">
@@ -620,19 +623,20 @@ html,body{
       </button>
     </div>
 
-    <!-- 7) الأكثر مبيعًا (PNG/شعار) -->
+    <!-- 7) الأكثر مبيعًا -->
     <div class="carousel-slide">
       <button class="slide-hit" type="button" onclick="filterByMainCategory('الاكثر مبيعا')" aria-label="الاكثر مبيعا">
         <img class="carousel-img contain" src="https://i.ibb.co/q3TJ1bLj/khonash-bg-1000x300.png" alt="الأكثر مبيعًا" loading="lazy" decoding="async" />
         <div class="slide-label no-bg-label">🔥 "الكل يحبها... الأكثر مبيعًا تستحق التجربة!"</div>
       </button>
     </div>
-  </div>
+  </div> <!-- نهاية #carousel-inner -->
 
   <div class="carousel-dots" id="carousel-dots"></div>
   <button class="next-btn" type="button" onclick="nextImage()">›</button>
 </section>
 <!-- نهاية السلايدر -->
+
 
 <div class="categories cat-slider" id="categories">
 </div><div class="promo-media" id="promoMedia">
