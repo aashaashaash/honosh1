@@ -1485,62 +1485,7 @@ function renderFilteredProducts(filteredList) {
   document.getElementById('product-list').innerHTML = html;
 }
 </script>
-<script>
-let currentImage = 0;
-const images = document.querySelectorAll('#carousel-inner img');
-const totalImages = images.length;
 
-function updateCarousel() {
-  const carouselInner = document.getElementById('carousel-inner');
-  if (!carouselInner) return;
-  carouselInner.style.transform = `translateX(-${currentImage * 100}%)`;
-
-  const dots = document.querySelectorAll('#carousel-dots span');
-  dots.forEach((dot, index) => {
-    dot.style.opacity = index === currentImage ? '1' : '0.4';
-  });
-}
-
-function nextImage() {
-  currentImage = (currentImage + 1) % totalImages;
-  updateCarousel();
-}
-
-function prevImage() {
-  currentImage = (currentImage - 1 + totalImages) % totalImages;
-  updateCarousel();
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-  const dotsContainer = document.getElementById('carousel-dots');
-  for (let i = 0; i < totalImages; i++) {
-    const dot = document.createElement('span');
-    dot.style.cssText = 'display:inline-block;width:10px;height:10px;margin:0 4px;border-radius:50%;background:#d81b60;opacity:0.4;cursor:pointer;';
-    dot.addEventListener('click', function() {
-      currentImage = i;
-      updateCarousel();
-    });
-    dotsContainer.appendChild(dot);
-  }
-  updateCarousel();
-});
-</script>
-<script>
-// عند الضغط على زر المفضلة
-document.getElementById("favBtn")?.addEventListener("click", function () {
-  document.getElementById("categories")?.style.setProperty('display', 'none', 'important');
-  document.getElementById("subCategories")?.style.setProperty('display', 'none', 'important');
-  document.getElementById("health-banner")?.style.setProperty('display', 'none', 'important');
-  showWishlist(); // عرض المفضلة
-});
-
-// عند الضغط على زر الرئيسية
-document.getElementById("homeBtn")?.addEventListener("click", function () {
-  document.getElementById("categories")?.style.setProperty('display', 'flex', 'important');
-  document.getElementById("subCategories")?.style.setProperty('display', 'flex', 'important');
-  document.getElementById("health-banner")?.style.setProperty('display', 'block', 'important');
-});
-</script>
 <script>
   // ========================
   // المتغيرات الرئيسة
@@ -1724,192 +1669,7 @@ function filterByMainCategory(badge) {
   renderProducts();
 }
 </script>
-<script>
-let totalSlides = document.querySelectorAll(".carousel-slide").length;
-let currentSlide = 0;
-let slides = document.querySelectorAll('.carousel-slide');
-let slideInterval;
 
-function updateCarouselWidth() {
-  const slides = document.querySelectorAll(".carousel-slide");
-  const inner = document.getElementById("carousel-inner");
-  inner.style.width = `${slides.length * 100}%`;
-  slides.forEach(slide => {
-  slide.style.flex = "0 0 100%";
-  });
-}
-
-function showSlide(index) {
-  const totalSlides = slides.length;
-  if (index >= totalSlides) currentSlide = 0;
-  else if (index < 0) currentSlide = totalSlides - 1;
-  else currentSlide = index;
-
-  slides.forEach((slide, i) => {
-    slide.style.display = i === currentSlide ? 'block' : 'none';
-  });
-}
-
-function nextImage() {
-  showSlide(currentSlide + 1);
-}
-
-function prevImage() {
-  showSlide(currentSlide - 1);
-}
-
-function createDots() {
-  const dotContainer = document.createElement("div");
-  dotContainer.className = "carousel-dots";
-  const slides = document.querySelectorAll(".carousel-slide");
-
-  slides.forEach((_, i) => {
-    const dot = document.createElement("span");
-    dot.className = "dot" + (i === 0 ? " active" : "");
-    dot.addEventListener("click", () => showSlide(i));
-    dotContainer.appendChild(dot);
-  });
-
-  document.getElementById("image-carousel").appendChild(dotContainer);
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  slides = document.querySelectorAll('.carousel-slide');
-  showSlide(currentSlide);
-  setInterval(nextImage, 4000);
-});
-</script>
-<script>
-let currentSlide = 0;
-
-function updateCarouselWidth() {
-  const slides = document.querySelectorAll(".carousel-slide");
-  const inner = document.getElementById("carousel-inner");
-  inner.style.width = `${slides.length * 100}%`;
-  inner.style.display = "flex";
-  slides.forEach(slide => {
-    slide.style.minWidth = "100%";
-    slide.style.boxSizing = "border-box";
-  });
-}
-
-function showSlide(index) {
-  const track = document.getElementById("carousel-inner");
-  const slides = document.querySelectorAll(".carousel-slide");
-  const dots = document.querySelectorAll(".dot");
-
-  if (!slides.length) return;
-  currentSlide = (index + slides.length) % slides.length;
-  const offset = -currentSlide * 100;
-  track.style.transform = `translateX(${offset}%)`;
-
-  dots.forEach(dot => dot.classList.remove("active"));
-  if (dots[currentSlide]) dots[currentSlide].classList.add("active");
-}
-
-function nextImage() { showSlide(currentSlide + 1); }
-function prevImage() { showSlide(currentSlide - 1); }
-
-function createDots() {
-  const dotContainer = document.createElement("div");
-  dotContainer.className = "carousel-dots";
-  const slides = document.querySelectorAll(".carousel-slide");
-  slides.forEach((_, i) => {
-    const dot = document.createElement("span");
-    dot.className = "dot" + (i === 0 ? " active" : "");
-    dot.addEventListener("click", () => showSlide(i));
-    dotContainer.appendChild(dot);
-  });
-  document.getElementById("image-carousel").appendChild(dotContainer);
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  updateCarouselWidth();
-  showSlide(0);
-  createDots();
-  let slideInterval = setInterval(nextImage, 4000);
-  const carousel = document.getElementById("image-carousel");
-  carousel.addEventListener("mouseenter", () => clearInterval(slideInterval));
-  carousel.addEventListener("mouseleave", () => {
-    slideInterval = setInterval(nextImage, 4000);
-  });
-});
-</script>
-<script>
-let currentSlide = 0;
-let interval;
-
-function showSlide(index) {
-  const slides = document.querySelectorAll('.carousel-slide');
-  const track = document.getElementById('carousel-inner');
-  const dots = document.querySelectorAll('.dot');
-
-  currentSlide = (index + slides.length) % slides.length;
-  track.style.transform = 'translateX(-' + currentSlide * 100 + '%)';
-
-  dots.forEach(dot => dot.classList.remove('active'));
-  if (dots[currentSlide]) dots[currentSlide].classList.add('active');
-}
-
-function nextImage() {
-  showSlide(currentSlide + 1);
-}
-
-function prevImage() {
-  showSlide(currentSlide - 1);
-}
-
-function createDots() {
-  const dotContainer = document.getElementById("carousel-dots");
-  const slides = document.querySelectorAll("#carousel-inner .carousel-slide");
-  dotContainer.innerHTML = "";
-  slides.forEach((_, i) => {
-    const dot = document.createElement("span");
-    dot.className = "dot" + (i === 0 ? " active" : "");
-    dot.onclick = () => showSlide(i);
-    dotContainer.appendChild(dot);
-  });
-}
-
-function startAutoSlide() {
-  interval = setInterval(() => {
-    nextImage();
-  }, 4000);
-}
-
-function pauseAutoSlide() {
-  clearInterval(interval);
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  createDots();
-  showSlide(0);
-  startAutoSlide();
-
-  const carousel = document.getElementById("image-carousel");
-  carousel.addEventListener("mouseenter", pauseAutoSlide);
-  carousel.addEventListener("mouseleave", startAutoSlide);
-});
-</script>
-<script>
-let startX = 0;
-const carousel = document.getElementById("carousel-inner");
-
-if (carousel) {
-  carousel.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  });
-
-  carousel.addEventListener("touchend", (e) => {
-    const endX = e.changedTouches[0].clientX;
-    if (startX - endX > 50) {
-      showSlide(currentSlide + 1); // سحب لليسار
-    } else if (endX - startX > 50) {
-      showSlide(currentSlide - 1); // سحب لليمين
-    }
-  });
-}
-</script>
 <div class="modal" id="fullImgModal" style="display:none;">
   <div class="modal-content" style="max-width:90%; max-height:90vh; padding:0; background:#000;">
     <img id="fullImg" src="" alt="" style="max-width:100%; max-height:90vh; display:block; margin:auto;" />
@@ -1923,5 +1683,93 @@ function openFullImage(src){
   showModal('fullImgModal');
 }
 </script>
+	<script>
+let currentSlide = 0;
+let slideInterval;
+
+// تحديث عرض الشرائح
+function updateCarouselWidth() {
+  const inner = document.getElementById("carousel-inner");
+  const slides = document.querySelectorAll(".carousel-slide");
+  if (!inner || !slides.length) return;
+
+  inner.style.display = "flex";
+  inner.style.width = `${slides.length * 100}%`;
+  slides.forEach(slide => {
+    slide.style.minWidth = "100%";
+    slide.style.boxSizing = "border-box";
+  });
+}
+
+// عرض شريحة معينة
+function showSlide(index) {
+  const slides = document.querySelectorAll(".carousel-slide");
+  const track  = document.getElementById("carousel-inner");
+  const dots   = document.querySelectorAll(".dot");
+
+  if (!slides.length) return;
+  currentSlide = (index + slides.length) % slides.length;
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+  dots.forEach(dot => dot.classList.remove("active"));
+  if (dots[currentSlide]) dots[currentSlide].classList.add("active");
+}
+
+// التنقل
+function nextImage() { showSlide(currentSlide + 1); }
+function prevImage() { showSlide(currentSlide - 1); }
+
+// إنشاء النقاط
+function createDots() {
+  const dotContainer = document.getElementById("carousel-dots");
+  const slides = document.querySelectorAll(".carousel-slide");
+  dotContainer.innerHTML = "";
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.className = "dot" + (i === 0 ? " active" : "");
+    dot.onclick = () => showSlide(i);
+    dotContainer.appendChild(dot);
+  });
+}
+
+// تحريك تلقائي
+function startAutoSlide() {
+  slideInterval = setInterval(nextImage, 4000);
+}
+function pauseAutoSlide() {
+  clearInterval(slideInterval);
+}
+
+// سحب باللمس (موبايل)
+function enableSwipe() {
+  let startX = 0;
+  const inner = document.getElementById("carousel-inner");
+  if (!inner) return;
+
+  inner.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+  });
+  inner.addEventListener("touchend", e => {
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) nextImage();
+    else if (endX - startX > 50) prevImage();
+  });
+}
+
+// تهيئة عند تحميل الصفحة
+document.addEventListener("DOMContentLoaded", () => {
+  updateCarouselWidth();
+  createDots();
+  showSlide(0);
+  startAutoSlide();
+  enableSwipe();
+
+  const carousel = document.getElementById("image-carousel");
+  carousel.addEventListener("mouseenter", pauseAutoSlide);
+  carousel.addEventListener("mouseleave", startAutoSlide);
+});
+</script>
+
 </body>
 </html>
