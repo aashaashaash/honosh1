@@ -47,8 +47,17 @@ html,body{
 /* =======================
    Header & Logo
 ======================= */
-.main-header{ background:#fff; padding:12px 0 8px; text-align:center; }
-.logo{ font-size:1.2em; color:var(--brand); font-weight:bold; margin-bottom:var(--space-xs); }
+.main-header{  background: #fff;
+  padding: 0;
+  text-align: center; }
+.logo {
+  font-size: 1.2em;
+  color: var(--brand);
+  font-weight: bold;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
 
 /* =======================
    Categories & Buttons
@@ -85,7 +94,7 @@ html,body{
   box-shadow:0 0 0 2px #fce4ec66;
 }
 
-.category-text{ font-size:1em; font-weight:bold; }
+.category-text{ font-size:1em; font-weight:bold;   display: none !important; }
 .category-label{ display:none!important; }
 
 /* شريط أقسام منزلق */
@@ -95,9 +104,7 @@ html,body{
   gap:10px; padding:0 12px; justify-content:flex-start!important;
   margin-bottom:var(--space-sm);
 }
-.cat-slider .category-btn{
-  flex:0 0 auto; scroll-snap-align:start;
-}
+.cat-slider .category-btn{ flex:0 0 auto; scroll-snap-align:start; }
 .cat-slider::-webkit-scrollbar{ display:none; }
 .cat-slider{ -ms-overflow-style:none; scrollbar-width:none; }
 
@@ -118,30 +125,41 @@ html,body{
 .hide{ display:none!important; }
 
 /* زر رجوع أعلى */
-#backBtn{
-  display:none; position:fixed; top:12px; right:12px; z-index:11000;
-  width:36px; height:36px; border-radius:50%;
-  border:1px solid var(--brand); background:#fff0f6; color:var(--brand);
-  font-size:1.2rem; display:flex; align-items:center; justify-content:center;
-  box-shadow:0 2px 6px rgba(216,27,96,.2); cursor:pointer;
-  transition:background .2s, transform .2s;
-}
-#backBtn:hover{ background:#f8bbd0; transform:scale(1.05); }
+
+
+
 
 /* =======================
    Search Bar
 ======================= */
-.search-bar{
-  width:100%; max-width:100%;
-  display:flex; align-items:center;
-  margin:0 0 var(--space-sm);
-  background:#fff; border-radius:10px;
-  box-shadow:0 2px 6px #d81b6011; padding:0 8px;
+.search-bar {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0 8px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px #d81b6011;
 }
-.search-bar .icon{
-  background:none; border:none; font-size:1.25rem; color:var(--brand);
-  cursor:pointer; margin-right:6px; display:flex; align-items:center; justify-content:center;
+
+.search-bar .icon {
+  background: #fff;
+  border: 1.25px solid var(--border);
+  border-radius: 8px;
+  padding: 6px;
+  font-size: 1.25rem;
+  color: var(--brand);
+  cursor: pointer;
+  margin-right: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
 }
+
 .search-bar input[type="text"]{
   width:100%; font-size:.95rem; padding:8px; border-radius:10px;
   border:1.25px solid var(--border); outline:none; background:transparent;
@@ -311,26 +329,67 @@ html,body{
 /* =======================
    Health Banner
 ======================= */
-.banner-flex{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:8px 12px; margin:6px 0; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.1); border-radius:8px;
+.banner-flex {
+  display: flex;
+  align-items: center;     /* يجعل النص والزر على خط واحد */
+  justify-content: space-between;
+  padding: 4px 12px;       /* قلل الفراغ العمودي */
+  margin: 4px 0;           /* قلل المسافة حول البانر */
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  border-radius: 8px;
 }
-.banner-text{ font-size:.9rem; font-weight:bold; color:#43a047; line-height:1; }
-.banner-btn{
-  background:#43a047; color:#fff; border:none; padding:8px 12px; font-size:.9rem; border-radius:12px; cursor:pointer; transition:background .2s;
+
+.banner-text {
+  font-size: 1rem;         /* أكبر قليلاً ليتوازن مع الزر */
+  font-weight: bold;
+  color: #43a047;
+  margin: 0;               /* أزل أي فراغ داخلي للنص */
 }
-.banner-btn:hover{ background:#388e3c; }
+
+.banner-btn {
+  background: #43a047;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;      /* زر أكبر وأوضح */
+  font-size: .95rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.banner-btn:hover {
+  background: #388e3c;     /* لون أغمق عند المرور */
+}
+
 
 /* =======================
    Icon with pattern
 ======================= */
-.icon-with-pattern{
-  position:relative; display:inline-flex; align-items:center; justify-content:center;
-  width:44px; height:44px; border-radius:12px; overflow:hidden;
-  background-image:url("https://i.ibb.co/HpYRZtZV/logo-pattern.png");
-  background-repeat:repeat; background-size:24px 24px; opacity:.15;
+.icon-with-pattern {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;   /* 🔒 ثبات الحجم */
+  min-height: 44px;
+  max-width: 44px;
+  max-height: 44px;
+ border-radius: 50%; /* دائري */
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+	  flex-shrink: 0;
 }
-.icon-with-pattern>i{ position:relative; font-size:1.3em; color:var(--brand); z-index:1; }
+.icon-with-pattern > i {
+  display: none; /* نخفي الأيقونة القديمة */
+}
+
+
+
 
 /* =======================
    Carousel (Banners)
@@ -344,7 +403,7 @@ html,body{
   object-fit:cover; display:block;
 }
 
-.carousel-dots{ text-align:center; margin-top:8px; display:flex; justify-content:center; gap:8px; }
+.carousel-dots{ text-align:center; margin-top:8px; }
 .dot{
   display:inline-block; width:10px; height:10px; margin:4px; background:#bbb; border-radius:50%;
   cursor:pointer; transition:background-color .3s ease;
@@ -355,15 +414,6 @@ html,body{
   position:absolute; top:50%; transform:translateY(-50%);
   background:rgba(255,255,255,.8); border:none; font-size:2rem; padding:0 10px; color:var(--brand);
   cursor:pointer; z-index:2;
-}
-.carousel-dots .dot{
-  width:10px; height:10px; border-radius:50%;
-  background:#bbb; opacity:.45; transition:transform .2s ease, opacity .2s ease;
-}
-.carousel-dots .dot.active{
-  background:var(--brand);
-  opacity:1;
-  transform:scale(1.15);
 }
 .prev-btn{ left:10px; } .next-btn{ right:10px; }
 
@@ -395,85 +445,110 @@ html,body{
 .hide{ display:none!important; }
 /* === Slider: clickable slide + object-fit variants === */
 .slide-hit{
-  position:relative; display:block; width:100%; height:100%;
-  padding:0; margin:0; border:0; background:transparent; cursor:pointer;
-  text-align:inherit; /* RTL-safe */
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: inherit; /* يحافظ على اتجاه RTL */
 }
 .slide-hit:focus-visible{
-  outline:2px dashed var(--brand);
-  outline-offset:4px;
-  border-radius:12px;
-}
-.carousel-img{ width:100%; height:100%; display:block; }
-.carousel-img.cover{ object-fit:cover; }
-.carousel-img.contain{ object-fit:contain; background:#fff; }
-
-/* Dots */
-.carousel-dots{
-  display:flex; justify-content:center; gap:8px; margin-top:8px;
-}
-.carousel-dots .dot{
-  width:10px; height:10px; border-radius:50%;
-  background:#bbb; opacity:.45; transition:transform .2s ease, opacity .2s ease;
-}
-.carousel-dots .dot.active{
-  background:var(--brand);
-  opacity:1;
-  transform:scale(1.15);
+  outline: 2px dashed var(--brand);
+  outline-offset: 4px;
+  border-radius: 12px;
 }
 
-/* Category slider direction should be RTL for Arabic */
-.categories.cat-slider{ direction:rtl; }
-.category-btn *{ direction:rtl; }
+/* الصورة الأساسية موجودة لديك بالفعل.
+   نضيف المتغيرات لتغيير طريقة الملء لكل شريحة حسب الحاجة. */
+.carousel-img.cover{ object-fit: cover; }
+.carousel-img.contain{ object-fit: contain !important; background:#fff; }
+.top-bar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: auto;
+  height: auto;
+  padding: 10px;
+  z-index: 3000; /* فوق كل شي */
+}
 
+#backBtn {
+  position: absolute;
+  top: 50%;                   /* يجي بمحاذاة منتصف اللوغو */
+  right: 12px;                /* يمين الصفحة */
+  transform: translateY(-50%);/* ضبط عمودي */
+  background: #fff;
+  border: 1.5px solid var(--brand);
+  color: var(--brand);
+  font-size: 1.2rem;
+  padding: 6px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;              /* يظهر فقط عند الحاجة */
+  z-index: 2000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+#backBtn:hover {
+  background: var(--brand);
+  color: #fff;
+}
 
-
-
-#backBtn { right: 12px; top: 50%; transform: translateY(-50%); }
-#appsBtn { left: 12px; top: 50%; transform: translateY(-50%); }
+	.main-header {
+  position: relative; /* عشان الزر يثبت داخلها */
+  background: #fff;
+  padding: 12px 0 8px;
+  text-align: center;
+}
 
 
 </style>
 
 </head>
 <body>
-<div class="logo">
-<img src="https://i.ibb.co/gMRRxTsd/photo-2025-07-25-00-33-10.jpg" style="width: 150px; max-width: 100%; display: block; margin: 0 auto;"/>
-</div><div class="main-header">
-<form class="search-bar" onsubmit="event.preventDefault(); searchProducts();">
-<input id="searchInput" oninput="searchProducts()" placeholder="ابحث عن منتج أو قسم..." type="text"/>
-<button class="icon" type="submit">
-<i class="fa-solid fa-search"></i>
-</button>
-</form>
-<button id="backBtn">
-<i class="fa fa-arrow-left"></i>
-</button>
+<div class="logo" style="position:relative;">
+  <img src="assest/banner/logo_transparent.png?v=1"
+       style="width: 100px; height: 60px; object-fit: contain; display: block; margin: 0 auto;" />
+
+  <!-- زر الرجوع أعلى يمين اللوغو -->
+  <button id="backBtn"><i class="fa-solid fa-arrow-right"></i></button>
+</div>
+
+<div class="main-header">  
+  <form class="search-bar" onsubmit="event.preventDefault(); searchProducts();">
+    <input id="searchInput" oninput="searchProducts()" placeholder="ابحث عن منتج أو قسم..." type="text"/>
+    <button class="icon" type="submit">
+      <i class="fa-solid fa-search"></i>
+    </button>
+  </form>
+</div>
+
 <div class="dropdown" id="dropdown"></div>
 </div>
 <!-- بداية السلايدر -->
-
 <section id="image-carousel">
   <button class="prev-btn" type="button" onclick="prevImage()">‹</button>
 
-  <!-- حاوية الشرائح -->
-  <div id="carousel-inner">
-    <!-- الشريحة 1 -->
-    <div class="carousel-slide">
-      <button class="slide-hit" type="button" onclick="filterByMainCategory('منتجات طبية')" aria-label="منتجات طبية">
-        <img class="carousel-img cover"
-             src="assest/banner/aaaa.jpg?v=1"
-             alt="عناية طبية ... جمالك يستحق الأفضل!"
-             width="1000" height="300"
-             loading="eager" fetchpriority="high" decoding="async">
-        <div class="slide-label no-bg-label">🛡️ "عناية طبية ... جمالك يستحق الأفضل!"</div>
-      </button>
-    </div>
+<div class="carousel-slide">
+  <button class="slide-hit" type="button"
+          onclick="filterByMainCategory('منتجات طبية')"
+          aria-label="منتجات طبية">
+    <img class="carousel-img cover"
+         src="assest/banner/aaaa.jpg?v=1"
+         alt="عناية طبية ... جمالك يستحق الأفضل!"
+         width="1000" height="300"
+         loading="eager" fetchpriority="high" decoding="async">
+    <div class="slide-label no-bg-label">🛡️ "عناية طبية ... جمالك يستحق الأفضل!"</div>
+  </button>
+</div>
 
     <!-- 2) مقاوم للماء -->
     <div class="carousel-slide">
       <button class="slide-hit" type="button" onclick="filterByMainCategory('مقاوم للماء')" aria-label="مقاوم للماء">
-        <img class="carousel-img cover" src="assest/banner/aaaa.jpg?v=1" alt="ثبات يدوم - مقاوم للماء" loading="lazy" decoding="async" />
+        <img class="carousel-img cover" src="https://i.ibb.co/tT6zwm3h/image.jpg" alt="ثبات يدوم - مقاوم للماء" loading="lazy" decoding="async" />
         <div class="slide-label no-bg-label">💧 "ثبات يدوم... مقاومة للماء، مقاومة لكل شيء!"</div>
       </button>
     </div>
@@ -481,7 +556,7 @@ html,body{
     <!-- 3) عضوي -->
     <div class="carousel-slide">
       <button class="slide-hit" type="button" onclick="filterByMainCategory('عضوي')" aria-label="عضوي">
-        <img class="carousel-img cover" src="assest/banner/aaaa.jpg?v=1" alt="جمالك طبيعي مثل مكوناتنا" loading="lazy" decoding="async" />
+        <img class="carousel-img cover" src="https://i.ibb.co/Rp3FR2bD/image.jpg" alt="جمالك طبيعي مثل مكوناتنا" loading="lazy" decoding="async" />
         <div class="slide-label no-bg-label">🌿 "جمالك طبيعي… مثل مكوناتنا🌱من الطبيعة... إليكِ مباشرة."</div>
       </button>
     </div>
@@ -522,122 +597,9 @@ html,body{
   <div class="carousel-dots" id="carousel-dots"></div>
   <button class="next-btn" type="button" onclick="nextImage()">›</button>
 </section>
-
-
-
+<!-- نهاية السلايدر -->
 
 <div class="categories cat-slider" id="categories">
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">الاكثر مبيعا</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">عرض خاص</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">مقاوم للماء</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">جديد</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">اصدار محدود</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">منتجات طبية</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">روتين</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">عناية بالوجه</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">عناية بالشعر</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">عطر</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">عناية بالجسم واليدين</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">عطور</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">مزيل شعر</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">معطرات جو</span>
-</div><div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">مكياج وتجميل</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">مسكات</span>
-</div>
-<div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">مناطق حساسه</span>
-</div><div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">اضافات تجميلية</span>
-</div><div class="category-btn">
-<span class="icon-with-pattern">
-<i class="fa fa-perfume"></i>
-</span>
-<span class="category-text">عناية شخصية</span>
-</div>
 </div><div class="promo-media" id="promoMedia">
 </div>
 <div class="container banner-flex" id="health-banner">
@@ -871,7 +833,6 @@ const CATEGORY_ICONS = {
 function toggleDropdown(idx) {
   document.getElementById('categories').classList.add('hide');
   renderDropdown(idx, true);
-  document.getElementById('backBtn').style.display = 'block';
   selectedCategory = CATEGORIES[idx].name;
   selectedSubcategory = null;
   renderProducts();
@@ -911,30 +872,6 @@ function selectSubcategory(cat, sub) {
   showBackButton('sub');
 }
 
-// زر الرجوع
-function showBackButton(type) {
-  let backBtn = document.getElementById('backBtn');
-  if (!backBtn) {
-    backBtn = document.createElement('button');
-    backBtn.id = 'backBtn';
-    backBtn.innerHTML = '⬅ رجوع';
-    backBtn.style = "margin:12px 0 0 0;padding:8px 16px;background:#fff0f6;color:#d81b60;border:1.2px solid #d81b60;border-radius:10px;font-size:1em;cursor:pointer;display:block;";
-    backBtn.onclick = function() {
-      if (type === 'main') {
-        document.getElementById('categories').classList.remove('hide');
-        document.getElementById('dropdown').innerHTML = '';
-        this.remove();
-        renderProducts(); // كل المنتجات
-      } else if (type === 'sub') {
-        renderDropdown(CATEGORIES.findIndex(c => c.name === selectedCategory), true);
-        document.getElementById('dropdown').classList.remove('hide');
-        this.remove();
-        renderProducts(); // منتجات القسم فقط
-      }
-    };
-    document.querySelector('.main-header').prepend(backBtn);
-  }
-}
 
 // البحث
 function searchProducts() {
@@ -1555,7 +1492,46 @@ function renderFilteredProducts(filteredList) {
   document.getElementById('product-list').innerHTML = html;
 }
 </script>
+<script>
+let currentImage = 0;
+const images = document.querySelectorAll('#carousel-inner img');
+const totalImages = images.length;
 
+function updateCarousel() {
+  const carouselInner = document.getElementById('carousel-inner');
+  if (!carouselInner) return;
+  carouselInner.style.transform = `translateX(-${currentImage * 100}%)`;
+
+  const dots = document.querySelectorAll('#carousel-dots span');
+  dots.forEach((dot, index) => {
+    dot.style.opacity = index === currentImage ? '1' : '0.4';
+  });
+}
+
+function nextImage() {
+  currentImage = (currentImage + 1) % totalImages;
+  updateCarousel();
+}
+
+function prevImage() {
+  currentImage = (currentImage - 1 + totalImages) % totalImages;
+  updateCarousel();
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  const dotsContainer = document.getElementById('carousel-dots');
+  for (let i = 0; i < totalImages; i++) {
+    const dot = document.createElement('span');
+    dot.style.cssText = 'display:inline-block;width:10px;height:10px;margin:0 4px;border-radius:50%;background:#d81b60;opacity:0.4;cursor:pointer;';
+    dot.addEventListener('click', function() {
+      currentImage = i;
+      updateCarousel();
+    });
+    dotsContainer.appendChild(dot);
+  }
+  updateCarousel();
+});
+</script>
 <script>
 // عند الضغط على زر المفضلة
 document.getElementById("favBtn")?.addEventListener("click", function () {
@@ -1624,35 +1600,43 @@ document.getElementById("homeBtn")?.addEventListener("click", function () {
     .catch(err => console.error("خطأ في جلب البيانات:", err));
 
   // 3. دالة عرض الأيقونات الرئيسية
-  function renderCategories() {
-    const container = document.getElementById("categories");
-    container.innerHTML = "";
+function renderCategories() {
+  const container = document.getElementById("categories");
+  container.innerHTML = "";
   CATEGORIES.forEach((cat, idx) => {
-  container.innerHTML += `
-    <div class="category-btn${cat.name===selectedCategory?" selected":""}"
-         onclick="toggleCategory(${idx})"
-         title="${cat.name}">
-      <span class="category-text">${cat.name}</span>
-    </div>`;
-});
+    container.innerHTML += `
+      <div class="category-btn${cat.name===selectedCategory?" selected":""}"
+           onclick="toggleCategory(${idx})"
+           title="${cat.name}">
+        <span class="icon-with-pattern" style="background-image:url('${cat.icon || ''}')"></span>
+      </div>`;
+  });
+}
+
+function showBackButton() {
+  const backBtn = document.getElementById("backBtn");
+  if (backBtn) {
+    backBtn.style.display = "block"; // يخلي الزر يظهر
   }
+}
 
   // 4. دالة التعامل مع النقر على أيقونة رئيسية
-  function toggleCategory(idx) {
-    const cat = CATEGORIES[idx];
-    if (cat.type === "badge") {
-      // إذا كانت شارة: عرض المنتجات مباشرة
-      selectedCategory    = cat.name;
-      selectedSubcategory = null;
-      document.getElementById("categories").classList.add("hide");
-      document.getElementById("dropdown").classList.add("hide");
-      document.getElementById("backBtn").style.display = "block";
-      renderProducts();
-    } else {
-      // إذا كانت قسم: استدعاء القائمة الفرعية كما في الكود الأصلي
-      toggleDropdown(idx);
-    }
+function toggleCategory(idx) {
+  const cat = CATEGORIES[idx];
+  if (cat.type === "badge") {
+    selectedCategory    = cat.name;
+    selectedSubcategory = null;
+    document.getElementById("categories").classList.add("hide");
+    document.getElementById("dropdown").classList.add("hide");
+    showBackButton();  // ← يظهر الزر
+    renderProducts();
+  } else {
+    toggleDropdown(idx);
+    showBackButton();  // ← يظهر الزر
   }
+}
+
+  
 
   // 5. تهيئة زر الرجوع
   const backBtn = document.getElementById("backBtn");
@@ -1676,10 +1660,11 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 <script>
 // الحصول على العنصر
+// الحصول على العنصر
 const slider = document.querySelector('.cat-slider');
 let isDown = false, startX, scrollLeft;
 
-// تفعيل السحب بالماوس
+// سحب بالماوس
 slider.addEventListener('mousedown', e => {
   isDown = true;
   startX = e.pageX - slider.offsetLeft;
@@ -1691,10 +1676,10 @@ slider.addEventListener('mousemove', e => {
   if (!isDown) return;
   e.preventDefault();
   const x = e.pageX - slider.offsetLeft;
-  slider.scrollLeft = scrollLeft - (x - startX) * 1.5;
+  slider.scrollLeft = scrollLeft - (x - startX);
 });
 
-// ولنفس الأمر على اللمس
+// سحب باللمس
 slider.addEventListener('touchstart', e => {
   isDown = true;
   startX = e.touches[0].pageX - slider.offsetLeft;
@@ -1704,10 +1689,10 @@ slider.addEventListener('touchend',   () => isDown = false);
 slider.addEventListener('touchmove',  e => {
   if (!isDown) return;
   const x = e.touches[0].pageX - slider.offsetLeft;
-  slider.scrollLeft = scrollLeft - (x - startX) * 1.5;
+  slider.scrollLeft = scrollLeft - (x - startX);
 });
 
-// التمرير الآلي كل ثانية
+// التمرير الآلي كل 3 ثوانٍ
 window.addEventListener('load', () => {
   const btn = slider.querySelector('.category-btn');
   if (!btn) return;
@@ -1720,8 +1705,9 @@ window.addEventListener('load', () => {
     if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth) {
       slider.scrollTo({ left: 0, behavior: 'smooth' });
     }
-    }, 500);
+  }, 3000);
 });
+
 </script>
 <script>
 function filterByMainCategory(badge) {
@@ -1731,11 +1717,196 @@ function filterByMainCategory(badge) {
   document.getElementById("categories").classList.add("hide");
   document.getElementById("dropdown").classList.add("hide");
 
-  showBackButton("main");
+  showBackButton();
   renderProducts();
 }
 </script>
+<script>
+let totalSlides = document.querySelectorAll(".carousel-slide").length;
+let currentSlide = 0;
+let slides = document.querySelectorAll('.carousel-slide');
+let slideInterval;
 
+function updateCarouselWidth() {
+  const slides = document.querySelectorAll(".carousel-slide");
+  const inner = document.getElementById("carousel-inner");
+  inner.style.width = `${slides.length * 100}%`;
+  slides.forEach(slide => {
+  slide.style.flex = "0 0 100%";
+  });
+}
+
+function showSlide(index) {
+  const totalSlides = slides.length;
+  if (index >= totalSlides) currentSlide = 0;
+  else if (index < 0) currentSlide = totalSlides - 1;
+  else currentSlide = index;
+
+  slides.forEach((slide, i) => {
+    slide.style.display = i === currentSlide ? 'block' : 'none';
+  });
+}
+
+function nextImage() {
+  showSlide(currentSlide + 1);
+}
+
+function prevImage() {
+  showSlide(currentSlide - 1);
+}
+
+function createDots() {
+  const dotContainer = document.createElement("div");
+  dotContainer.className = "carousel-dots";
+  const slides = document.querySelectorAll(".carousel-slide");
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.className = "dot" + (i === 0 ? " active" : "");
+    dot.addEventListener("click", () => showSlide(i));
+    dotContainer.appendChild(dot);
+  });
+
+  document.getElementById("image-carousel").appendChild(dotContainer);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  slides = document.querySelectorAll('.carousel-slide');
+  showSlide(currentSlide);
+  setInterval(nextImage, 4000);
+});
+</script>
+<script>
+let currentSlide = 0;
+
+function updateCarouselWidth() {
+  const slides = document.querySelectorAll(".carousel-slide");
+  const inner = document.getElementById("carousel-inner");
+  inner.style.width = `${slides.length * 100}%`;
+  inner.style.display = "flex";
+  slides.forEach(slide => {
+    slide.style.minWidth = "100%";
+    slide.style.boxSizing = "border-box";
+  });
+}
+
+function showSlide(index) {
+  const track = document.getElementById("carousel-inner");
+  const slides = document.querySelectorAll(".carousel-slide");
+  const dots = document.querySelectorAll(".dot");
+
+  if (!slides.length) return;
+  currentSlide = (index + slides.length) % slides.length;
+  const offset = -currentSlide * 100;
+  track.style.transform = `translateX(${offset}%)`;
+
+  dots.forEach(dot => dot.classList.remove("active"));
+  if (dots[currentSlide]) dots[currentSlide].classList.add("active");
+}
+
+function nextImage() { showSlide(currentSlide + 1); }
+function prevImage() { showSlide(currentSlide - 1); }
+
+function createDots() {
+  const dotContainer = document.createElement("div");
+  dotContainer.className = "carousel-dots";
+  const slides = document.querySelectorAll(".carousel-slide");
+  slides.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.className = "dot" + (i === 0 ? " active" : "");
+    dot.addEventListener("click", () => showSlide(i));
+    dotContainer.appendChild(dot);
+  });
+  document.getElementById("image-carousel").appendChild(dotContainer);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  updateCarouselWidth();
+  showSlide(0);
+  createDots();
+  let slideInterval = setInterval(nextImage, 4000);
+  const carousel = document.getElementById("image-carousel");
+  carousel.addEventListener("mouseenter", () => clearInterval(slideInterval));
+  carousel.addEventListener("mouseleave", () => {
+    slideInterval = setInterval(nextImage, 4000);
+  });
+});
+</script>
+<script>
+let currentSlide = 0;
+let interval;
+
+function showSlide(index) {
+  const slides = document.querySelectorAll('.carousel-slide');
+  const track = document.getElementById('carousel-inner');
+  const dots = document.querySelectorAll('.dot');
+
+  currentSlide = (index + slides.length) % slides.length;
+  track.style.transform = 'translateX(-' + currentSlide * 100 + '%)';
+
+  dots.forEach(dot => dot.classList.remove('active'));
+  if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+}
+
+function nextImage() {
+  showSlide(currentSlide + 1);
+}
+
+function prevImage() {
+  showSlide(currentSlide - 1);
+}
+
+function createDots() {
+  const dotContainer = document.getElementById("carousel-dots");
+  const slides = document.querySelectorAll("#carousel-inner .carousel-slide");
+  dotContainer.innerHTML = "";
+  slides.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.className = "dot" + (i === 0 ? " active" : "");
+    dot.onclick = () => showSlide(i);
+    dotContainer.appendChild(dot);
+  });
+}
+
+function startAutoSlide() {
+  interval = setInterval(() => {
+    nextImage();
+  }, 4000);
+}
+
+function pauseAutoSlide() {
+  clearInterval(interval);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  createDots();
+  showSlide(0);
+  startAutoSlide();
+
+  const carousel = document.getElementById("image-carousel");
+  carousel.addEventListener("mouseenter", pauseAutoSlide);
+  carousel.addEventListener("mouseleave", startAutoSlide);
+});
+</script>
+<script>
+let startX = 0;
+const carousel = document.getElementById("carousel-inner");
+
+if (carousel) {
+  carousel.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  });
+
+  carousel.addEventListener("touchend", (e) => {
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) {
+      showSlide(currentSlide + 1); // سحب لليسار
+    } else if (endX - startX > 50) {
+      showSlide(currentSlide - 1); // سحب لليمين
+    }
+  });
+}
+</script>
 <div class="modal" id="fullImgModal" style="display:none;">
   <div class="modal-content" style="max-width:90%; max-height:90vh; padding:0; background:#000;">
     <img id="fullImg" src="" alt="" style="max-width:100%; max-height:90vh; display:block; margin:auto;" />
@@ -1749,63 +1920,5 @@ function openFullImage(src){
   showModal('fullImgModal');
 }
 </script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const track  = document.getElementById('carousel-inner');
-  const slides = Array.from(track.querySelectorAll('.carousel-slide'));
-  const dotsContainer = document.getElementById('carousel-dots');
-
-  let current = 0;
-  let timer;
-
-  // إنشاء النقاط
-  function renderDots() {
-    dotsContainer.innerHTML = '';
-    slides.forEach((_, i) => {
-      const dot = document.createElement('span');
-      dot.className = 'dot' + (i === 0 ? ' active' : '');
-      dot.addEventListener('click', () => show(i));
-      dotsContainer.appendChild(dot);
-    });
-  }
-
-  // عرض شريحة وتحديث النقاط
-  function show(index) {
-    current = (index + slides.length) % slides.length;
-    track.style.transform = `translateX(-${current * 100}%)`;
-
-    const dots = dotsContainer.querySelectorAll('.dot');
-    dots.forEach(d => d.classList.remove('active'));
-    if (dots[current]) dots[current].classList.add('active');
-  }
-
-  // تحكّم عام
-  window.nextImage = () => show(current + 1);
-  window.prevImage = () => show(current - 1);
-
-  function start() { timer = setInterval(() => show(current + 1), 4000); }
-  function stop()  { clearInterval(timer); }
-
-  // إيقاف/تشغيل تلقائي على المرور
-  const carousel = document.getElementById('image-carousel');
-  carousel.addEventListener('mouseenter', stop);
-  carousel.addEventListener('mouseleave', start);
-
-  // سحب بالإصبع
-  let startX = 0;
-  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
-  track.addEventListener('touchend',   e => {
-    const dx = e.changedTouches[0].clientX - startX;
-    if (dx < -50) nextImage();
-    if (dx >  50) prevImage();
-  }, {passive:true});
-
-  // تهيئة
-  renderDots();
-  show(0);
-  start();
-});
-</script>
-
 </body>
 </html>
