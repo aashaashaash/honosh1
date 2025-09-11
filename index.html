@@ -47,17 +47,8 @@ html,body{
 /* =======================
    Header & Logo
 ======================= */
-.main-header{  background: #fff;
-  padding: 0;
-  text-align: center; }
-.logo {
-  font-size: 1.2em;
-  color: var(--brand);
-  font-weight: bold;
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
+.main-header{ background:#fff; padding:12px 0 8px; text-align:center; }
+.logo{ font-size:1.2em; color:var(--brand); font-weight:bold; margin-bottom:var(--space-xs); }
 
 /* =======================
    Categories & Buttons
@@ -94,7 +85,7 @@ html,body{
   box-shadow:0 0 0 2px #fce4ec66;
 }
 
-.category-text{ font-size:1em; font-weight:bold;   display: none !important; }
+.category-text{ font-size:1em; font-weight:bold; }
 .category-label{ display:none!important; }
 
 /* شريط أقسام منزلق */
@@ -104,7 +95,9 @@ html,body{
   gap:10px; padding:0 12px; justify-content:flex-start!important;
   margin-bottom:var(--space-sm);
 }
-.cat-slider .category-btn{ flex:0 0 auto; scroll-snap-align:start; }
+.cat-slider .category-btn{
+  flex:0 0 auto; scroll-snap-align:start;
+}
 .cat-slider::-webkit-scrollbar{ display:none; }
 .cat-slider{ -ms-overflow-style:none; scrollbar-width:none; }
 
@@ -125,41 +118,30 @@ html,body{
 .hide{ display:none!important; }
 
 /* زر رجوع أعلى */
-
-
-
+#backBtn{
+  display:none; position:fixed; top:12px; right:12px; z-index:11000;
+  width:36px; height:36px; border-radius:50%;
+  border:1px solid var(--brand); background:#fff0f6; color:var(--brand);
+  font-size:1.2rem; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 2px 6px rgba(216,27,96,.2); cursor:pointer;
+  transition:background .2s, transform .2s;
+}
+#backBtn:hover{ background:#f8bbd0; transform:scale(1.05); }
 
 /* =======================
    Search Bar
 ======================= */
-.search-bar {
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 0 8px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px #d81b6011;
+.search-bar{
+  width:100%; max-width:100%;
+  display:flex; align-items:center;
+  margin:0 0 var(--space-sm);
+  background:#fff; border-radius:10px;
+  box-shadow:0 2px 6px #d81b6011; padding:0 8px;
 }
-
-.search-bar .icon {
-  background: #fff;
-  border: 1.25px solid var(--border);
-  border-radius: 8px;
-  padding: 6px;
-  font-size: 1.25rem;
-  color: var(--brand);
-  cursor: pointer;
-  margin-right: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-
+.search-bar .icon{
+  background:none; border:none; font-size:1.25rem; color:var(--brand);
+  cursor:pointer; margin-right:6px; display:flex; align-items:center; justify-content:center;
 }
-
 .search-bar input[type="text"]{
   width:100%; font-size:.95rem; padding:8px; border-radius:10px;
   border:1.25px solid var(--border); outline:none; background:transparent;
@@ -329,67 +311,26 @@ html,body{
 /* =======================
    Health Banner
 ======================= */
-.banner-flex {
-  display: flex;
-  align-items: center;     /* يجعل النص والزر على خط واحد */
-  justify-content: space-between;
-  padding: 4px 12px;       /* قلل الفراغ العمودي */
-  margin: 4px 0;           /* قلل المسافة حول البانر */
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,.1);
-  border-radius: 8px;
+.banner-flex{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:8px 12px; margin:6px 0; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.1); border-radius:8px;
 }
-
-.banner-text {
-  font-size: 1rem;         /* أكبر قليلاً ليتوازن مع الزر */
-  font-weight: bold;
-  color: #43a047;
-  margin: 0;               /* أزل أي فراغ داخلي للنص */
+.banner-text{ font-size:.9rem; font-weight:bold; color:#43a047; line-height:1; }
+.banner-btn{
+  background:#43a047; color:#fff; border:none; padding:8px 12px; font-size:.9rem; border-radius:12px; cursor:pointer; transition:background .2s;
 }
-
-.banner-btn {
-  background: #43a047;
-  color: #fff;
-  border: none;
-  padding: 10px 16px;      /* زر أكبر وأوضح */
-  font-size: .95rem;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background .2s;
-}
-
-.banner-btn:hover {
-  background: #388e3c;     /* لون أغمق عند المرور */
-}
-
+.banner-btn:hover{ background:#388e3c; }
 
 /* =======================
    Icon with pattern
 ======================= */
-.icon-with-pattern {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 44px;   /* 🔒 ثبات الحجم */
-  min-height: 44px;
-  max-width: 44px;
-  max-height: 44px;
- border-radius: 50%; /* دائري */
-  width: 60px;
-  height: 60px;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-	  flex-shrink: 0;
+.icon-with-pattern{
+  position:relative; display:inline-flex; align-items:center; justify-content:center;
+  width:44px; height:44px; border-radius:12px; overflow:hidden;
+  background-image:url("https://i.ibb.co/HpYRZtZV/logo-pattern.png");
+  background-repeat:repeat; background-size:24px 24px; opacity:.15;
 }
-.icon-with-pattern > i {
-  display: none; /* نخفي الأيقونة القديمة */
-}
-
-
-
+.icon-with-pattern>i{ position:relative; font-size:1.3em; color:var(--brand); z-index:1; }
 
 /* =======================
    Carousel (Banners)
@@ -403,7 +344,7 @@ html,body{
   object-fit:cover; display:block;
 }
 
-.carousel-dots{ text-align:center; margin-top:8px; }
+.carousel-dots{ text-align:center; margin-top:8px; display:flex; justify-content:center; gap:8px; }
 .dot{
   display:inline-block; width:10px; height:10px; margin:4px; background:#bbb; border-radius:50%;
   cursor:pointer; transition:background-color .3s ease;
@@ -414,6 +355,15 @@ html,body{
   position:absolute; top:50%; transform:translateY(-50%);
   background:rgba(255,255,255,.8); border:none; font-size:2rem; padding:0 10px; color:var(--brand);
   cursor:pointer; z-index:2;
+}
+.carousel-dots .dot{
+  width:10px; height:10px; border-radius:50%;
+  background:#bbb; opacity:.45; transition:transform .2s ease, opacity .2s ease;
+}
+.carousel-dots .dot.active{
+  background:var(--brand);
+  opacity:1;
+  transform:scale(1.15);
 }
 .prev-btn{ left:10px; } .next-btn{ right:10px; }
 
@@ -445,135 +395,72 @@ html,body{
 .hide{ display:none!important; }
 /* === Slider: clickable slide + object-fit variants === */
 .slide-hit{
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  text-align: inherit; /* يحافظ على اتجاه RTL */
+  position:relative; display:block; width:100%; height:100%;
+  padding:0; margin:0; border:0; background:transparent; cursor:pointer;
+  text-align:inherit; /* RTL-safe */
 }
 .slide-hit:focus-visible{
-  outline: 2px dashed var(--brand);
-  outline-offset: 4px;
-  border-radius: 12px;
+  outline:2px dashed var(--brand);
+  outline-offset:4px;
+  border-radius:12px;
+}
+.carousel-img{ width:100%; height:100%; display:block; }
+.carousel-img.cover{ object-fit:cover; }
+.carousel-img.contain{ object-fit:contain; background:#fff; }
+
+/* Dots */
+.carousel-dots{
+  display:flex; justify-content:center; gap:8px; margin-top:8px;
+}
+.carousel-dots .dot{
+  width:10px; height:10px; border-radius:50%;
+  background:#bbb; opacity:.45; transition:transform .2s ease, opacity .2s ease;
+}
+.carousel-dots .dot.active{
+  background:var(--brand);
+  opacity:1;
+  transform:scale(1.15);
 }
 
-/* الصورة الأساسية موجودة لديك بالفعل.
-   نضيف المتغيرات لتغيير طريقة الملء لكل شريحة حسب الحاجة. */
-.carousel-img.cover{ object-fit: cover; }
-.carousel-img.contain{ object-fit: contain !important; background:#fff; }
-.top-bar {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: auto;
-  height: auto;
-  padding: 10px;
-  z-index: 3000; /* فوق كل شي */
-}
+/* Category slider direction should be RTL for Arabic */
+.categories.cat-slider{ direction:rtl; }
+.category-btn *{ direction:rtl; }
 
 
 
-	.main-header {
-  position: relative; /* عشان الزر يثبت داخلها */
-  background: #fff;
-  padding: 12px 0 8px;
-  text-align: center;
-}
-#appsBtn.apps-btn {
-  position: absolute;
-  top: 50%;                  /* بمحاذاة منتصف اللوغو */
-  left: 12px;                /* أقصى اليسار */
-  transform: translateY(-50%);
-  background: #fff;
-  border: 1.5px solid var(--brand);
-  color: var(--brand);
-  font-size: 1.2rem;
-  padding: 6px 10px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 2000;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-#appsBtn.apps-btn:hover {
-  background: var(--brand);
-  color: #fff;
-}
 
-.top-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #fff;
-  border: 1.5px solid #ccc;
-  color: #666;
-  font-size: 1.1rem;
-  padding: 6px 10px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 2000;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-#backBtn { right: 12px;  display: block !important; }
-#appsBtn { left: 12px; }
-
-.top-btn:hover {
-  background: #eee;
-  color: #333;
-}
+#backBtn { right: 12px; top: 50%; transform: translateY(-50%); }
+#appsBtn { left: 12px; top: 50%; transform: translateY(-50%); }
 
 
 </style>
 
 </head>
 <body>
-<div class="logo" style="position:relative;">
-  <img src="assest/banner/logo_transparent.png?v=1"
-       style="width: 100px; height: 60px; object-fit: contain; display: block; margin: 0 auto;" />
-
-  <!-- زر الرجوع أعلى يمين -->
-  <button id="backBtn" class="top-btn">
-    <i class="fa-solid fa-arrow-right"></i>
-  </button>
-
-  <!-- زر التطبيقات أعلى يسار -->
-  <button id="appsBtn" class="top-btn">
-    <svg fill="none" height="20" viewBox="0 0 24 24" width="20">
-      <rect fill="currentColor" height="7" rx="2" width="7" x="3" y="3"></rect>
-      <rect fill="currentColor" height="7" rx="2" width="7" x="14" y="3"></rect>
-      <rect fill="currentColor" height="7" rx="2" width="7" x="3" y="14"></rect>
-      <rect fill="currentColor" height="7" rx="2" width="7" x="14" y="14"></rect>
-    </svg>
-  </button>
-</div>
-
-
-<div class="main-header">  
-  <form class="search-bar" onsubmit="event.preventDefault(); searchProducts();">
-    <input id="searchInput" oninput="searchProducts()" placeholder="ابحث عن منتج أو قسم..." type="text"/>
-    <button class="icon" type="submit">
-      <i class="fa-solid fa-search"></i>
-    </button>
-  </form>
-</div>
-
+<div class="logo">
+<img src="https://i.ibb.co/gMRRxTsd/photo-2025-07-25-00-33-10.jpg" style="width: 150px; max-width: 100%; display: block; margin: 0 auto;"/>
+</div><div class="main-header">
+<form class="search-bar" onsubmit="event.preventDefault(); searchProducts();">
+<input id="searchInput" oninput="searchProducts()" placeholder="ابحث عن منتج أو قسم..." type="text"/>
+<button class="icon" type="submit">
+<i class="fa-solid fa-search"></i>
+</button>
+</form>
+<button id="backBtn">
+<i class="fa fa-arrow-left"></i>
+</button>
 <div class="dropdown" id="dropdown"></div>
-
+</div>
 <!-- بداية السلايدر -->
+
 <section id="image-carousel">
   <button class="prev-btn" type="button" onclick="prevImage()">‹</button>
 
-  <!-- الحاوية الأساسية للشرائح -->
+  <!-- حاوية الشرائح -->
   <div id="carousel-inner">
-    <!-- 1) منتجات طبية -->
+    <!-- الشريحة 1 -->
     <div class="carousel-slide">
-      <button class="slide-hit" type="button"
-              onclick="filterByMainCategory('منتجات طبية')"
-              aria-label="منتجات طبية">
+      <button class="slide-hit" type="button" onclick="filterByMainCategory('منتجات طبية')" aria-label="منتجات طبية">
         <img class="carousel-img cover"
              src="assest/banner/aaaa.jpg?v=1"
              alt="عناية طبية ... جمالك يستحق الأفضل!"
@@ -586,7 +473,7 @@ html,body{
     <!-- 2) مقاوم للماء -->
     <div class="carousel-slide">
       <button class="slide-hit" type="button" onclick="filterByMainCategory('مقاوم للماء')" aria-label="مقاوم للماء">
-        <img class="carousel-img cover" src="https://i.ibb.co/tT6zwm3h/image.jpg" alt="ثبات يدوم - مقاوم للماء" loading="lazy" decoding="async" />
+        <img class="carousel-img cover" src="assest/banner/aaaa.jpg?v=1" alt="ثبات يدوم - مقاوم للماء" loading="lazy" decoding="async" />
         <div class="slide-label no-bg-label">💧 "ثبات يدوم... مقاومة للماء، مقاومة لكل شيء!"</div>
       </button>
     </div>
@@ -594,7 +481,7 @@ html,body{
     <!-- 3) عضوي -->
     <div class="carousel-slide">
       <button class="slide-hit" type="button" onclick="filterByMainCategory('عضوي')" aria-label="عضوي">
-        <img class="carousel-img cover" src="https://i.ibb.co/Rp3FR2bD/image.jpg" alt="جمالك طبيعي مثل مكوناتنا" loading="lazy" decoding="async" />
+        <img class="carousel-img cover" src="assest/banner/aaaa.jpg?v=1" alt="جمالك طبيعي مثل مكوناتنا" loading="lazy" decoding="async" />
         <div class="slide-label no-bg-label">🌿 "جمالك طبيعي… مثل مكوناتنا🌱من الطبيعة... إليكِ مباشرة."</div>
       </button>
     </div>
@@ -623,22 +510,134 @@ html,body{
       </button>
     </div>
 
-    <!-- 7) الأكثر مبيعًا -->
+    <!-- 7) الأكثر مبيعًا (PNG/شعار) -->
     <div class="carousel-slide">
       <button class="slide-hit" type="button" onclick="filterByMainCategory('الاكثر مبيعا')" aria-label="الاكثر مبيعا">
         <img class="carousel-img contain" src="https://i.ibb.co/q3TJ1bLj/khonash-bg-1000x300.png" alt="الأكثر مبيعًا" loading="lazy" decoding="async" />
         <div class="slide-label no-bg-label">🔥 "الكل يحبها... الأكثر مبيعًا تستحق التجربة!"</div>
       </button>
     </div>
-  </div> <!-- نهاية #carousel-inner -->
+  </div>
 
   <div class="carousel-dots" id="carousel-dots"></div>
   <button class="next-btn" type="button" onclick="nextImage()">›</button>
 </section>
-<!-- نهاية السلايدر -->
+
+
 
 
 <div class="categories cat-slider" id="categories">
+<div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">الاكثر مبيعا</span>
+</div>
+<div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">عرض خاص</span>
+</div>
+<div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">مقاوم للماء</span>
+</div>
+<div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">جديد</span>
+</div>
+<div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">اصدار محدود</span>
+</div>
+<div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">منتجات طبية</span>
+</div>
+<div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">روتين</span>
+</div>
+<div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">عناية بالوجه</span>
+</div>
+<div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">عناية بالشعر</span>
+</div>
+<div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">عطر</span>
+</div>
+<div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">عناية بالجسم واليدين</span>
+</div>
+<div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">عطور</span>
+</div>
+<div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">مزيل شعر</span>
+</div>
+<div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">معطرات جو</span>
+</div><div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">مكياج وتجميل</span>
+</div>
+<div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">مسكات</span>
+</div>
+<div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">مناطق حساسه</span>
+</div><div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">اضافات تجميلية</span>
+</div><div class="category-btn">
+<span class="icon-with-pattern">
+<i class="fa fa-perfume"></i>
+</span>
+<span class="category-text">عناية شخصية</span>
+</div>
 </div><div class="promo-media" id="promoMedia">
 </div>
 <div class="container banner-flex" id="health-banner">
@@ -660,7 +659,12 @@ html,body{
 <span class="nav-icon">🏠</span>
 <span class="nav-label">الرئيسية</span>
 </button>
-
+<button class="nav-btn" id="appsBtn">
+<span class="nav-icon">
+<svg fill="none" height="24" viewbox="0 0 24 24" width="24"><rect fill="currentColor" height="7" rx="2" width="7" x="3" y="3"></rect><rect fill="currentColor" height="7" rx="2" width="7" x="14" y="3"></rect><rect fill="currentColor" height="7" rx="2" width="7" x="3" y="14"></rect><rect fill="currentColor" height="7" rx="2" width="7" x="14" y="14"></rect></svg>
+</span>
+<span class="nav-label">التطبيقات</span>
+</button>
 <button class="nav-btn" id="cartBtn" onclick="activateNav(this); showCart();">
 <span class="nav-icon">🛒</span>
 <span class="nav-label">السلة</span>
@@ -765,6 +769,7 @@ document.getElementById('appsBtn').onclick = function() {
   } else {
     openSidebar();
   }
+  activateNav(this);
 };
 
 function openSidebar() {
@@ -866,6 +871,7 @@ const CATEGORY_ICONS = {
 function toggleDropdown(idx) {
   document.getElementById('categories').classList.add('hide');
   renderDropdown(idx, true);
+  document.getElementById('backBtn').style.display = 'block';
   selectedCategory = CATEGORIES[idx].name;
   selectedSubcategory = null;
   renderProducts();
@@ -905,6 +911,30 @@ function selectSubcategory(cat, sub) {
   showBackButton('sub');
 }
 
+// زر الرجوع
+function showBackButton(type) {
+  let backBtn = document.getElementById('backBtn');
+  if (!backBtn) {
+    backBtn = document.createElement('button');
+    backBtn.id = 'backBtn';
+    backBtn.innerHTML = '⬅ رجوع';
+    backBtn.style = "margin:12px 0 0 0;padding:8px 16px;background:#fff0f6;color:#d81b60;border:1.2px solid #d81b60;border-radius:10px;font-size:1em;cursor:pointer;display:block;";
+    backBtn.onclick = function() {
+      if (type === 'main') {
+        document.getElementById('categories').classList.remove('hide');
+        document.getElementById('dropdown').innerHTML = '';
+        this.remove();
+        renderProducts(); // كل المنتجات
+      } else if (type === 'sub') {
+        renderDropdown(CATEGORIES.findIndex(c => c.name === selectedCategory), true);
+        document.getElementById('dropdown').classList.remove('hide');
+        this.remove();
+        renderProducts(); // منتجات القسم فقط
+      }
+    };
+    document.querySelector('.main-header').prepend(backBtn);
+  }
+}
 
 // البحث
 function searchProducts() {
@@ -1450,7 +1480,43 @@ document.addEventListener("mousedown", function(e) {
   });
 });
 </script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+      const showCartBtn = document.getElementById('showCartBtn');
+      if (showCartBtn) {
+        showCartBtn.addEventListener('click', showCart);
+      }
+      updateCartCount();
+    });
+  </script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+      // ربط زر السلة
+      const showCartBtn = document.getElementById('showCartBtn');
+      if (showCartBtn) {
+        showCartBtn.addEventListener('click', showCart);
+      }
+      updateCartCount();
 
+      // ربط زر الرجوع
+      const backBtn = document.getElementById('backBtn');
+      if (backBtn) {
+        backBtn.addEventListener('click', function() {
+          // إظهار أقسام الكاتيجوري
+          document.getElementById('categories').classList.remove('hide');
+          // إخفاء قائمة الفرعيات
+          document.getElementById('dropdown').classList.add('hide');
+          // إخفاء الزر نفسه
+          backBtn.style.display = 'none';
+
+          // إعادة التهيئة للحالة "الرئيسية"
+          selectedCategory = null;
+          selectedSubcategory = null;
+          renderProducts();
+        });
+      }
+    });
+  </script>
 </div>
 <script>document.getElementById('healthTestBtn').onclick = function() { window.open('https://forms.gle/H7VShuJz1aGbaGS37', '_blank'); };</script>
 <script>
@@ -1491,34 +1557,46 @@ function renderFilteredProducts(filteredList) {
 </script>
 
 <script>
-  // ========================
+// عند الضغط على زر المفضلة
+document.getElementById("favBtn")?.addEventListener("click", function () {
+  document.getElementById("categories")?.style.setProperty('display', 'none', 'important');
+  document.getElementById("subCategories")?.style.setProperty('display', 'none', 'important');
+  document.getElementById("health-banner")?.style.setProperty('display', 'none', 'important');
+  showWishlist(); // عرض المفضلة
+});
+
+// عند الضغط على زر الرئيسية
+document.getElementById("homeBtn")?.addEventListener("click", function () {
+  document.getElementById("categories")?.style.setProperty('display', 'flex', 'important');
+  document.getElementById("subCategories")?.style.setProperty('display', 'flex', 'important');
+  document.getElementById("health-banner")?.style.setProperty('display', 'block', 'important');
+});
+</script>
+<script>
   // المتغيرات الرئيسة
-  // ========================
   let ALL_PRODUCTS = [];
   let CATEGORIES   = [];
   let selectedCategory    = null;
   let selectedSubcategory = null;
 
-  // ========================
-  // 1. جلب البيانات وبناء القوائم
-  // ========================
+  // 2.1 جلب البيانات وبناء القوائم
   fetch("https://opensheet.vercel.app/1GBEvznLdxcXqAHimMliEIBE2faqDJO4OFt8buWGD3y8/Sheet1")
     .then(res => res.json())
     .then(data => {
       ALL_PRODUCTS = data;
 
-      // 1.1 بناء قائمة الشارات (badge)
+      // 2.1.1 بناء قائمة الشارات (badge)
       const badges = Array.from(new Set(
         data.map(p => (p["شارة"]||"").trim())
             .filter(b => b !== "")
       )).map(name => ({
         name,
-        icon: CATEGORY_ICONS[name] || "",
-        subs: [],
+        icon: CATEGORY_ICONS[name] || "",  // أيقونة افتراضية
+        subs: [],        // لا فروع للشارات
         type: "badge"
       }));
 
-      // 1.2 بناء قائمة الأقسام (section)
+      // 2.1.2 بناء قائمة الأقسام (section)
       const sectionsMap = {};
       data.forEach(p => {
         const cat = (p["القسم"]||"").trim();
@@ -1527,7 +1605,6 @@ function renderFilteredProducts(filteredList) {
         if (!sectionsMap[cat]) sectionsMap[cat] = new Set();
         if (sub) sectionsMap[cat].add(sub);
       });
-
       const sections = Object.entries(sectionsMap).map(([name, subsSet]) => ({
         name,
         icon: CATEGORY_ICONS[name] || "",
@@ -1535,72 +1612,59 @@ function renderFilteredProducts(filteredList) {
         type: "section"
       }));
 
-      // 1.3 دمج القائمتين
+      // 2.1.3 دمج القائمتين
       CATEGORIES = [...badges, ...sections];
 
-      // 1.4 عرض الواجهة
+      // 2.1.4 عرض الواجهة
       renderCategories();
-      renderSidebarCategories();
+      renderSidebarCategories();  // إذا كنت تستخدم الشريط الجانبي
       renderDropdown(null);
       renderProducts();
     })
     .catch(err => console.error("خطأ في جلب البيانات:", err));
 
-  // ========================
-  // 2. عرض الأيقونات الرئيسية
-  // ========================
+  // 3. دالة عرض الأيقونات الرئيسية
   function renderCategories() {
     const container = document.getElementById("categories");
     container.innerHTML = "";
-    CATEGORIES.forEach((cat, idx) => {
-      container.innerHTML += `
-        <div class="category-btn${cat.name===selectedCategory?" selected":""}"
-             onclick="toggleCategory(${idx})"
-             title="${cat.name}">
-          <span class="icon-with-pattern" style="background-image:url('${cat.icon || ''}')"></span>
-        </div>`;
-    });
+  CATEGORIES.forEach((cat, idx) => {
+  container.innerHTML += `
+    <div class="category-btn${cat.name===selectedCategory?" selected":""}"
+         onclick="toggleCategory(${idx})"
+         title="${cat.name}">
+      <span class="category-text">${cat.name}</span>
+    </div>`;
+});
   }
 
-  // ========================
-  // 3. التعامل مع النقر على أيقونة رئيسية
-  // ========================
+  // 4. دالة التعامل مع النقر على أيقونة رئيسية
   function toggleCategory(idx) {
     const cat = CATEGORIES[idx];
     if (cat.type === "badge") {
+      // إذا كانت شارة: عرض المنتجات مباشرة
       selectedCategory    = cat.name;
       selectedSubcategory = null;
       document.getElementById("categories").classList.add("hide");
       document.getElementById("dropdown").classList.add("hide");
+      document.getElementById("backBtn").style.display = "block";
       renderProducts();
-      showBackButton();
     } else {
+      // إذا كانت قسم: استدعاء القائمة الفرعية كما في الكود الأصلي
       toggleDropdown(idx);
-      showBackButton();
     }
   }
 
-  // ========================
-  // 4. زر الرجوع
-  // ========================
-  function showBackButton() {
-    const backBtn = document.getElementById("backBtn");
-    if (backBtn) backBtn.style.display = "block";
-  }
-
+  // 5. تهيئة زر الرجوع
   const backBtn = document.getElementById("backBtn");
-  if (backBtn) {
-    backBtn.style.display = "block"; // ✅ يظهر دائمًا
-    backBtn.onclick = function() {
-      document.getElementById("categories").classList.remove("hide");
-      document.getElementById("dropdown").classList.add("hide");
-      selectedCategory = null;
-      selectedSubcategory = null;
-      renderProducts();
-    };
-  }
+  backBtn.onclick = function() {
+    backBtn.style.display = "none";
+    document.getElementById("categories").classList.remove("hide");
+    document.getElementById("dropdown").classList.add("hide");
+    selectedCategory = null;
+    selectedSubcategory = null;
+    renderProducts();
+  };
 </script>
-
 <script>
 window.addEventListener('DOMContentLoaded', () => {
   const dropdown   = document.getElementById('dropdown');
@@ -1612,11 +1676,10 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 <script>
 // الحصول على العنصر
-// الحصول على العنصر
 const slider = document.querySelector('.cat-slider');
 let isDown = false, startX, scrollLeft;
 
-// سحب بالماوس
+// تفعيل السحب بالماوس
 slider.addEventListener('mousedown', e => {
   isDown = true;
   startX = e.pageX - slider.offsetLeft;
@@ -1628,10 +1691,10 @@ slider.addEventListener('mousemove', e => {
   if (!isDown) return;
   e.preventDefault();
   const x = e.pageX - slider.offsetLeft;
-  slider.scrollLeft = scrollLeft - (x - startX);
+  slider.scrollLeft = scrollLeft - (x - startX) * 1.5;
 });
 
-// سحب باللمس
+// ولنفس الأمر على اللمس
 slider.addEventListener('touchstart', e => {
   isDown = true;
   startX = e.touches[0].pageX - slider.offsetLeft;
@@ -1641,10 +1704,10 @@ slider.addEventListener('touchend',   () => isDown = false);
 slider.addEventListener('touchmove',  e => {
   if (!isDown) return;
   const x = e.touches[0].pageX - slider.offsetLeft;
-  slider.scrollLeft = scrollLeft - (x - startX);
+  slider.scrollLeft = scrollLeft - (x - startX) * 1.5;
 });
 
-// التمرير الآلي كل 3 ثوانٍ
+// التمرير الآلي كل ثانية
 window.addEventListener('load', () => {
   const btn = slider.querySelector('.category-btn');
   if (!btn) return;
@@ -1657,9 +1720,8 @@ window.addEventListener('load', () => {
     if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth) {
       slider.scrollTo({ left: 0, behavior: 'smooth' });
     }
-  }, 3000);
+    }, 500);
 });
-
 </script>
 <script>
 function filterByMainCategory(badge) {
@@ -1669,7 +1731,7 @@ function filterByMainCategory(badge) {
   document.getElementById("categories").classList.add("hide");
   document.getElementById("dropdown").classList.add("hide");
 
-
+  showBackButton("main");
   renderProducts();
 }
 </script>
@@ -1687,91 +1749,61 @@ function openFullImage(src){
   showModal('fullImgModal');
 }
 </script>
-	<script>
-let currentSlide = 0;
-let slideInterval;
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const track  = document.getElementById('carousel-inner');
+  const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+  const dotsContainer = document.getElementById('carousel-dots');
 
-// تحديث عرض الشرائح
-function updateCarouselWidth() {
-  const inner = document.getElementById("carousel-inner");
-  const slides = document.querySelectorAll(".carousel-slide");
-  if (!inner || !slides.length) return;
+  let current = 0;
+  let timer;
 
-  inner.style.display = "flex";
-  inner.style.width = `${slides.length * 100}%`;
-  slides.forEach(slide => {
-    slide.style.minWidth = "100%";
-    slide.style.boxSizing = "border-box";
-  });
-}
+  // إنشاء النقاط
+  function renderDots() {
+    dotsContainer.innerHTML = '';
+    slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => show(i));
+      dotsContainer.appendChild(dot);
+    });
+  }
 
-// عرض شريحة معينة
-function showSlide(index) {
-  const slides = document.querySelectorAll(".carousel-slide");
-  const track  = document.getElementById("carousel-inner");
-  const dots   = document.querySelectorAll(".dot");
+  // عرض شريحة وتحديث النقاط
+  function show(index) {
+    current = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
 
-  if (!slides.length) return;
-  currentSlide = (index + slides.length) % slides.length;
-  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    const dots = dotsContainer.querySelectorAll('.dot');
+    dots.forEach(d => d.classList.remove('active'));
+    if (dots[current]) dots[current].classList.add('active');
+  }
 
-  dots.forEach(dot => dot.classList.remove("active"));
-  if (dots[currentSlide]) dots[currentSlide].classList.add("active");
-}
+  // تحكّم عام
+  window.nextImage = () => show(current + 1);
+  window.prevImage = () => show(current - 1);
 
-// التنقل
-function nextImage() { showSlide(currentSlide + 1); }
-function prevImage() { showSlide(currentSlide - 1); }
+  function start() { timer = setInterval(() => show(current + 1), 4000); }
+  function stop()  { clearInterval(timer); }
 
-// إنشاء النقاط
-function createDots() {
-  const dotContainer = document.getElementById("carousel-dots");
-  const slides = document.querySelectorAll(".carousel-slide");
-  dotContainer.innerHTML = "";
+  // إيقاف/تشغيل تلقائي على المرور
+  const carousel = document.getElementById('image-carousel');
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', start);
 
-  slides.forEach((_, i) => {
-    const dot = document.createElement("span");
-    dot.className = "dot" + (i === 0 ? " active" : "");
-    dot.onclick = () => showSlide(i);
-    dotContainer.appendChild(dot);
-  });
-}
-
-// تحريك تلقائي
-function startAutoSlide() {
-  slideInterval = setInterval(nextImage, 4000);
-}
-function pauseAutoSlide() {
-  clearInterval(slideInterval);
-}
-
-// سحب باللمس (موبايل)
-function enableSwipe() {
+  // سحب بالإصبع
   let startX = 0;
-  const inner = document.getElementById("carousel-inner");
-  if (!inner) return;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (dx < -50) nextImage();
+    if (dx >  50) prevImage();
+  }, {passive:true});
 
-  inner.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-  });
-  inner.addEventListener("touchend", e => {
-    const endX = e.changedTouches[0].clientX;
-    if (startX - endX > 50) nextImage();
-    else if (endX - startX > 50) prevImage();
-  });
-}
-
-// تهيئة عند تحميل الصفحة
-document.addEventListener("DOMContentLoaded", () => {
-  updateCarouselWidth();
-  createDots();
-  showSlide(0);
-  startAutoSlide();
-  enableSwipe();
-
-  const carousel = document.getElementById("image-carousel");
-  carousel.addEventListener("mouseenter", pauseAutoSlide);
-  carousel.addEventListener("mouseleave", startAutoSlide);
+  // تهيئة
+  renderDots();
+  show(0);
+  start();
 });
 </script>
 
