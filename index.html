@@ -396,7 +396,6 @@ html,body{
 ======================= */
 #image-carousel{ position:relative; width:100%; overflow:hidden; margin:0 0 var(--space-sm); }
 #carousel-inner{ display:flex; transition:transform .5s ease-in-out; width:100%; will-change:transform; }
-.carousel-slide{ position:relative; min-width:100%; flex:0 0 100%; aspect-ratio:1000/300; }
 
 .carousel-img{
   width:100%; height:100%;
@@ -534,8 +533,8 @@ html,body{
 
 .carousel-slide {
   flex: 0 0 100%;
-  height: 300px;          /* 🔹 ارتفاع ثابت للسلايدر */
-  overflow: hidden;       /* 🔹 يخفي أي زوائد */
+  height: 300px;          /* افتراضي لسطح المكتب */
+  overflow: hidden;      /* 🔹 يخفي أي زوائد */
 }
 
 .carousel-slide img {
@@ -543,7 +542,18 @@ html,body{
   height: 100%;
   object-fit: cover;       /* 🔹 يملأ الإطار بدون تمدد غريب */
 }
+/* 🟢 على الموبايل */
+@media (max-width: 768px) {
+  .carousel-slide {
+    height: 200px;        /* أقل للموبايل */
+  }
+}
 
+/* 🟢 على الشاشات الصغيرة جدًا */
+@media (max-width: 480px) {
+  .carousel-slide {
+    height: 150px;        /* أصغر للأجهزة الصغيرة */
+  }
 
 </style>
 
