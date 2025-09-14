@@ -405,19 +405,11 @@ html,body{
   display: flex;
   transition: transform 0.5s ease-in-out;
   will-change: transform;
-  width: 700%; /* 🔹 7 شرائح = 700% (غيرها حسب عدد الشرائح عندك) */
-}
-.carousel-slide {
-  flex: 0 0 100%; /* كل شريحة تاخذ عرض الشاشة */
-  height: 220px;
-  overflow: hidden;
-  position: relative;
 }
 
-
 .carousel-slide {
-  flex: 0 0 100%;
-  height: 220px;   /* افتراضي */
+  min-width: 100%;   /* كل شريحة تساوي عرض الشاشة */
+  height: 220px;     /* الارتفاع الافتراضي */
   overflow: hidden;
   position: relative;
 }
@@ -433,6 +425,7 @@ html,body{
   object-fit: contain;
   background: #fff;
 }
+
 
 .carousel-dots {
   text-align: center;
@@ -1774,13 +1767,9 @@ function showSlide(index) {
 
   currentSlide = (index + slides.length) % slides.length;
 
-  // ✅ يحسب العرض حسب عدد الشرائح
-  track.style.width = (slides.length * 100) + "%";
-  slides.forEach(slide => slide.style.flex = "0 0 100%");
-
+  // ✅ هنا التحريك يتم بالشاشة الكاملة
   track.style.transform = 'translateX(-' + currentSlide * 100 + '%)';
 
-  // تحديث النقاط
   dots.forEach(dot => dot.classList.remove('active'));
   if (dots[currentSlide]) dots[currentSlide].classList.add('active');
 }
