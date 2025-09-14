@@ -1741,29 +1741,6 @@ function filterByMainCategory(badge) {
   renderProducts();
 }
 </script>
-
-
-
-
-<script>
-let startX = 0;
-const carousel = document.getElementById("carousel-inner");
-
-if (carousel) {
-  carousel.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  });
-
-  carousel.addEventListener("touchend", (e) => {
-    const endX = e.changedTouches[0].clientX;
-    if (startX - endX > 50) {
-      showSlide(currentSlide + 1); // سحب لليسار
-    } else if (endX - startX > 50) {
-      showSlide(currentSlide - 1); // سحب لليمين
-    }
-  });
-}
-</script>
 <div class="modal" id="fullImgModal" style="display:none;">
   <div class="modal-content" style="max-width:90%; max-height:90vh; padding:0; background:#000;">
     <img id="fullImg" src="" alt="" style="max-width:100%; max-height:90vh; display:block; margin:auto;" />
