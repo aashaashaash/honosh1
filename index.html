@@ -394,42 +394,49 @@ html,body{
 /* =======================
    Carousel (Banners)
 ======================= */
-#image-carousel{ position:relative; width:100%; overflow:hidden; margin:0 0 var(--space-sm); }
-#carousel-inner{ display:flex; transition:transform .5s ease-in-out; width:100%; will-change:transform; }
-
-.carousel-img{
-  width:100%; height:100%;
-  object-fit:cover; display:block;
+#image-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 0 0 var(--space-sm);
 }
 
-.carousel-dots{ text-align:center; margin-top:8px; }
-.dot{
-  display:inline-block; width:10px; height:10px; margin:4px; background:#bbb; border-radius:50%;
-  cursor:pointer; transition:background-color .3s ease;
-}
-.dot.active{ background:var(--brand); }
-
-.prev-btn,.next-btn{
-  position:absolute; top:50%; transform:translateY(-50%);
-  background:rgba(255,255,255,.8); border:none; font-size:2rem; padding:0 10px; color:var(--brand);
-  cursor:pointer; z-index:2;
-}
-.prev-btn{ left:10px; } .next-btn{ right:10px; }
-
-/* نص البنر */
-.slide-label.no-bg-label{
-  position:absolute; left:6%; bottom:12%;
-  color:#000; font-weight:bold; font-family:'Tajawal',sans-serif;
-  background:none; box-shadow:none; max-width:40%; line-height:1.4;
-  user-select:none; font-size:clamp(14px,3vw,30px);
+#carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+  will-change: transform;
 }
 
-/* أسهم بديلة */
-.arrow{
-  position:absolute; top:50%; transform:translateY(-50%); font-size:24px; color:var(--brand);
-  background:rgba(255,255,255,.8); border-radius:50%; padding:4px 12px; cursor:pointer; z-index:10;
+.carousel-slide {
+  flex: 0 0 100%;
+  aspect-ratio: 1000 / 300;   /* يحافظ على النسبة تلقائي */
+  overflow: hidden;
 }
-.arrow.left{ left:10px; } .arrow.right{ right:10px; }
+
+/* الصور داخل السلايدر */
+.carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* يملأ الإطار مع قص الأطراف */
+  display: block;
+}
+
+/* للشعارات أو الصور الشفافة */
+.carousel-img.contain {
+  object-fit: contain;
+  background: #fff;           /* خلفية بيضاء عشان الشعار يبان */
+}
+
+/* النقاط (Dots) */
+.carousel-dots {
+  text-align: center;
+  margin-top: 8px;
+}
+.dot {
+  display: inline-block;
+  width: 10px;
+ 
 
 /* =======================
    Misc / Footer Info
@@ -525,35 +532,7 @@ html,body{
   color: #333;
 }
 
-#carousel-inner {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  width: 100%;
-}
 
-.carousel-slide {
-  flex: 0 0 100%;
-  height: 300px;          /* افتراضي لسطح المكتب */
-  overflow: hidden;      /* 🔹 يخفي أي زوائد */
-}
-
-.carousel-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;       /* 🔹 يملأ الإطار بدون تمدد غريب */
-}
-/* 🟢 على الموبايل */
-@media (max-width: 768px) {
-  .carousel-slide {
-    height: 200px;        /* أقل للموبايل */
-  }
-}
-
-/* 🟢 على الشاشات الصغيرة جدًا */
-@media (max-width: 480px) {
-  .carousel-slide {
-    height: 150px;        /* أصغر للأجهزة الصغيرة */
-  }
 
 </style>
 
