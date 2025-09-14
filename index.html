@@ -428,11 +428,6 @@ html,body{
 
 
 
-
-#backBtn { right: 12px; top: 50%; transform: translateY(-50%); }
-#appsBtn { left: 12px; top: 50%; transform: translateY(-50%); }
-
-
 </style>
 
 </head>
@@ -758,6 +753,65 @@ html,body{
     "الحل الذي تحتاجه بشرتك... قبل أن تصرخي طلباً للمساعدة"</p>
 </div>
 </div>
+
+
+
+<div class="modal" id="aboutMenu" style="display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,0.25);z-index:20000;">
+<div class="modal-content" style="max-width:320px;text-align:right;">
+<button onclick="showModal('about');closeModal('aboutMenu');" style="display:block;width:100%;margin:12px 0;padding:12px;border:none;background:#fce4ec;color:#a0003a;font-size:1.1rem;border-radius:8px;cursor:pointer;">من نحن</button>
+<button onclick="showModal('contact');closeModal('aboutMenu');" style="display:block;width:100%;margin:12px 0;padding:12px;border:none;background:#fce4ec;color:#a0003a;font-size:1.1rem;border-radius:8px;cursor:pointer;">اتصل بنا</button>
+<button onclick="showModal('location');closeModal('aboutMenu');" style="display:block;width:100%;margin:12px 0;padding:12px;border:none;background:#fce4ec;color:#a0003a;font-size:1.1rem;border-radius:8px;cursor:pointer;">مواقع الفروع</button>
+</div>
+</div>
+
+<!-- رسالة منبثقة (Toast) -->
+<div class="toast" id="toast"></div>
+
+<button id="showCartBtn" style="display:none;">
+  🛒 السلة
+  <span id="cartCount" style="margin-right:4px;">0</span>
+</button>
+<!-- نافذة السلة المنبثقة -->
+<div class="modal" id="cartModal" style="display:none;">
+<div class="modal-content" style="max-width:400px;">
+<span onclick="document.getElementById('cartModal').style.display='none'" style="float:left;cursor:pointer;font-size:1.5em;color:#d81b60;">×</span>
+<h2 style="color:#d81b60;">سلة المشتريات</h2>
+<ul id="cartItems" style="list-style:none;padding:0;margin:0;"></ul>
+<div id="cartSummary"></div>
+<hr/>
+<h3 style="color:#d81b60;">معلومات الزبون</h3>
+<input id="custName" placeholder="الاسم الثلاثي" style="width:100%;margin-bottom:8px;padding:8px;border-radius:7px;border:1px solid #d81b60;" type="text"/>
+<input id="custAddress" placeholder="العنوان بالتفصيل" style="width:100%;margin-bottom:8px;padding:8px;border-radius:7px;border:1px solid #d81b60;" type="text"/>
+<input id="custPhone" placeholder="رقم الهاتف" style="width:100%;margin-bottom:8px;padding:8px;border-radius:7px;border:1px solid #d81b60;" type="text"/>
+<input id="custLocation" placeholder="رابط اللوكيشن (اختياري)" style="width:100%;margin-bottom:8px;padding:8px;border-radius:7px;border:1px solid #d81b60;" type="text"/>
+<button onclick="submitCartOrder()" style="width:100%;background:#d81b60;color:#fff;padding:12px;border:none;border-radius:8px;font-size:1.1rem;margin-top:12px;cursor:pointer;">إرسال الطلب عبر واتساب</button>
+<button onclick="clearCart()" style="width:100%;background:#fff0f6;color:#d81b60;padding:12px;border:none;border-radius:8px;font-size:1em;margin-top:8px;cursor:pointer;">تفريغ السلة</button>
+</div>
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="modal" id="fullImgModal" style="display:none;">
+  <div class="modal-content" style="max-width:90%; max-height:90vh; padding:0; background:#000;">
+    <img id="fullImg" src="" alt="" style="max-width:100%; max-height:90vh; display:block; margin:auto;" />
+    <button onclick="closeModal('fullImgModal')" style="position:absolute; top:8px; left:8px; background:#fff0f6; color:#d81b60; border:1px solid #d81b60; border-radius:10px; padding:6px 10px; cursor:pointer;">إغلاق</button>
+  </div>
+</div>
+
+
+
 <script>
 let sidebarOpen = false;
 let sidebarSelectedCat = null;
@@ -1172,13 +1226,6 @@ function updateCartCount() {
   if(footerCount) footerCount.textContent = totalQty;
 }
 </script>
-<div class="modal" id="aboutMenu" style="display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,0.25);z-index:20000;">
-<div class="modal-content" style="max-width:320px;text-align:right;">
-<button onclick="showModal('about');closeModal('aboutMenu');" style="display:block;width:100%;margin:12px 0;padding:12px;border:none;background:#fce4ec;color:#a0003a;font-size:1.1rem;border-radius:8px;cursor:pointer;">من نحن</button>
-<button onclick="showModal('contact');closeModal('aboutMenu');" style="display:block;width:100%;margin:12px 0;padding:12px;border:none;background:#fce4ec;color:#a0003a;font-size:1.1rem;border-radius:8px;cursor:pointer;">اتصل بنا</button>
-<button onclick="showModal('location');closeModal('aboutMenu');" style="display:block;width:100%;margin:12px 0;padding:12px;border:none;background:#fce4ec;color:#a0003a;font-size:1.1rem;border-radius:8px;cursor:pointer;">مواقع الفروع</button>
-</div>
-</div>
 <script>
 function showModal(id) {
   document.getElementById(id).style.display = 'flex';
@@ -1187,8 +1234,6 @@ function closeModal(id) {
   document.getElementById(id).style.display = 'none';
 }
 </script>
-<!-- رسالة منبثقة (Toast) -->
-<div class="toast" id="toast"></div>
 <script>
 // --- السلة ---
 let cart = [];
@@ -1399,27 +1444,6 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCartCount();
 });
 </script>
-<button id="showCartBtn" style="display:none;">
-  🛒 السلة
-  <span id="cartCount" style="margin-right:4px;">0</span>
-</button>
-<!-- نافذة السلة المنبثقة -->
-<div class="modal" id="cartModal" style="display:none;">
-<div class="modal-content" style="max-width:400px;">
-<span onclick="document.getElementById('cartModal').style.display='none'" style="float:left;cursor:pointer;font-size:1.5em;color:#d81b60;">×</span>
-<h2 style="color:#d81b60;">سلة المشتريات</h2>
-<ul id="cartItems" style="list-style:none;padding:0;margin:0;"></ul>
-<div id="cartSummary"></div>
-<hr/>
-<h3 style="color:#d81b60;">معلومات الزبون</h3>
-<input id="custName" placeholder="الاسم الثلاثي" style="width:100%;margin-bottom:8px;padding:8px;border-radius:7px;border:1px solid #d81b60;" type="text"/>
-<input id="custAddress" placeholder="العنوان بالتفصيل" style="width:100%;margin-bottom:8px;padding:8px;border-radius:7px;border:1px solid #d81b60;" type="text"/>
-<input id="custPhone" placeholder="رقم الهاتف" style="width:100%;margin-bottom:8px;padding:8px;border-radius:7px;border:1px solid #d81b60;" type="text"/>
-<input id="custLocation" placeholder="رابط اللوكيشن (اختياري)" style="width:100%;margin-bottom:8px;padding:8px;border-radius:7px;border:1px solid #d81b60;" type="text"/>
-<button onclick="submitCartOrder()" style="width:100%;background:#d81b60;color:#fff;padding:12px;border:none;border-radius:8px;font-size:1.1rem;margin-top:12px;cursor:pointer;">إرسال الطلب عبر واتساب</button>
-<button onclick="clearCart()" style="width:100%;background:#fff0f6;color:#d81b60;padding:12px;border:none;border-radius:8px;font-size:1em;margin-top:8px;cursor:pointer;">تفريغ السلة</button>
-</div>
-</div>
 <script>
 // فتح أي مودال بتأثير تدرج
 function openModal(id) {
@@ -1517,7 +1541,6 @@ document.addEventListener("mousedown", function(e) {
       }
     });
   </script>
-</div>
 <script>document.getElementById('healthTestBtn').onclick = function() { window.open('https://forms.gle/H7VShuJz1aGbaGS37', '_blank'); };</script>
 <script>
 document.getElementById('searchInput').addEventListener('input', function () {
@@ -1555,7 +1578,6 @@ function renderFilteredProducts(filteredList) {
   document.getElementById('product-list').innerHTML = html;
 }
 </script>
-
 <script>
 // عند الضغط على زر المفضلة
 document.getElementById("favBtn")?.addEventListener("click", function () {
@@ -1735,13 +1757,6 @@ function filterByMainCategory(badge) {
   renderProducts();
 }
 </script>
-
-<div class="modal" id="fullImgModal" style="display:none;">
-  <div class="modal-content" style="max-width:90%; max-height:90vh; padding:0; background:#000;">
-    <img id="fullImg" src="" alt="" style="max-width:100%; max-height:90vh; display:block; margin:auto;" />
-    <button onclick="closeModal('fullImgModal')" style="position:absolute; top:8px; left:8px; background:#fff0f6; color:#d81b60; border:1px solid #d81b60; border-radius:10px; padding:6px 10px; cursor:pointer;">إغلاق</button>
-  </div>
-</div>
 <script>
 function openFullImage(src){
   const img = document.getElementById('fullImg');
@@ -1806,6 +1821,5 @@ document.addEventListener('DOMContentLoaded', () => {
   start();
 });
 </script>
-
 </body>
 </html>
