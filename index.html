@@ -1,4 +1,4 @@
-\<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html dir="rtl" lang="ar">
 <head>
@@ -410,7 +410,7 @@ html,body{
 
 .carousel-slide {
   flex: 0 0 100%;
-  aspect-ratio: 1000 / 300;   /* 🔹 يحافظ على نسبة العرض/الارتفاع */
+  height: 220px;   /* افتراضي */
   overflow: hidden;
   position: relative;
 }
@@ -418,8 +418,13 @@ html,body{
 .carousel-slide img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 🔹 يملأ الإطار بدون تمدد غريب */
-  display: block;
+  object-fit: cover;
+}
+
+/* للشعارات أو الصور الشفافة */
+.carousel-img.contain {
+  object-fit: contain;
+  background: #fff;
 }
 
 .carousel-dots {
@@ -455,7 +460,6 @@ html,body{
 .prev-btn { left: 10px; }
 .next-btn { right: 10px; }
 
-/* نص البنر */
 .slide-label.no-bg-label {
   position: absolute;
   left: 6%;
@@ -471,34 +475,15 @@ html,body{
   font-size: clamp(14px, 3vw, 30px);
 }
 
-/* أسهم بديلة */
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 24px;
-  color: var(--brand);
-  background: rgba(255,255,255,.8);
-  border-radius: 50%;
-  padding: 4px 12px;
-  cursor: pointer;
-  z-index: 10;
+/* 🟢 Responsive */
+@media (min-width: 992px) {
+  .carousel-slide { height: 320px; }
 }
-.arrow.left { left: 10px; }
-.arrow.right { right: 10px; }
-
-/* 🟢 على الموبايل */
-@media (max-width: 768px) {
-  .carousel-slide {
-    aspect-ratio: 1000 / 500;   /* 🔹 يخلي البانر أطول */
-  }
+@media (min-width: 768px) and (max-width: 991px) {
+  .carousel-slide { height: 260px; }
 }
-
-/* 🟢 على الشاشات الصغيرة جدًا */
-@media (max-width: 480px) {
-  .carousel-slide {
-    aspect-ratio: 1000 / 600;   /* 🔹 يغطي الشاشة بشكل أوضح */
-  }
+@media (max-width: 767px) {
+  .carousel-slide { height: 200px; }
 }
 
  
@@ -636,26 +621,25 @@ html,body{
 <div class="dropdown" id="dropdown"></div>
 </div>
 <!-- بداية السلايدر -->
+<!-- =======================
+     Carousel (Banners)
+======================= -->
 <section id="image-carousel">
   <button class="prev-btn" type="button" onclick="prevImage()">‹</button>
- <div id="carousel-inner">
-<div class="carousel-slide">
-  <button class="slide-hit" type="button"
-          onclick="filterByMainCategory('منتجات طبية')"
-          aria-label="منتجات طبية">
-    <img class="carousel-img cover"
-         src="assest/banner/aaaa.jpg?v=1"
-         alt="عناية طبية ... جمالك يستحق الأفضل!"
-         width="1000" height="300"
-         loading="eager" fetchpriority="high" decoding="async">
-    <div class="slide-label no-bg-label">🛡️ "عناية طبية ... جمالك يستحق الأفضل!"</div>
-  </button>
-</div>
+  
+  <div id="carousel-inner">
+    <!-- 1) منتجات طبية -->
+    <div class="carousel-slide">
+      <button class="slide-hit" type="button" onclick="filterByMainCategory('منتجات طبية')" aria-label="منتجات طبية">
+        <img class="carousel-img cover" src="assest/banner/aaaa.jpg?v=1" alt="عناية طبية ... جمالك يستحق الأفضل!" loading="eager" decoding="async">
+        <div class="slide-label no-bg-label">🛡️ "عناية طبية ... جمالك يستحق الأفضل!"</div>
+      </button>
+    </div>
 
     <!-- 2) مقاوم للماء -->
     <div class="carousel-slide">
       <button class="slide-hit" type="button" onclick="filterByMainCategory('مقاوم للماء')" aria-label="مقاوم للماء">
-        <img class="carousel-img cover" src="https://i.ibb.co/tT6zwm3h/image.jpg" alt="ثبات يدوم - مقاوم للماء" loading="lazy" decoding="async" />
+        <img class="carousel-img cover" src="https://i.ibb.co/tT6zwm3h/image.jpg" alt="ثبات يدوم - مقاوم للماء" loading="lazy" decoding="async">
         <div class="slide-label no-bg-label">💧 "ثبات يدوم... مقاومة للماء، مقاومة لكل شيء!"</div>
       </button>
     </div>
@@ -663,7 +647,7 @@ html,body{
     <!-- 3) عضوي -->
     <div class="carousel-slide">
       <button class="slide-hit" type="button" onclick="filterByMainCategory('عضوي')" aria-label="عضوي">
-        <img class="carousel-img cover" src="https://i.ibb.co/Rp3FR2bD/image.jpg" alt="جمالك طبيعي مثل مكوناتنا" loading="lazy" decoding="async" />
+        <img class="carousel-img cover" src="https://i.ibb.co/Rp3FR2bD/image.jpg" alt="جمالك طبيعي مثل مكوناتنا" loading="lazy" decoding="async">
         <div class="slide-label no-bg-label">🌿 "جمالك طبيعي… مثل مكوناتنا🌱من الطبيعة... إليكِ مباشرة."</div>
       </button>
     </div>
@@ -671,7 +655,7 @@ html,body{
     <!-- 4) إصدار محدود -->
     <div class="carousel-slide">
       <button class="slide-hit" type="button" onclick="filterByMainCategory('اصدار محدود')" aria-label="اصدار محدود">
-        <img class="carousel-img cover" src="https://i.ibb.co/bgjTVhQh/image.jpg" alt="إصدار محدود" loading="lazy" decoding="async" />
+        <img class="carousel-img cover" src="https://i.ibb.co/bgjTVhQh/image.jpg" alt="إصدار محدود" loading="lazy" decoding="async">
         <div class="slide-label no-bg-label">✨ ⏳ "إصدار محدود... الجمال لا ينتظر!"</div>
       </button>
     </div>
@@ -679,7 +663,7 @@ html,body{
     <!-- 5) روتين -->
     <div class="carousel-slide">
       <button class="slide-hit" type="button" onclick="filterByMainCategory('روتين')" aria-label="روتين">
-        <img class="carousel-img cover" src="https://i.ibb.co/PZXkD2TL/image.jpg" alt="روتينك الجمالي يبدأ من هنا" loading="lazy" decoding="async" />
+        <img class="carousel-img cover" src="https://i.ibb.co/PZXkD2TL/image.jpg" alt="روتينك الجمالي يبدأ من هنا" loading="lazy" decoding="async">
         <div class="slide-label no-bg-label">✨ "روتينك الجمالي يبدأ من هنا... سر التألق كل يوم!"</div>
       </button>
     </div>
@@ -687,7 +671,7 @@ html,body{
     <!-- 6) عرض خاص -->
     <div class="carousel-slide">
       <button class="slide-hit" type="button" onclick="filterByMainCategory('عرض خاص')" aria-label="عرض خاص">
-        <img class="carousel-img cover" src="https://i.ibb.co/7xdjqVCq/image.jpg" alt="عروض خاصة" loading="lazy" decoding="async" />
+        <img class="carousel-img cover" src="https://i.ibb.co/7xdjqVCq/image.jpg" alt="عروض خاصة" loading="lazy" decoding="async">
         <div class="slide-label no-bg-label">"لاتفوتينها ... عروضنا الخاصة ... جمال بسعر ذهبي!"🎉</div>
       </button>
     </div>
@@ -695,7 +679,7 @@ html,body{
     <!-- 7) الأكثر مبيعًا (PNG/شعار) -->
     <div class="carousel-slide">
       <button class="slide-hit" type="button" onclick="filterByMainCategory('الاكثر مبيعا')" aria-label="الاكثر مبيعا">
-        <img class="carousel-img contain" src="https://i.ibb.co/q3TJ1bLj/khonash-bg-1000x300.png" alt="الأكثر مبيعًا" loading="lazy" decoding="async" />
+        <img class="carousel-img contain" src="https://i.ibb.co/q3TJ1bLj/khonash-bg-1000x300.png" alt="الأكثر مبيعًا" loading="lazy" decoding="async">
         <div class="slide-label no-bg-label">🔥 "الكل يحبها... الأكثر مبيعًا تستحق التجربة!"</div>
       </button>
     </div>
