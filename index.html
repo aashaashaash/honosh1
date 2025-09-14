@@ -1754,18 +1754,21 @@ function openFullImage(src){
   showModal('fullImgModal');
 }
 </script>
-	<script>
+<script>
 let currentSlide = 0;
 let interval;
 
 function showSlide(index) {
-  const slides = document.querySelectorAll('.carousel-slide');
+  const slides = document.querySelectorAll('#carousel-inner .carousel-slide');
   const track = document.getElementById('carousel-inner');
-  const dots = document.querySelectorAll('.dot');
+  const dots = document.querySelectorAll('#carousel-dots .dot');
+
+  if (!slides.length) return;
 
   currentSlide = (index + slides.length) % slides.length;
   track.style.transform = 'translateX(-' + currentSlide * 100 + '%)';
 
+  // تحديث النقاط
   dots.forEach(dot => dot.classList.remove('active'));
   if (dots[currentSlide]) dots[currentSlide].classList.add('active');
 }
@@ -1796,22 +1799,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const carousel = document.getElementById("image-carousel");
   carousel.addEventListener("mouseenter", pauseAutoSlide);
   carousel.addEventListener("mouseleave", startAutoSlide);
-});
 
-// دعم السحب باللمس
-let startX = 0;
-const carouselInner = document.getElementById("carousel-inner");
-if (carouselInner) {
+  // دعم السحب باللمس
+  let startX = 0;
+  const carouselInner = document.getElementById("carousel-inner");
   carouselInner.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
   });
   carouselInner.addEventListener("touchend", (e) => {
     const endX = e.changedTouches[0].clientX;
-    if (startX - endX > 50) nextImage(); // سحب لليسار
-    else if (endX - startX > 50) prevImage(); // سحب لليمين
+    if (startX - endX > 50) nextImage(); // يسار
+    else if (endX - startX > 50) prevImage(); // يمين
   });
-}
+});
 </script>
+	
 
 </body>
 </html>
