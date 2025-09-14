@@ -408,7 +408,7 @@ html,body{
 }
 
 .carousel-slide {
-  min-width: 100%;   /* كل شريحة تساوي عرض الشاشة */
+  flex: 0 0 100%;   /* كل شريحة تاخذ 100% من العرض */	
   height: 220px;     /* الارتفاع الافتراضي */
   overflow: hidden;
   position: relative;
@@ -1766,14 +1766,11 @@ function showSlide(index) {
   if (!slides.length) return;
 
   currentSlide = (index + slides.length) % slides.length;
-
-  // ✅ هنا التحريك يتم بالشاشة الكاملة
   track.style.transform = 'translateX(-' + currentSlide * 100 + '%)';
 
   dots.forEach(dot => dot.classList.remove('active'));
   if (dots[currentSlide]) dots[currentSlide].classList.add('active');
 }
-
 
 function nextImage() { showSlide(currentSlide + 1); }
 function prevImage() { showSlide(currentSlide - 1); }
@@ -1790,7 +1787,9 @@ function createDots() {
   });
 }
 
-function startAutoSlide() { interval = setInterval(nextImage, 4000); }
+function startAutoSlide() {
+  interval = setInterval(() => { nextImage(); }, 4000);
+}
 function pauseAutoSlide() { clearInterval(interval); }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1801,19 +1800,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const carousel = document.getElementById("image-carousel");
   carousel.addEventListener("mouseenter", pauseAutoSlide);
   carousel.addEventListener("mouseleave", startAutoSlide);
-
-  // دعم السحب باللمس
-  let startX = 0;
-  const carouselInner = document.getElementById("carousel-inner");
-  carouselInner.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  });
-  carouselInner.addEventListener("touchend", (e) => {
-    const endX = e.changedTouches[0].clientX;
-    if (startX - endX > 50) nextImage(); // يسار
-    else if (endX - startX > 50) prevImage(); // يمين
-  });
 });
+
 </script>
 	
 
