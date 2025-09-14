@@ -1742,118 +1742,9 @@ function filterByMainCategory(badge) {
 }
 </script>
 
-<script>
-let currentSlide = 0;
 
-function updateCarouselWidth() {
-  const slides = document.querySelectorAll(".carousel-slide");
-  const inner = document.getElementById("carousel-inner");
-  inner.style.width = `${slides.length * 100}%`;
-  inner.style.display = "flex";
-  slides.forEach(slide => {
-    slide.style.minWidth = "100%";
-    slide.style.boxSizing = "border-box";
-  });
-}
 
-function showSlide(index) {
-  const track = document.getElementById("carousel-inner");
-  const slides = document.querySelectorAll(".carousel-slide");
-  const dots = document.querySelectorAll(".dot");
 
-  if (!slides.length) return;
-  currentSlide = (index + slides.length) % slides.length;
-  const offset = -currentSlide * 100;
-  track.style.transform = `translateX(${offset}%)`;
-
-  dots.forEach(dot => dot.classList.remove("active"));
-  if (dots[currentSlide]) dots[currentSlide].classList.add("active");
-}
-
-function nextImage() { showSlide(currentSlide + 1); }
-function prevImage() { showSlide(currentSlide - 1); }
-
-function createDots() {
-  const dotContainer = document.createElement("div");
-  dotContainer.className = "carousel-dots";
-  const slides = document.querySelectorAll(".carousel-slide");
-  slides.forEach((_, i) => {
-    const dot = document.createElement("span");
-    dot.className = "dot" + (i === 0 ? " active" : "");
-    dot.addEventListener("click", () => showSlide(i));
-    dotContainer.appendChild(dot);
-  });
-  document.getElementById("image-carousel").appendChild(dotContainer);
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  updateCarouselWidth();
-  showSlide(0);
-  createDots();
-  let slideInterval = setInterval(nextImage, 4000);
-  const carousel = document.getElementById("image-carousel");
-  carousel.addEventListener("mouseenter", () => clearInterval(slideInterval));
-  carousel.addEventListener("mouseleave", () => {
-    slideInterval = setInterval(nextImage, 4000);
-  });
-});
-</script>
-<script>
-let currentSlide = 0;
-let interval;
-
-function showSlide(index) {
-  const slides = document.querySelectorAll('.carousel-slide');
-  const track = document.getElementById('carousel-inner');
-  const dots = document.querySelectorAll('.dot');
-
-  currentSlide = (index + slides.length) % slides.length;
-  track.style.transform = 'translateX(-' + currentSlide * 100 + '%)';
-
-  dots.forEach(dot => dot.classList.remove('active'));
-  if (dots[currentSlide]) dots[currentSlide].classList.add('active');
-}
-
-function nextImage() {
-  showSlide(currentSlide + 1);
-}
-
-function prevImage() {
-  showSlide(currentSlide - 1);
-}
-
-function createDots() {
-  const dotContainer = document.getElementById("carousel-dots");
-  const slides = document.querySelectorAll("#carousel-inner .carousel-slide");
-  dotContainer.innerHTML = "";
-  slides.forEach((_, i) => {
-    const dot = document.createElement("span");
-    dot.className = "dot" + (i === 0 ? " active" : "");
-    dot.onclick = () => showSlide(i);
-    dotContainer.appendChild(dot);
-  });
-}
-
-function startAutoSlide() {
-  interval = setInterval(() => {
-    nextImage();
-  }, 4000);
-}
-
-function pauseAutoSlide() {
-  clearInterval(interval);
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  createDots();
-  showSlide(0);
-  startAutoSlide();
-
-  const carousel = document.getElementById("image-carousel");
-  carousel.addEventListener("mouseenter", pauseAutoSlide);
-  carousel.addEventListener("mouseleave", startAutoSlide);
-});
-</script>
 <script>
 let startX = 0;
 const carousel = document.getElementById("carousel-inner");
@@ -1886,5 +1777,64 @@ function openFullImage(src){
   showModal('fullImgModal');
 }
 </script>
+	<script>
+let currentSlide = 0;
+let interval;
+
+function showSlide(index) {
+  const slides = document.querySelectorAll('.carousel-slide');
+  const track = document.getElementById('carousel-inner');
+  const dots = document.querySelectorAll('.dot');
+
+  currentSlide = (index + slides.length) % slides.length;
+  track.style.transform = 'translateX(-' + currentSlide * 100 + '%)';
+
+  dots.forEach(dot => dot.classList.remove('active'));
+  if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+}
+
+function nextImage() { showSlide(currentSlide + 1); }
+function prevImage() { showSlide(currentSlide - 1); }
+
+function createDots() {
+  const dotContainer = document.getElementById("carousel-dots");
+  const slides = document.querySelectorAll("#carousel-inner .carousel-slide");
+  dotContainer.innerHTML = "";
+  slides.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.className = "dot" + (i === 0 ? " active" : "");
+    dot.onclick = () => showSlide(i);
+    dotContainer.appendChild(dot);
+  });
+}
+
+function startAutoSlide() { interval = setInterval(nextImage, 4000); }
+function pauseAutoSlide() { clearInterval(interval); }
+
+document.addEventListener("DOMContentLoaded", () => {
+  createDots();
+  showSlide(0);
+  startAutoSlide();
+
+  const carousel = document.getElementById("image-carousel");
+  carousel.addEventListener("mouseenter", pauseAutoSlide);
+  carousel.addEventListener("mouseleave", startAutoSlide);
+});
+
+// دعم السحب باللمس
+let startX = 0;
+const carouselInner = document.getElementById("carousel-inner");
+if (carouselInner) {
+  carouselInner.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  });
+  carouselInner.addEventListener("touchend", (e) => {
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) nextImage(); // سحب لليسار
+    else if (endX - startX > 50) prevImage(); // سحب لليمين
+  });
+}
+</script>
+
 </body>
 </html>
