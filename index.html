@@ -404,9 +404,16 @@ html,body{
 #carousel-inner {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  width: 100%;
   will-change: transform;
+  width: 700%; /* 🔹 7 شرائح = 700% (غيرها حسب عدد الشرائح عندك) */
 }
+.carousel-slide {
+  flex: 0 0 100%; /* كل شريحة تاخذ عرض الشاشة */
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+
 
 .carousel-slide {
   flex: 0 0 100%;
@@ -1766,12 +1773,18 @@ function showSlide(index) {
   if (!slides.length) return;
 
   currentSlide = (index + slides.length) % slides.length;
+
+  // ✅ يحسب العرض حسب عدد الشرائح
+  track.style.width = (slides.length * 100) + "%";
+  slides.forEach(slide => slide.style.flex = "0 0 100%");
+
   track.style.transform = 'translateX(-' + currentSlide * 100 + '%)';
 
   // تحديث النقاط
   dots.forEach(dot => dot.classList.remove('active'));
   if (dots[currentSlide]) dots[currentSlide].classList.add('active');
 }
+
 
 function nextImage() { showSlide(currentSlide + 1); }
 function prevImage() { showSlide(currentSlide - 1); }
