@@ -394,101 +394,43 @@ html,body{
 /* =======================
    Carousel (Banners)
 ======================= */
-#image-carousel {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  margin: 0 0 var(--space-sm);
+#image-carousel{ position:relative; width:100%; overflow:hidden; margin:0 0 var(--space-sm); }
+#carousel-inner{ display:flex; transition:transform .5s ease-in-out; width:100%; will-change:transform; }
+.carousel-slide{ position:relative; min-width:100%; flex:0 0 100%; aspect-ratio:1000/300; }
+
+.carousel-img{
+  width:100%; height:100%;
+  object-fit:cover; display:block;
 }
 
-#carousel-inner {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  will-change: transform;
-  width: 100%; /* خليها مرنة */
+.carousel-dots{ text-align:center; margin-top:8px; }
+.dot{
+  display:inline-block; width:10px; height:10px; margin:4px; background:#bbb; border-radius:50%;
+  cursor:pointer; transition:background-color .3s ease;
+}
+.dot.active{ background:var(--brand); }
+
+.prev-btn,.next-btn{
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:rgba(255,255,255,.8); border:none; font-size:2rem; padding:0 10px; color:var(--brand);
+  cursor:pointer; z-index:2;
+}
+.prev-btn{ left:10px; } .next-btn{ right:10px; }
+
+/* نص البنر */
+.slide-label.no-bg-label{
+  position:absolute; left:6%; bottom:12%;
+  color:#000; font-weight:bold; font-family:'Tajawal',sans-serif;
+  background:none; box-shadow:none; max-width:40%; line-height:1.4;
+  user-select:none; font-size:clamp(14px,3vw,30px);
 }
 
-.carousel-slide {
-  flex: 0 0 100%;
-  height: auto;
-  aspect-ratio: 16/5; /* أو أي نسبة تناسبك */
-  overflow: hidden;
-  position: relative;
+/* أسهم بديلة */
+.arrow{
+  position:absolute; top:50%; transform:translateY(-50%); font-size:24px; color:var(--brand);
+  background:rgba(255,255,255,.8); border-radius:50%; padding:4px 12px; cursor:pointer; z-index:10;
 }
-
-.carousel-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* للشعارات أو الصور الشفافة */
-.carousel-img.contain {
-  object-fit: contain;
-  background: #fff;
-}
-
-
-.carousel-dots {
-  text-align: center;
-  margin-top: 8px;
-}
-
-.dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 4px;
-  background: #bbb;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color .3s ease;
-}
-
-.dot.active { background: var(--brand); }
-
-.prev-btn, .next-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,.8);
-  border: none;
-  font-size: 2rem;
-  padding: 0 10px;
-  color: var(--brand);
-  cursor: pointer;
-  z-index: 2;
-}
-.prev-btn { left: 10px; }
-.next-btn { right: 10px; }
-
-.slide-label.no-bg-label {
-  position: absolute;
-  left: 6%;
-  bottom: 12%;
-  color: #000;
-  font-weight: bold;
-  font-family: 'Tajawal', sans-serif;
-  background: none;
-  box-shadow: none;
-  max-width: 40%;
-  line-height: 1.4;
-  user-select: none;
-  font-size: clamp(14px, 3vw, 30px);
-}
-
-/* 🟢 Responsive */
-@media (min-width: 992px) {
-  .carousel-slide { height: 320px; }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .carousel-slide { height: 260px; }
-}
-@media (max-width: 767px) {
-  .carousel-slide { height: 200px; }
-}
-
- 
+.arrow.left{ left:10px; } .arrow.right{ right:10px; }
 
 /* =======================
    Misc / Footer Info
@@ -585,7 +527,6 @@ html,body{
 }
 
 
-
 </style>
 
 </head>
@@ -623,25 +564,29 @@ html,body{
 <div class="dropdown" id="dropdown"></div>
 </div>
 <!-- بداية السلايدر -->
-<!-- =======================
-     Carousel (Banners)
-======================= -->
 <section id="image-carousel">
   <button class="prev-btn" type="button" onclick="prevImage()">‹</button>
-  
-  <div id="carousel-inner">
-    <!-- 1) منتجات طبية -->
-    <div class="carousel-slide">
-      <button class="slide-hit" type="button" onclick="filterByMainCategory('منتجات طبية')" aria-label="منتجات طبية">
-        <img class="carousel-img cover" src="assest/banner/aaaa.jpg?v=1" alt="عناية طبية ... جمالك يستحق الأفضل!" loading="eager" decoding="async">
-        <div class="slide-label no-bg-label">🛡️ "عناية طبية ... جمالك يستحق الأفضل!"</div>
-      </button>
-    </div>
+
+<div class="carousel-slide">
+  <button class="slide-hit" type="button"
+          onclick="filterByMainCategory('منتجات طبية')"
+          aria-label="منتجات طبية">
+    <img class="carousel-img cover"
+         src="assest/banner/aaaa.jpg?v=1"
+         alt="عناية طبية ... جمالك يستحق الأفضل!"
+         width="1000" height="300"
+         loading="eager" fetchpriority="high" decoding="async">
+    <div class="slide-label no-bg-label">🛡️ "عناية طبية ... جمالك يستحق الأفضل!"</div>
+  </button>
+</div>
 
     <!-- 2) مقاوم للماء -->
     <div class="carousel-slide">
       <button class="slide-hit" type="button" onclick="filterByMainCategory('مقاوم للماء')" aria-label="مقاوم للماء">
-        <img class="carousel-img cover" src="https://i.ibb.co/tT6zwm3h/image.jpg" alt="ثبات يدوم - مقاوم للماء" loading="lazy" decoding="async">
+        <img class="carousel-img cover" src="assest/banner/aaa.jpg?v=1"
+         alt="عناية طبية ... جمالك يستحق الأفضل!"
+         width="1000" height="300"
+         loading="eager" fetchpriority="high" decoding="async">
         <div class="slide-label no-bg-label">💧 "ثبات يدوم... مقاومة للماء، مقاومة لكل شيء!"</div>
       </button>
     </div>
@@ -649,7 +594,7 @@ html,body{
     <!-- 3) عضوي -->
     <div class="carousel-slide">
       <button class="slide-hit" type="button" onclick="filterByMainCategory('عضوي')" aria-label="عضوي">
-        <img class="carousel-img cover" src="assest/banner/aaaa.jpg?v=1" alt="جمالك طبيعي مثل مكوناتنا" loading="lazy" decoding="async">
+        <img class="carousel-img cover" src="https://i.ibb.co/Rp3FR2bD/image.jpg" alt="جمالك طبيعي مثل مكوناتنا" loading="lazy" decoding="async" />
         <div class="slide-label no-bg-label">🌿 "جمالك طبيعي… مثل مكوناتنا🌱من الطبيعة... إليكِ مباشرة."</div>
       </button>
     </div>
@@ -657,7 +602,7 @@ html,body{
     <!-- 4) إصدار محدود -->
     <div class="carousel-slide">
       <button class="slide-hit" type="button" onclick="filterByMainCategory('اصدار محدود')" aria-label="اصدار محدود">
-        <img class="carousel-img cover" src="https://i.ibb.co/bgjTVhQh/image.jpg" alt="إصدار محدود" loading="lazy" decoding="async">
+        <img class="carousel-img cover" src="https://i.ibb.co/bgjTVhQh/image.jpg" alt="إصدار محدود" loading="lazy" decoding="async" />
         <div class="slide-label no-bg-label">✨ ⏳ "إصدار محدود... الجمال لا ينتظر!"</div>
       </button>
     </div>
@@ -665,7 +610,7 @@ html,body{
     <!-- 5) روتين -->
     <div class="carousel-slide">
       <button class="slide-hit" type="button" onclick="filterByMainCategory('روتين')" aria-label="روتين">
-        <img class="carousel-img cover" src="https://i.ibb.co/PZXkD2TL/image.jpg" alt="روتينك الجمالي يبدأ من هنا" loading="lazy" decoding="async">
+        <img class="carousel-img cover" src="https://i.ibb.co/PZXkD2TL/image.jpg" alt="روتينك الجمالي يبدأ من هنا" loading="lazy" decoding="async" />
         <div class="slide-label no-bg-label">✨ "روتينك الجمالي يبدأ من هنا... سر التألق كل يوم!"</div>
       </button>
     </div>
@@ -673,7 +618,7 @@ html,body{
     <!-- 6) عرض خاص -->
     <div class="carousel-slide">
       <button class="slide-hit" type="button" onclick="filterByMainCategory('عرض خاص')" aria-label="عرض خاص">
-        <img class="carousel-img cover" src="https://i.ibb.co/7xdjqVCq/image.jpg" alt="عروض خاصة" loading="lazy" decoding="async">
+        <img class="carousel-img cover" src="https://i.ibb.co/7xdjqVCq/image.jpg" alt="عروض خاصة" loading="lazy" decoding="async" />
         <div class="slide-label no-bg-label">"لاتفوتينها ... عروضنا الخاصة ... جمال بسعر ذهبي!"🎉</div>
       </button>
     </div>
@@ -681,7 +626,7 @@ html,body{
     <!-- 7) الأكثر مبيعًا (PNG/شعار) -->
     <div class="carousel-slide">
       <button class="slide-hit" type="button" onclick="filterByMainCategory('الاكثر مبيعا')" aria-label="الاكثر مبيعا">
-        <img class="carousel-img contain" src="https://i.ibb.co/q3TJ1bLj/khonash-bg-1000x300.png" alt="الأكثر مبيعًا" loading="lazy" decoding="async">
+        <img class="carousel-img contain" src="https://i.ibb.co/q3TJ1bLj/khonash-bg-1000x300.png" alt="الأكثر مبيعًا" loading="lazy" decoding="async" />
         <div class="slide-label no-bg-label">🔥 "الكل يحبها... الأكثر مبيعًا تستحق التجربة!"</div>
       </button>
     </div>
@@ -1543,7 +1488,46 @@ function renderFilteredProducts(filteredList) {
   document.getElementById('product-list').innerHTML = html;
 }
 </script>
+<script>
+let currentImage = 0;
+const images = document.querySelectorAll('#carousel-inner img');
+const totalImages = images.length;
 
+function updateCarousel() {
+  const carouselInner = document.getElementById('carousel-inner');
+  if (!carouselInner) return;
+  carouselInner.style.transform = `translateX(-${currentImage * 100}%)`;
+
+  const dots = document.querySelectorAll('#carousel-dots span');
+  dots.forEach((dot, index) => {
+    dot.style.opacity = index === currentImage ? '1' : '0.4';
+  });
+}
+
+function nextImage() {
+  currentImage = (currentImage + 1) % totalImages;
+  updateCarousel();
+}
+
+function prevImage() {
+  currentImage = (currentImage - 1 + totalImages) % totalImages;
+  updateCarousel();
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  const dotsContainer = document.getElementById('carousel-dots');
+  for (let i = 0; i < totalImages; i++) {
+    const dot = document.createElement('span');
+    dot.style.cssText = 'display:inline-block;width:10px;height:10px;margin:0 4px;border-radius:50%;background:#d81b60;opacity:0.4;cursor:pointer;';
+    dot.addEventListener('click', function() {
+      currentImage = i;
+      updateCarousel();
+    });
+    dotsContainer.appendChild(dot);
+  }
+  updateCarousel();
+});
+</script>
 <script>
 // عند الضغط على زر المفضلة
 document.getElementById("favBtn")?.addEventListener("click", function () {
@@ -1743,29 +1727,125 @@ function filterByMainCategory(badge) {
   renderProducts();
 }
 </script>
-<div class="modal" id="fullImgModal" style="display:none;">
-  <div class="modal-content" style="max-width:90%; max-height:90vh; padding:0; background:#000;">
-    <img id="fullImg" src="" alt="" style="max-width:100%; max-height:90vh; display:block; margin:auto;" />
-    <button onclick="closeModal('fullImgModal')" style="position:absolute; top:8px; left:8px; background:#fff0f6; color:#d81b60; border:1px solid #d81b60; border-radius:10px; padding:6px 10px; cursor:pointer;">إغلاق</button>
-  </div>
-</div>
 <script>
-function openFullImage(src){
-  const img = document.getElementById('fullImg');
-  img.src = src;
-  showModal('fullImgModal');
+let totalSlides = document.querySelectorAll(".carousel-slide").length;
+let currentSlide = 0;
+let slides = document.querySelectorAll('.carousel-slide');
+let slideInterval;
+
+function updateCarouselWidth() {
+  const slides = document.querySelectorAll(".carousel-slide");
+  const inner = document.getElementById("carousel-inner");
+  inner.style.width = `${slides.length * 100}%`;
+  slides.forEach(slide => {
+  slide.style.flex = "0 0 100%";
+  });
 }
+
+function showSlide(index) {
+  const totalSlides = slides.length;
+  if (index >= totalSlides) currentSlide = 0;
+  else if (index < 0) currentSlide = totalSlides - 1;
+  else currentSlide = index;
+
+  slides.forEach((slide, i) => {
+    slide.style.display = i === currentSlide ? 'block' : 'none';
+  });
+}
+
+function nextImage() {
+  showSlide(currentSlide + 1);
+}
+
+function prevImage() {
+  showSlide(currentSlide - 1);
+}
+
+function createDots() {
+  const dotContainer = document.createElement("div");
+  dotContainer.className = "carousel-dots";
+  const slides = document.querySelectorAll(".carousel-slide");
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.className = "dot" + (i === 0 ? " active" : "");
+    dot.addEventListener("click", () => showSlide(i));
+    dotContainer.appendChild(dot);
+  });
+
+  document.getElementById("image-carousel").appendChild(dotContainer);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  slides = document.querySelectorAll('.carousel-slide');
+  showSlide(currentSlide);
+  setInterval(nextImage, 4000);
+});
+</script>
+<script>
+let currentSlide = 0;
+
+function updateCarouselWidth() {
+  const slides = document.querySelectorAll(".carousel-slide");
+  const inner = document.getElementById("carousel-inner");
+  inner.style.width = `${slides.length * 100}%`;
+  inner.style.display = "flex";
+  slides.forEach(slide => {
+    slide.style.minWidth = "100%";
+    slide.style.boxSizing = "border-box";
+  });
+}
+
+function showSlide(index) {
+  const track = document.getElementById("carousel-inner");
+  const slides = document.querySelectorAll(".carousel-slide");
+  const dots = document.querySelectorAll(".dot");
+
+  if (!slides.length) return;
+  currentSlide = (index + slides.length) % slides.length;
+  const offset = -currentSlide * 100;
+  track.style.transform = `translateX(${offset}%)`;
+
+  dots.forEach(dot => dot.classList.remove("active"));
+  if (dots[currentSlide]) dots[currentSlide].classList.add("active");
+}
+
+function nextImage() { showSlide(currentSlide + 1); }
+function prevImage() { showSlide(currentSlide - 1); }
+
+function createDots() {
+  const dotContainer = document.createElement("div");
+  dotContainer.className = "carousel-dots";
+  const slides = document.querySelectorAll(".carousel-slide");
+  slides.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.className = "dot" + (i === 0 ? " active" : "");
+    dot.addEventListener("click", () => showSlide(i));
+    dotContainer.appendChild(dot);
+  });
+  document.getElementById("image-carousel").appendChild(dotContainer);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  updateCarouselWidth();
+  showSlide(0);
+  createDots();
+  let slideInterval = setInterval(nextImage, 4000);
+  const carousel = document.getElementById("image-carousel");
+  carousel.addEventListener("mouseenter", () => clearInterval(slideInterval));
+  carousel.addEventListener("mouseleave", () => {
+    slideInterval = setInterval(nextImage, 4000);
+  });
+});
 </script>
 <script>
 let currentSlide = 0;
 let interval;
 
 function showSlide(index) {
-  const slides = document.querySelectorAll('#carousel-inner .carousel-slide');
+  const slides = document.querySelectorAll('.carousel-slide');
   const track = document.getElementById('carousel-inner');
-  const dots = document.querySelectorAll('#carousel-dots .dot');
-
-  if (!slides.length) return;
+  const dots = document.querySelectorAll('.dot');
 
   currentSlide = (index + slides.length) % slides.length;
   track.style.transform = 'translateX(-' + currentSlide * 100 + '%)';
@@ -1774,8 +1854,13 @@ function showSlide(index) {
   if (dots[currentSlide]) dots[currentSlide].classList.add('active');
 }
 
-function nextImage() { showSlide(currentSlide + 1); }
-function prevImage() { showSlide(currentSlide - 1); }
+function nextImage() {
+  showSlide(currentSlide + 1);
+}
+
+function prevImage() {
+  showSlide(currentSlide - 1);
+}
 
 function createDots() {
   const dotContainer = document.getElementById("carousel-dots");
@@ -1790,9 +1875,14 @@ function createDots() {
 }
 
 function startAutoSlide() {
-  interval = setInterval(() => { nextImage(); }, 4000);
+  interval = setInterval(() => {
+    nextImage();
+  }, 4000);
 }
-function pauseAutoSlide() { clearInterval(interval); }
+
+function pauseAutoSlide() {
+  clearInterval(interval);
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   createDots();
@@ -1803,9 +1893,38 @@ document.addEventListener("DOMContentLoaded", () => {
   carousel.addEventListener("mouseenter", pauseAutoSlide);
   carousel.addEventListener("mouseleave", startAutoSlide);
 });
-
 </script>
-	
+<script>
+let startX = 0;
+const carousel = document.getElementById("carousel-inner");
 
+if (carousel) {
+  carousel.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  });
+
+  carousel.addEventListener("touchend", (e) => {
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) {
+      showSlide(currentSlide + 1); // سحب لليسار
+    } else if (endX - startX > 50) {
+      showSlide(currentSlide - 1); // سحب لليمين
+    }
+  });
+}
+</script>
+<div class="modal" id="fullImgModal" style="display:none;">
+  <div class="modal-content" style="max-width:90%; max-height:90vh; padding:0; background:#000;">
+    <img id="fullImg" src="" alt="" style="max-width:100%; max-height:90vh; display:block; margin:auto;" />
+    <button onclick="closeModal('fullImgModal')" style="position:absolute; top:8px; left:8px; background:#fff0f6; color:#d81b60; border:1px solid #d81b60; border-radius:10px; padding:6px 10px; cursor:pointer;">إغلاق</button>
+  </div>
+</div>
+<script>
+function openFullImage(src){
+  const img = document.getElementById('fullImg');
+  img.src = src;
+  showModal('fullImgModal');
+}
+</script>
 </body>
 </html>
