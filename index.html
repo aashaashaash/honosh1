@@ -659,9 +659,21 @@ html,body{
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
+	.info-footer {
+  position: static;
+  width: 100%;
+  text-align: center;
+  color: #fff;  /* النص أبيض حتى يبان */
+  background: url("assest/banner/logo_transparent.png?v=1") repeat; /* صورة منقوشة مكررة */
+  background-size: auto; /* أو cover إذا تريدها تغطي بالكامل */
+  margin-top: 10px;
+  margin-bottom: 76px;
+  padding: 16px 8px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
 
 </style>
-
 </head>
 <body>
 <div class="logo" style="position:relative;">
@@ -683,8 +695,6 @@ html,body{
     </svg>
   </button>
 </div>
-
-
 <div class="main-header">  
   <form class="search-bar" onsubmit="event.preventDefault(); searchProducts();">
     <input id="searchInput" oninput="searchProducts()" placeholder="ابحث عن منتج أو قسم..." type="text"/>
@@ -787,7 +797,6 @@ html,body{
 <span class="nav-icon">🏠</span>
 <span class="nav-label">الرئيسية</span>
 </button>
-
 <button class="nav-btn" id="cartBtn" onclick="activateNav(this); showCart();">
 <span class="nav-icon">🛒</span>
 <span class="nav-label">السلة</span>
@@ -1771,7 +1780,6 @@ document.getElementById("homeBtn")?.addEventListener("click", function () {
       showBackButton();
     }
   }
-
   // ========================
   // 4. زر الرجوع
   // ========================
@@ -2079,11 +2087,9 @@ function startAutoSlide() {
     });
   }, 5000); // ⏱ كل 5 ثواني يبدل سلايد
 }
-
 function stopAutoSlide() {
   clearInterval(autoSlide);
 }
-
 carousel.addEventListener("touchstart", stopAutoSlide);  // يوقف عند اللمس
 carousel.addEventListener("touchend", startAutoSlide);   // يرجع يكمل بعد اللمس
 
@@ -2093,23 +2099,19 @@ startAutoSlide();
 document.addEventListener("DOMContentLoaded", function () {
   const slider = document.querySelector(".cat-slider");
   let scrollAmount = 0;
-
   function autoScroll() {
     if (!slider) return;
-
     // تحريك 1 بكسل كل 30ms (أبطأ من البنر بكثير)
     scrollAmount += 1;
     slider.scrollTo({
       left: scrollAmount,
       behavior: "smooth"
     });
-
     // إعادة من البداية عند النهاية
     if (scrollAmount >= slider.scrollWidth - slider.clientWidth) {
       scrollAmount = 0;
     }
   }
-
   setInterval(autoScroll, 30); // 👈 كل 30ms
 });
 </script>
