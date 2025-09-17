@@ -603,6 +603,38 @@ html,body{
   background: #eee;
   color: #333;
 }
+/* 🎯 تنسيق خاص بالهاتف فقط */
+@media (max-width: 767px) {
+  #image-carousel {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #carousel-inner,
+  .carousel-slide {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;  /* يخلي الصورة تأخذ ارتفاعها الطبيعي */
+  }
+
+  .carousel-img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important; /* يخلي الصورة كاملة بدون قص */
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .slide-label.no-bg-label {
+    bottom: 4%;  /* ننزله شوي فقط */
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .categories, .cat-slider {
+    margin-top: 0 !important;
+  }
+}
 
 
 </style>
