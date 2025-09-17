@@ -2116,6 +2116,7 @@ function openImage(src) {
   document.getElementById("modalImg").src = src;
 }
 </script>
+<script>
 function showModal(id) {
   const modal = document.getElementById(id);
   if (!modal) return;
@@ -2129,6 +2130,6 @@ function closeModal(id) {
   modal.classList.remove("open");
   setTimeout(() => { modal.style.display = "none"; }, 400);
 }
-
+</script>
 </body>
 </html>
