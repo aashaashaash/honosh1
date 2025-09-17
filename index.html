@@ -185,9 +185,15 @@ html,body{
 ======================= */
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:12px; padding:0 12px 56px;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:10px; padding:0 8px 56px;
 }
+@media (max-width: 600px) {
+  .products {
+    grid-template-columns: repeat(3, 1fr); /* 🔽 موبايل: 3 في كل سطر */
+  }
+}
+
 .product{
   background:#fff; border-radius:14px;
   border:1.25px solid var(--border); box-shadow:var(--shadow);
@@ -754,12 +760,7 @@ html,body{
 <div class="categories cat-slider" id="categories">
 </div><div class="promo-media" id="promoMedia">
 </div>
-<div class="container banner-flex" id="health-banner">
-<span class="banner-text">💡 صحتك سر رشاقتك</span>
-<button class="banner-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSe0p6ITphTDpE44o6caATnUCwBO-hITHeKl8O3dLt7MB5yMiw/viewform?usp=header', '_blank')">
-  🧪 ابدئي الآن
-</button>
-</div>
+
 <div class="products" id="product-list"></div>
 <div class="info-footer">
   ✨ كوزمتك علي حنوش ✨ جمالكِ... يبدأ من هنا! <br/>
@@ -779,6 +780,12 @@ html,body{
 <span class="nav-label">السلة</span>
 <span class="cart-badge" id="cartCountFooter" style="position:absolute;top:-5px;right:10px;font-size:10px;background:#d81b60;color:white;border-radius:50%;padding:4px;width:16px;height:18px;display:flex;align-items:center;justify-content:center;">0</span>
 </button>
+	<div class="container banner-flex" id="health-banner">
+<span class="banner-text">💡 صحتك سر رشاقتك</span>
+<button class="banner-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSe0p6ITphTDpE44o6caATnUCwBO-hITHeKl8O3dLt7MB5yMiw/viewform?usp=header', '_blank')">
+  🧪 ابدئي الآن
+</button>
+</div>
 <button class="nav-btn" id="favBtn" onclick="activateNav(this); showWishlist();">
 <span class="nav-icon">❤️</span>
 <span class="nav-label">المفضلة</span>
