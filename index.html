@@ -646,6 +646,19 @@ html,body{
   display: none !important; /* 🔽 إخفاء الأسهم */
 }
 
+.modal {
+  display: none; /* مخفي افتراضياً */
+  position: fixed;
+  z-index: 10000;
+  inset: 0;
+  background: rgba(0,0,0,0.85); /* خلفية سوداء نصف شفافة */
+  justify-content: center;
+  align-items: center;
+}
+.modal img {
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
 
 </style>
 
@@ -874,6 +887,12 @@ html,body{
     "الحل الذي تحتاجه بشرتك... قبل أن تصرخي طلباً للمساعدة"</p>
 </div>
 </div>
+	<!-- نافذة تكبير الصورة -->
+<div id="imgModal" class="modal" onclick="closeModal()">
+  <span style="cursor:pointer;font-size:2rem;position:absolute;top:10px;right:20px;color:white;">✖</span>
+  <img id="modalImg" style="max-width:90%; max-height:90%;">
+</div>
+
 <script>
 let sidebarOpen = false;
 let sidebarSelectedCat = null;
@@ -1598,7 +1617,7 @@ function renderFilteredProducts(filteredList) {
     filteredList.forEach(p => {
       html += `
         <div class="product-card">
-          <img src="${p.image}" alt="${p.name}" />
+        <img src="${p.image}" alt="${p.name}" onclick="openImage(this.src)" />
           <div class="product-name">${p.name}</div>
           <div class="product-price">${p.price} د.ع</div>
         </div>
@@ -2094,6 +2113,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   setInterval(autoScroll, 30); // 👈 كل 30ms
 });
+</script>
+<script>
+function openImage(src) {
+  document.getElementById("imgModal").style.display = "flex";
+  document.getElementById("modalImg").src = src;
+}
+function closeModal() {
+  document.getElementById("imgModal").style.display = "none";
+}
 </script>
 
 </body>
