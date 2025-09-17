@@ -395,32 +395,47 @@ html,body{
   position: relative;
   width: 100%;
   overflow: hidden;
-  margin: 0;
-  padding: 0;
+  margin: 0 !important;   /* ألغِ أي margin */
+  padding: 0 !important;  /* ألغِ أي padding */
 }
 
 #carousel-inner {
   display: flex;
   transition: transform 0.5s ease-in-out;
   width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .carousel-slide {
   flex: 0 0 100%;
   position: relative;
-  margin: 0;
-  padding: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: auto;  /* يخلي الارتفاع حسب الصورة */
 }
 
 .carousel-img {
-  width: 100%;
-  height: auto;
-  max-height: 40vh;   /* 👈 للتحكم بارتفاع الصورة على الهاتف */
-  object-fit: contain; /* أو غيّرها إلى cover إذا تريد ملء الشاشة بالكامل */
   display: block;
+  width: 100%;
+  height: auto;   /* 👈 الصورة بنفس نسبتها الأصلية */
   margin: 0;
   padding: 0;
+  object-fit: contain; /* 👈 يخلي الصورة كاملة بدون قص */
+  background: #fff;
 }
+
+/* 🎯 النص داخل الصورة (إذا يسبب زيادة فراغ) */
+.slide-label.no-bg-label {
+  bottom: 5%;      /* نزّل النص شوي فقط */
+  max-width: 80%;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 🎯 أقسام الفئات تحت السلايدر مباشرة */
+.categories, .cat-slider {
+  margin-top: 0 !important;
 }
 @media (min-width: 992px) {
   .carousel-slide { height: 260px; }  /* كمبيوتر */
@@ -468,13 +483,6 @@ html,body{
 .next-btn { right: 14px; }
 
 /* استجابة */
-
-  .slide-label.no-bg-label {
-    font-size: clamp(13px, 3vw, 22px);
-    max-width: 70%;
-  }
-}
-
   .slide-label.no-bg-label {
     font-size: clamp(12px, 4vw, 20px);
     max-width: 85%;
