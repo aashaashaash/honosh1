@@ -426,12 +426,24 @@ html,body{
 }
 
 /* 🎯 النص داخل الصورة (إذا يسبب زيادة فراغ) */
+/* النص فوق صورة البانر */
 .slide-label.no-bg-label {
-  bottom: 5%;      /* نزّل النص شوي فقط */
-  max-width: 80%;
-  margin: 0 !important;
-  padding: 0 !important;
+  position: absolute;
+  bottom: 8%;        /* المسافة من الأسفل */
+  left: 6%;          /* المسافة من اليسار */
+  right: 6%;         /* ما يتجاوز الصورة */
+  color: #fff;       /* النص أبيض */
+  font-weight: bold;
+  font-family: 'Tajawal', sans-serif;
+  text-align: center;   /* وسطي */
+  font-size: clamp(14px, 3vw, 24px);
+  line-height: 1.4;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);  /* لمعالجة وضوح النص فوق الصور */
+  background: none;
+  margin: 0;
+  padding: 0;
 }
+
 
 /* 🎯 أقسام الفئات تحت السلايدر مباشرة */
 .categories, .cat-slider {
@@ -481,27 +493,6 @@ html,body{
 }
 .prev-btn { left: 14px; }
 .next-btn { right: 14px; }
-
-/* استجابة */
-  .slide-label.no-bg-label {
-    font-size: clamp(12px, 4vw, 20px);
-    max-width: 85%;
-  }
-}
-/* النص داخل السلايد */
-.slide-label.no-bg-label {
-  position: absolute;
-  left: 6%;
-  bottom: 12%;
-  color: #fff;
-  font-weight: bold;
-  font-family: 'Tajawal', sans-serif;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.5);  /* 🔹 تحسين وضوح النص */
-  background: none;
-  max-width: 50%;
-  line-height: 1.4;
-  font-size: clamp(14px, 2.5vw, 26px);
-}
 
 /* أسهم بديلة */
 .arrow{
@@ -625,16 +616,9 @@ html,body{
     padding: 0 !important;
   }
 
-  .slide-label.no-bg-label {
-    bottom: 4%;  /* ننزله شوي فقط */
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
   .categories, .cat-slider {
     margin-top: 0 !important;
   }
-}
 
 
 </style>
