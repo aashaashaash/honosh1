@@ -410,13 +410,17 @@ html,body{
 }
 
 .carousel-slide {
-  position: relative;
-  min-width: 100%;
   flex: 0 0 100%;
-  aspect-ratio: 1000 / 200;      /* 🔹 يحافظ على نسبة 3:1 */
+  height: 220px;   /* 👈 افتراضي أقل */
   overflow: hidden;
+  position: relative;
 }
-
+@media (min-width: 992px) {
+  .carousel-slide { height: 260px; }  /* كمبيوتر */
+}
+@media (max-width: 767px) {
+  .carousel-slide { height: 180px; }  /* موبايل */
+}
 .carousel-img {
   width: 100%;
   height: 100%;
@@ -465,19 +469,13 @@ html,body{
 .next-btn { right: 14px; }
 
 /* استجابة */
-@media (max-width: 768px) {
-  .carousel-slide {
-    aspect-ratio: 16 / 9;    /* 🔹 على التابلت */
-  }
+
   .slide-label.no-bg-label {
     font-size: clamp(13px, 3vw, 22px);
     max-width: 70%;
   }
 }
-@media (max-width: 480px) {
-  .carousel-slide {
-    aspect-ratio: 4 / 3;     /* 🔹 على الموبايل */
-  }
+
   .slide-label.no-bg-label {
     font-size: clamp(12px, 4vw, 20px);
     max-width: 85%;
