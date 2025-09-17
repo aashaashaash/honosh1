@@ -395,28 +395,32 @@ html,body{
   position: relative;
   width: 100%;
   overflow: hidden;
-  margin: 0 0 var(--space-sm);
+  margin: 0;
+  padding: 0;
 }
 
 #carousel-inner {
   display: flex;
   transition: transform 0.5s ease-in-out;
   width: 100%;
-  will-change: transform;
 }
 
 .carousel-slide {
-  position: relative;
   flex: 0 0 100%;
-  overflow: hidden;
+  position: relative;
+  margin: 0;
+  padding: 0;
 }
 
 .carousel-img {
   width: 100%;
-  height: auto;              /* 👈 الصورة تحدد ارتفاعها الطبيعي */
-  object-fit: contain;       /* 👈 تظهر كاملة بدون قص */
-  background: #fff;          /* 👈 يملأ الفراغ بخلفية */
+  height: auto;
+  max-height: 40vh;   /* 👈 للتحكم بارتفاع الصورة على الهاتف */
+  object-fit: contain; /* أو غيّرها إلى cover إذا تريد ملء الشاشة بالكامل */
   display: block;
+  margin: 0;
+  padding: 0;
+}
 }
 @media (min-width: 992px) {
   .carousel-slide { height: 260px; }  /* كمبيوتر */
@@ -424,14 +428,6 @@ html,body{
 @media (max-width: 767px) {
   .carousel-slide { height: 180px; }  /* موبايل */
 }
-
-.carousel-img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;   /* الصورة كاملة بدون قص */
-  background: #fff;      /* فراغ أبيض حول الصورة */
-}
-
 .carousel-dots {
   text-align: center;
   margin-top: 10px;
