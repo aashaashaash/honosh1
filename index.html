@@ -102,15 +102,22 @@ html,body{
 .category-label{ display:none!important; }
 
 /* شريط أقسام منزلق */
-.cat-slider{
-  display:flex; flex-wrap:nowrap; overflow-x:auto;
-  scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
-  gap:10px; padding:0 12px; justify-content:flex-start!important;
-  margin-bottom:var(--space-sm);
+.cat-slider {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  gap: 10px;
+  padding: 0 12px;
+  justify-content: flex-start !important;
+  margin-bottom: var(--space-sm);
+  
+  /* 👇 منع ظهور السكرول بار */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-.cat-slider { flex:0 0 auto; scroll-snap-align:start; }
-.cat-slider::-webkit-scrollbar{ display:none; }
-.cat-slider{ -ms-overflow-style:none; scrollbar-width:none; }
+.cat-slider::-webkit-scrollbar { display: none; }
 
 /* =======================
    Dropdown (Subcategories)
@@ -2056,6 +2063,30 @@ carousel.addEventListener("touchstart", stopAutoSlide);  // يوقف عند ال
 carousel.addEventListener("touchend", startAutoSlide);   // يرجع يكمل بعد اللمس
 
 startAutoSlide();
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const slider = document.querySelector(".cat-slider");
+  let scrollAmount = 0;
+
+  function autoScroll() {
+    if (!slider) return;
+
+    // تحريك 1 بكسل كل 30ms (أبطأ من البنر بكثير)
+    scrollAmount += 1;
+    slider.scrollTo({
+      left: scrollAmount,
+      behavior: "smooth"
+    });
+
+    // إعادة من البداية عند النهاية
+    if (scrollAmount >= slider.scrollWidth - slider.clientWidth) {
+      scrollAmount = 0;
+    }
+  }
+
+  setInterval(autoScroll, 30); // 👈 كل 30ms
+});
 </script>
 
 </body>
