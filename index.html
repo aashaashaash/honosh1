@@ -403,8 +403,11 @@ html,body{
 
 #carousel-inner {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  overflow-x: auto;                 /* يسمح بالسحب يمين ويسار */
+  scroll-snap-type: x mandatory;    /* يوقف عند كل صورة */
+  -webkit-overflow-scrolling: touch;/* سلاسة باللمس */
   width: 100%;
+  scroll-behavior: smooth;          /* حركة ناعمة */
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -415,6 +418,7 @@ html,body{
   margin: 0 !important;
   padding: 0 !important;
   height: auto;  /* يخلي الارتفاع حسب الصورة */
+  scroll-snap-align: start;
 }
 
 .carousel-img {
@@ -2029,5 +2033,31 @@ function openFullImage(src){
   showModal('fullImgModal');
 }
 </script>
+	<script>
+const carousel = document.getElementById("carousel-inner");
+const slides = document.querySelectorAll(".carousel-slide");
+let index = 0;
+let autoSlide;
+
+function startAutoSlide() {
+  autoSlide = setInterval(() => {
+    index = (index + 1) % slides.length;
+    carousel.scrollTo({
+      left: index * carousel.clientWidth,
+      behavior: "smooth"
+    });
+  }, 5000); // ⏱ كل 5 ثواني يبدل سلايد
+}
+
+function stopAutoSlide() {
+  clearInterval(autoSlide);
+}
+
+carousel.addEventListener("touchstart", stopAutoSlide);  // يوقف عند اللمس
+carousel.addEventListener("touchend", startAutoSlide);   // يرجع يكمل بعد اللمس
+
+startAutoSlide();
+</script>
+
 </body>
 </html>
