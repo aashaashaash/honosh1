@@ -60,7 +60,6 @@ html,body{
 /* =======================
    Categories & Buttons
 ======================= */
-.category-btn,
 .subcategory-circle,
 .subcategory-btn{
   display:inline-flex; align-items:center; justify-content:center;
@@ -76,10 +75,7 @@ html,body{
   justify-content:center; flex-wrap:wrap;
 }
 
-.category-btn{
-  border-radius:12px; min-width:96px;
-  color:#333; background:#fff; font-size:.95rem;
-}
+
 .category-btn:hover,
 .category-btn.selected,
 .subcategory-circle:hover,
@@ -91,7 +87,13 @@ html,body{
   color:#fff;
   box-shadow:0 0 0 2px #fce4ec66;
 }
-
+.category-btn {
+  border-radius: 10px;
+  min-width: 70px;     /* 🔽 كان 96px */
+  min-height: 36px;    /* 🔽 أصغر قليلاً */
+  font-size: 0.8rem;   /* 🔽 تصغير الخط */
+  padding: 4px 8px;    /* 🔽 تقليل الحشوة */
+}
 .category-text{ font-size:1em; font-weight:bold;   display: none !important; }
 .category-label{ display:none!important; }
 
@@ -102,7 +104,7 @@ html,body{
   gap:10px; padding:0 12px; justify-content:flex-start!important;
   margin-bottom:var(--space-sm);
 }
-.cat-slider .category-btn{ flex:0 0 auto; scroll-snap-align:start; }
+.cat-slider { flex:0 0 auto; scroll-snap-align:start; }
 .cat-slider::-webkit-scrollbar{ display:none; }
 .cat-slider{ -ms-overflow-style:none; scrollbar-width:none; }
 
@@ -375,13 +377,13 @@ html,body{
   max-width: 44px;
   max-height: 44px;
  border-radius: 50%; /* دائري */
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   overflow: hidden;
   background-size: cover;
   background-position: center;
 	  flex-shrink: 0;
-}
+
 .icon-with-pattern > i {
   display: none; /* نخفي الأيقونة القديمة */
 }
