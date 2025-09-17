@@ -89,10 +89,14 @@ html,body{
 }
 .category-btn {
   border-radius: 10px;
-  min-width: 70px;     /* 🔽 كان 96px */
-  min-height: 36px;    /* 🔽 أصغر قليلاً */
-  font-size: 0.8rem;   /* 🔽 تصغير الخط */
-  padding: 4px 8px;    /* 🔽 تقليل الحشوة */
+  min-width: 70px;       /* 🔽 كان 96px */
+  min-height: 34px;      /* 🔽 أصغر ارتفاع */
+  font-size: 0.8rem;     /* 🔽 تصغير الخط */
+  padding: 4px 8px;      /* 🔽 تقليل الحشوة */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 .category-text{ font-size:1em; font-weight:bold;   display: none !important; }
 .category-label{ display:none!important; }
@@ -376,19 +380,15 @@ html,body{
   min-height: 44px;
   max-width: 44px;
   max-height: 44px;
- border-radius: 50%; /* دائري */
-  width: 40px;
-  height: 40px;
   overflow: hidden;
   background-size: cover;
   background-position: center;
 	  flex-shrink: 0;
-
-.icon-with-pattern > i {
-  display: none; /* نخفي الأيقونة القديمة */
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
-
-
 
 /* =======================
    Carousel (Banners)
