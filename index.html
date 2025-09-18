@@ -1807,14 +1807,14 @@ function stopAutoSlide() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  createDots();
-  showSlide(0);
-  startAutoSlide();
+  showSlide(0);     // يعرض أول صورة
+  startAutoSlide(); // يبدأ التحريك التلقائي
 
   const carousel = document.getElementById("image-carousel");
   carousel.addEventListener("mouseenter", stopAutoSlide);
   carousel.addEventListener("mouseleave", startAutoSlide);
 });
+
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -1824,10 +1824,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let scrollAmount = 0;
   function autoScroll() {
     scrollAmount += 1;
-    slider.scrollTo({
-      left: scrollAmount,
-      behavior: "smooth"
-    });
+    slider.scrollLeft = scrollAmount; // 👈 بدل scrollTo
+    if (scrollAmount >= slider.scrollWidth - slider.clientWidth) {
+      scrollAmount = 0;
+    }
+  }
+  setInterval(autoScroll, 40); // أبطأ شوي عشان يكون أنعم
+});
+
     if (scrollAmount >= slider.scrollWidth - slider.clientWidth) {
       scrollAmount = 0;
     }
