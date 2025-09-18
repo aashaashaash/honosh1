@@ -1289,10 +1289,7 @@ function toggleDesc(btn) {
 <!-- رسالة منبثقة (Toast) -->
 <div class="toast" id="toast"></div>
 <script>
-// --- السلة ---
-// --- السلة ---
 let cart = [];
-
 document.addEventListener("DOMContentLoaded", () => {
   if(document.getElementById("custName")) {
     document.getElementById("custName").value = localStorage.getItem("custName") || "";
@@ -1586,7 +1583,7 @@ document.getElementById('searchInput').addEventListener('input', function () {
     return;
   }
 
-  const filtered = PRODUCTS.filter(p => {
+  const filtered = ALL_PRODUCTS.filter(p => {
     const nameMatch = p.name && p.name.toLowerCase().includes(keyword);
     const catMatch = p.category && p.category.toLowerCase().includes(keyword);
     const subMatch = p.subcategory && p.subcategory.toLowerCase().includes(keyword);
