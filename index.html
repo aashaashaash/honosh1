@@ -1296,14 +1296,26 @@ function updateCartCount() {
 <div class="toast" id="toast"></div>
 <script>
 // --- السلة ---
+// --- السلة ---
 let cart = [];
-window.onload = function() {
-  if(localStorage.getItem("custName")) document.getElementById("custName").value = localStorage.getItem("custName");
-  if(localStorage.getItem("custAddress")) document.getElementById("custAddress").value = localStorage.getItem("custAddress");
-  if(localStorage.getItem("custPhone")) document.getElementById("custPhone").value = localStorage.getItem("custPhone");
-  if(localStorage.getItem("custLocation")) document.getElementById("custLocation").value = localStorage.getItem("custLocation");
+
+document.addEventListener("DOMContentLoaded", () => {
+  if(document.getElementById("custName")) {
+    document.getElementById("custName").value = localStorage.getItem("custName") || "";
+  }
+  if(document.getElementById("custAddress")) {
+    document.getElementById("custAddress").value = localStorage.getItem("custAddress") || "";
+  }
+  if(document.getElementById("custPhone")) {
+    document.getElementById("custPhone").value = localStorage.getItem("custPhone") || "";
+  }
+  if(document.getElementById("custLocation")) {
+    document.getElementById("custLocation").value = localStorage.getItem("custLocation") || "";
+  }
+
   updateCartCount();
-};
+});
+
 
 function addToCart(product) {
   let idx = cart.findIndex(p => p.name === product.name && p.price === product.price);
