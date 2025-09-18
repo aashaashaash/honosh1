@@ -1285,12 +1285,6 @@ function toggleDesc(btn) {
   // window.location.href = '/'; أو اسم الصفحة الرئيسية
 }
 
-// تحديث عداد السلة في الأسفل فقط
-function updateCartCount() {
-  let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-  var footerCount = document.getElementById("cartCountFooter");
-  if(footerCount) footerCount.textContent = totalQty;
-}
 </script>
 <!-- رسالة منبثقة (Toast) -->
 <div class="toast" id="toast"></div>
