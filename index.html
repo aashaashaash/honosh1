@@ -708,8 +708,6 @@ html,body{
 </div>
 
 <div class="dropdown" id="dropdown"></div>
-</div>
-
 	
 <!-- بداية السلايدر -->
 <section id="image-carousel">
@@ -1527,22 +1525,6 @@ document.addEventListener("DOMContentLoaded", () => {
 <button onclick="clearCart()" style="width:100%;background:#fff0f6;color:#d81b60;padding:12px;border:none;border-radius:8px;font-size:1em;margin-top:8px;cursor:pointer;">تفريغ السلة</button>
 </div>
 </div>
-<script>
-// فتح أي مودال بتأثير تدرج
-function openModal(id) {
-  const modal = document.getElementById(id);
-  if (!modal) return;
-  modal.style.display = "flex";
-  setTimeout(() => modal.classList.add("open"), 10);
-}
-// إغلاق أي مودال بتأثير تدرج
-function closeModal(id) {
-  const modal = document.getElementById(id);
-  if (!modal) return;
-  modal.classList.remove("open");
-  setTimeout(() => { modal.style.display = "none"; }, 400);
-}
-</script>
 <script>
 function toggleAboutDropdown(e) {
   e.stopPropagation();
