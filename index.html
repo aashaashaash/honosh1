@@ -1824,21 +1824,13 @@ document.addEventListener("DOMContentLoaded", () => {
   let scrollAmount = 0;
   function autoScroll() {
     scrollAmount += 1;
-    slider.scrollLeft = scrollAmount; // 👈 بدل scrollTo
+    slider.scrollLeft = scrollAmount;
     if (scrollAmount >= slider.scrollWidth - slider.clientWidth) {
       scrollAmount = 0;
     }
   }
-  setInterval(autoScroll, 40); // أبطأ شوي عشان يكون أنعم
+  setInterval(autoScroll, 40); // 👈 كل 40ms يتحرك خطوة صغيرة
 });
-
-    if (scrollAmount >= slider.scrollWidth - slider.clientWidth) {
-      scrollAmount = 0;
-    }
-  }
-  setInterval(autoScroll, 30); // 👈 كل 30ms يتحرك خطوة صغيرة
-});
-</script>
-
+</script
 </body>
 </html>
