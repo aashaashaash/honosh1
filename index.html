@@ -716,10 +716,12 @@ html,body{
 
 <div class="dropdown" id="dropdown"></div>
 </div>
+
+	
 <!-- بداية السلايدر -->
 <section id="image-carousel">
-  <button class="prev-btn" type="button" onclick="prevImage()">‹</button>
-
+  <button class="prev-btn" onclick="prevImage()">‹</button>
+ <div id="carousel-inner">
 <div class="carousel-slide">
   <button class="slide-hit" type="button"
           onclick="filterByMainCategory('منتجات طبية')"
@@ -786,10 +788,11 @@ html,body{
   </div>
 
   <div class="carousel-dots" id="carousel-dots"></div>
-  <button class="next-btn" type="button" onclick="nextImage()">›</button>
+  <button class="next-btn" onclick="nextImage()">›</button>
 </section>
 <!-- نهاية السلايدر -->
 
+	
 <div class="categories cat-slider" id="categories">
 </div><div class="promo-media" id="promoMedia">
 </div>
