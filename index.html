@@ -479,24 +479,7 @@ html,body{
 @media (max-width: 767px) {
   .carousel-slide { height: 180px; }  /* موبايل */
 }
-.carousel-dots {
-  text-align: center;
-  margin-top: 10px;
-}
-.dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 4px;
-  background: #bbb;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color .3s ease, transform .2s;
-}
-.dot.active {
-  background: var(--brand);
-  transform: scale(1.2);
-}
+
 
 .prev-btn, .next-btn {
   position: absolute;
@@ -711,7 +694,6 @@ html,body{
 	
 <!-- بداية السلايدر -->
 <section id="image-carousel">
-  <button class="prev-btn" onclick="prevImage()">‹</button>
  <div id="carousel-inner">
 <div class="carousel-slide">
   <button class="slide-hit" type="button"
@@ -778,8 +760,6 @@ html,body{
     </div>
   </div>
 
-  <div class="carousel-dots" id="carousel-dots"></div>
-  <button class="next-btn" onclick="nextImage()">›</button>
 </section>
 <!-- نهاية السلايدر -->
 
@@ -1803,29 +1783,18 @@ let autoSlide;
 function showSlide(index) {
   const track = document.getElementById("carousel-inner");
   const slides = document.querySelectorAll(".carousel-slide");
-  const dots   = document.querySelectorAll(".dot");
 
   currentSlide = (index + slides.length) % slides.length;
-  track.style.transform = 'translateX(-' + currentSlide * 100 + '%)';
-
-  dots.forEach(dot => dot.classList.remove('active'));
-  if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+  track.scrollTo({
+    left: currentSlide * track.clientWidth,
+    behavior: "smooth"
+  });
 }
+
 
 function nextImage() { showSlide(currentSlide + 1); }
 function prevImage() { showSlide(currentSlide - 1); }
 
-function createDots() {
-  const dotContainer = document.getElementById("carousel-dots");
-  const slides = document.querySelectorAll("#carousel-inner .carousel-slide");
-  dotContainer.innerHTML = "";
-  slides.forEach((_, i) => {
-    const dot = document.createElement("span");
-    dot.className = "dot" + (i === 0 ? " active" : "");
-    dot.onclick = () => showSlide(i);
-    dotContainer.appendChild(dot);
-  });
-}
 
 function startAutoSlide() {
   autoSlide = setInterval(() => {
