@@ -294,11 +294,13 @@ html,body{
    Modals & Toast
 ======================= */
 .modal{
-  position:fixed; inset:0; background:rgba(0,0,0,.5);
+  position:fixed; inset:0; background:rgba(0,0,0,.85);
   display:none; align-items:center; justify-content:center; z-index:9999;
   opacity:0; pointer-events:none; transition:opacity .25s ease;
 }
+	
 .modal.open{ opacity:1; pointer-events:auto; display:flex; }
+
 .modal-content{
   background:#fff; color:var(--text);
   padding:20px 14px 14px; border-radius:14px; border:1.25px solid var(--border);
@@ -532,7 +534,7 @@ html,body{
   gap: 30px;
   padding: 40px 20px;
   color: #fff;
-  background: url("assets/pattern/pattern-dark-pink.png") repeat; /* صورة الباترن الوردي */
+  background: url("assest/banner/logo_transparent.png") repeat; /* صورة الباترن الوردي */
   background-size: auto;
   text-align: right;
 }
@@ -668,15 +670,6 @@ html,body{
   display: none !important; /* 🔽 إخفاء الأسهم */
 }
 
-.modal {
-  display: none; /* مخفي افتراضياً */
-  position: fixed;
-  z-index: 10000;
-  inset: 0;
-  background: rgba(0,0,0,0.85); /* خلفية سوداء نصف شفافة */
-  justify-content: center;
-  align-items: center;
-}
 .modal img {
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.5);
